@@ -1,16 +1,18 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
+import {HttpModule, JsonpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
 import {LoginPageComponent} from './componenets/login-page/login-page.component';
+import {HomePageComponent} from './componenets/home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -23,10 +25,12 @@ import {LoginPageComponent} from './componenets/login-page/login-page.component'
       },
       {
         path: 'home',
-        component: AppComponent
+        component: HomePageComponent
       },
       {
-        path: ''
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full'
       }
     ])
   ],
