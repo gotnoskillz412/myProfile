@@ -7,12 +7,14 @@ import {HttpModule, JsonpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {LoginPageComponent} from './componenets/login-page/login-page.component';
 import {HomePageComponent} from './componenets/home-page/home-page.component';
+import {RegisterPageComponent} from './componenets/register-page/register-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    RegisterPageComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +24,10 @@ import {HomePageComponent} from './componenets/home-page/home-page.component';
       {
         path: 'login',
         component: LoginPageComponent
+      },
+      {
+        path: 'register',
+        component: RegisterPageComponent
       },
       {
         path: 'home',

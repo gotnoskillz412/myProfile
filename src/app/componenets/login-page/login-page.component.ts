@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+
+import {LoginPageService} from './login-page.service';
+import {HttpServiceService} from '../../http-service.service'
 
 @Component({
   moduleId: module.id,
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.sass']
+  styleUrls: ['./login-page.component.sass'],
+  providers: [LoginPageService, HttpServiceService]
 })
 export class LoginPageComponent implements OnInit {
-
   constructor(
-    private router: Router) {}
+    private loginPageService: LoginPageService) {}
+    public invalidCredentials: boolean = false;
 
   ngOnInit() {
-
   }
 
   model = {
@@ -22,7 +24,12 @@ export class LoginPageComponent implements OnInit {
   };
 
   onSubmit() {
-    console.log('submitted', this.model);
+    this.loginPageService.sendLoginCredentials(this.model).then(data => {
+      console.log('Responses', data);
+    }, loginError => {
+      this.invalidCredentials = true;
+      console.log('Error', loginError)
+    });
   }
 
 }

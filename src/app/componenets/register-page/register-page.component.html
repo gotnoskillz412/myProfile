@@ -1,0 +1,50 @@
+<div class="container">
+  <h1>Registration Form</h1>
+  <form (ngSubmit)="onSubmit()" #registerForm="ngForm" name="register-form">
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" [(ngModel)]="model.username" name="username" required>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="form-group" [ngClass]="{'has-error': !emailFormatValid}">
+          <label for="email">Email Address</label>
+          <input type="email" class="form-control" id="email" [(ngModel)]="model.email" name="email" required>
+          <span class="help-block" ng-show="register-form.email.$error.email">Not valid email!</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="form-group" [ngClass]="{'has-error': !passwordFormatValid}">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" [(ngModel)]="model.password" name="password">
+          <span class="help-block" *ngIf="!passwordFormatValid">Password does not meet requirement</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="form-group" [ngClass]="{'has-error': invalidCredentials}">
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" class="form-control" id="confirm-password" [(ngModel)]="model.confirmPassword" name="confirm-password">
+          <span class="help-block" *ngIf="model.confirmPassword !== model.password">Passwords do not match.</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">
+        <em ></em>
+      </div>
+    </div>
+  </form>
+</div>
