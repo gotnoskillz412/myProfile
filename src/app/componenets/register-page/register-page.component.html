@@ -31,7 +31,8 @@
       <div class="col-xs-4">
         <div class="form-group" [ngClass]="{'has-error': invalidCredentials}">
           <label for="confirm-password">Confirm Password</label>
-          <input type="password" class="form-control" id="confirm-password" [(ngModel)]="model.confirmPassword" name="confirm-password">
+          <input type="password" class="form-control" id="confirm-password" [(ngModel)]="model.confirmPassword"
+                 name="confirm-password">
           <span class="help-block" *ngIf="model.confirmPassword !== model.password">Passwords do not match.</span>
         </div>
       </div>
@@ -43,7 +44,7 @@
     </div>
     <div class="row">
       <div class="col-xs-4">
-        <em ></em>
+        <em></em>
       </div>
     </div>
   </form>

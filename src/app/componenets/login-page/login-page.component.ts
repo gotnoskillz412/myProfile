@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 import {LoginPageService} from './login-page.service';
 import {HttpServiceService} from '../../http-service.service'
@@ -8,12 +9,15 @@ import {HttpServiceService} from '../../http-service.service'
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.sass'],
-  providers: [LoginPageService, HttpServiceService]
+  providers: [LoginPageService]
 })
 export class LoginPageComponent implements OnInit {
-  constructor(
-    private loginPageService: LoginPageService) {}
-    public invalidCredentials: boolean = false;
+  constructor(private loginPageService: LoginPageService,
+              private http: HttpServiceService,
+              private router: Router) {
+  }
+
+  public invalidCredentials: boolean = false;
 
   ngOnInit() {
   }
@@ -24,8 +28,9 @@ export class LoginPageComponent implements OnInit {
   };
 
   onSubmit() {
-    this.loginPageService.sendLoginCredentials(this.model).then(data => {
-      console.log('Responses', data);
+    this.loginPageService.sendLoginCredentials(this.model).then(response => {
+      this.http.setBearerToken(response.json().token);
+      this.router.navigate(['/home']);
     }, loginError => {
       this.invalidCredentials = true;
       console.log('Error', loginError)
