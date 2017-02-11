@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {LoginPageService} from './login-page.service';
-import {HttpServiceService} from '../../http-service.service'
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   moduleId: module.id,
@@ -13,7 +13,6 @@ import {HttpServiceService} from '../../http-service.service'
 })
 export class LoginPageComponent implements OnInit {
   constructor(private loginPageService: LoginPageService,
-              private http: HttpServiceService,
               private router: Router) {
   }
 
@@ -29,7 +28,7 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit() {
     this.loginPageService.sendLoginCredentials(this.model).then(response => {
-      this.http.setBearerToken(response.json().token);
+      localStorage.setItem('myprofile_auth_token', response.json().token);
       this.router.navigate(['/home']);
     }, loginError => {
       this.invalidCredentials = true;

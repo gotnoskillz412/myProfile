@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {RegisterPageService} from './register-page.service';
-import {HttpServiceService} from "../../http-service.service";
+import {AppHttpService} from "../../app-http.service";
 
 @Component({
   selector: 'app-register-page',
@@ -16,7 +16,6 @@ export class RegisterPageComponent implements OnInit {
   public emailFormatValid: boolean = true;
 
   constructor(private registerPageService: RegisterPageService,
-              private http: HttpServiceService,
               private router: Router) {
   }
 
@@ -32,7 +31,7 @@ export class RegisterPageComponent implements OnInit {
 
   onSubmit() {
     this.registerPageService.registerAccount(this.model).then(response => {
-      this.http.setBearerToken(response.json().token);
+      localStorage.setItem('myprofile_auth_token', response.json().token);
       this.router.navigate(['/home']);
     }, registerError => {
       // TODO need to do Error codes

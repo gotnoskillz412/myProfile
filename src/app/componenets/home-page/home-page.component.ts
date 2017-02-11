@@ -10,16 +10,22 @@ import {HomePageService} from './home-page.service';
 })
 export class HomePageComponent implements OnInit {
 
+  private showPicture: Boolean = false;
+  private loaded: Boolean = false;
+
   constructor(private homePageService: HomePageService) {
   }
 
   ngOnInit() {
     this.homePageService.testCredentials().then(response => {
-      console.log(response);
+      this.loaded = true;
     })
       .catch(error => {
         console.log(error);
       });
   }
 
+  private toggleButton = function () {
+    this.showPicture = true;
+  }
 }

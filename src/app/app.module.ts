@@ -8,7 +8,7 @@ import {AppComponent} from './app.component';
 import {LoginPageComponent} from './componenets/login-page/login-page.component';
 import {HomePageComponent} from './componenets/home-page/home-page.component';
 import {RegisterPageComponent} from './componenets/register-page/register-page.component';
-import {HttpServiceService} from './http-service.service';
+import {AppHttpService} from './app-http.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import {HttpServiceService} from './http-service.service';
       }
     ])
   ],
-  providers: [HttpServiceService],
+  providers: [AppHttpService],
   bootstrap: [AppComponent]
 })
 
