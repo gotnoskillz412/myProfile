@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
+import {Location} from '@angular/common';
 import {Headers, RequestOptions} from '@angular/http';
 import {AppHttpService} from '../../app-http.service';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class RegisterPageService {
-  private registerUrl = 'http://localhost:3000/auth/register';
+  private registerUrl = Location.joinWithSlash(process.env.BASE_API, 'auth/register');
 
   constructor(private http: AppHttpService) {
 

@@ -1,5 +1,9 @@
-<div class="row">
-  <div class="col-xs-12">
-    <router-outlet></router-outlet>
-  </div>
+<div class="profile-title">Spencer's Lawn Care Services</div>
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li role="presentation" routerLinkActive="active"><a routerLink="/home" (click)="toggleTab('home')">Home</a></li>
+    <li role="presentation" routerLinkActive="active"><a routerLink="/login" (click)="toggleTab('login')">Login</a></li>
+    <li role="presentation" routerLinkActive="active"><a routerLink="/register" (click)="toggleTab('register')">Register</a></li>
+  </ul>
 </div>
+<router-outlet></router-outlet>

@@ -8,7 +8,7 @@ import {AppHttpService} from "../../app-http.service";
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
-  styleUrls: ['./register-page.component.sass'],
+  styleUrls: ['register-page.component.less'],
   providers: [RegisterPageService]
 })
 export class RegisterPageComponent implements OnInit {

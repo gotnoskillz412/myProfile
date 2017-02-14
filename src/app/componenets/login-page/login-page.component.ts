@@ -8,7 +8,7 @@ import 'rxjs/add/operator/toPromise';
   moduleId: module.id,
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.sass'],
+  styleUrls: ['login-page.component.less'],
   providers: [LoginPageService]
 })
 export class LoginPageComponent implements OnInit {

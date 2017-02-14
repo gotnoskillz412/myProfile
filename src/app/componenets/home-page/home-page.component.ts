@@ -5,7 +5,7 @@ import {HomePageService} from './home-page.service';
 @Component({
   selector: 'app-home-page',
   templateUrl: 'home-page.component.html',
-  styleUrls: ['home-page.component.sass'],
+  styleUrls: ['home-page.component.less'],
   providers: [HomePageService]
 })
 export class HomePageComponent implements OnInit {

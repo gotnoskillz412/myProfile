@@ -18,8 +18,8 @@
       "tsconfig": "tsconfig.json",
       "prefix": "app",
       "styles": [
-        "styles.sass",
-        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+        "styles.less",
+        "../node_modules/bootstrap/dist/css/bootstrap.css"
       ],
       "scripts": [],
       "environments": {
@@ -50,7 +50,7 @@
     }
   },
   "defaults": {
-    "styleExt": "sass",
+    "styleExt": "less",
     "prefixInterfaces": false,
     "inline": {
       "style": false,
