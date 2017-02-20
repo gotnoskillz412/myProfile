@@ -3,10 +3,11 @@ import {Location} from '@angular/common';
 import {Headers, RequestOptions} from '@angular/http';
 import {AppHttpService} from '../../app-http.service';
 import 'rxjs/add/operator/toPromise';
+import {environment} from "../../../environments/environment";
 
 @Injectable()
 export class LoginPageService {
-  private loginUrl = Location.joinWithSlash(process.env.BASE_API, 'auth/login');
+  private loginUrl = Location.joinWithSlash(environment.baseApi, 'auth/login');
 
   constructor(private http: AppHttpService) {
   }

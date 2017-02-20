@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, NavigationExtras} from '@angular/router';
 import {Http, Headers, RequestOptions, XHRBackend, Request, RequestOptionsArgs, Response} from '@angular/http';
 import {Observable} from "rxjs";
 
@@ -26,9 +26,12 @@ export class AppHttpService extends Http {
   private catchAuthError (self: AppHttpService) {
     // we have to pass HttpService's own instance here as `self`
     return (res: Response) => {
-      console.log(res);
       if (res.status === 401) {
-        this.router.navigate(['/login']);
+        let navExtras: NavigationExtras = {
+          queryParams: {redirect_path: this.router.url}
+        };
+        localStorage.removeItem('myprofile_auth_token');
+        this.router.navigate(['/login'], navExtras);
       }
       return Observable.throw(res);
     };
