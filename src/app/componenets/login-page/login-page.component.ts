@@ -5,7 +5,6 @@ import {LoginPageService} from './login-page.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
-  moduleId: module.id,
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['login-page.component.less'],
@@ -17,7 +16,7 @@ export class LoginPageComponent implements OnInit {
               private activatedRoute: ActivatedRoute) {
   }
 
-  private redirect: string;
+  redirect: string;
 
   public invalidCredentials: boolean = false;
 
@@ -27,7 +26,7 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  private model = {
+  model = {
     username: null,
     password: null
   };

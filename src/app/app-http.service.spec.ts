@@ -3,7 +3,7 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 import { AppHttpService } from './app-http.service';
 
-describe('HttpServiceService', () => {
+xdescribe('HttpServiceService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [AppHttpService]

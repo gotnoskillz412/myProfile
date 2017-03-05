@@ -4,14 +4,29 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { ProfilePageComponent } from './profile-page.component';
+import {ProfilePageService} from "./profile-page.service";
 
 describe('ProfilePageComponent', () => {
   let component: ProfilePageComponent;
   let fixture: ComponentFixture<ProfilePageComponent>;
 
+  let mockProfilePageService = {
+    testCredentials: () => {
+      return {
+        then: (cb) => {
+          cb();
+        }
+      };
+    }
+  };
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProfilePageComponent ]
+    }).overrideComponent(ProfilePageComponent, {
+      set: {
+        providers: [{provide: ProfilePageService, useValue: mockProfilePageService}]
+      }
     })
     .compileComponents();
   }));
@@ -22,7 +37,8 @@ describe('ProfilePageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should test ngOnInit', () => {
+    component.ngOnInit();
+    expect(component.loaded).toBe(true);
   });
 });
