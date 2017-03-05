@@ -12,6 +12,7 @@ import {RegisterPageComponent} from './componenets/register-page/register-page.c
 import {AppHttpService} from './app-http.service';
 import MyErrorHandler from './helpers/myErrorHandler';
 import { ProfilePageComponent } from './componenets/profile-page/profile-page.component';
+import { LoadingContentComponent } from './componenets/loading-content/loading-content.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProfilePageComponent } from './componenets/profile-page/profile-page.co
     HomePageComponent,
     RegisterPageComponent,
     ContactPageComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    LoadingContentComponent
   ],
   imports: [
     BrowserModule,

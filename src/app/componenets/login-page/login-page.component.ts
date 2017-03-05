@@ -27,7 +27,7 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  model = {
+  private model = {
     username: null,
     password: null
   };
