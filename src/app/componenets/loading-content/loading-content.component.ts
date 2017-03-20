@@ -8,9 +8,9 @@ import {Subscription} from 'rxjs/subscription'
   styleUrls: ['loading-content.component.less']
 })
 export class LoadingContentComponent implements OnInit {
-  private subscription: Subscription;
-  private loadingArr = [];
-  private loadingWheel = false;
+  subscription: Subscription;
+  loadingArr = [];
+  loadingWheel = false;
 
   constructor(private http: AppHttpService) {
   }

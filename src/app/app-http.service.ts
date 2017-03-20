@@ -28,16 +28,14 @@ export class AppHttpService extends Http {
   httpRequest$ = this._httpRequestSource.asObservable();
 
   requestHappening(route: string) {
-    console.log('request going out');
     this._httpRequestSource.next({loading: true, route: route});
   }
 
   requestFinished(route: string) {
-    console.log('request finished');
     this._httpRequestSource.next({loading: false, route: route});
   }
 
-  private catchAuthError (self: AppHttpService) {
+  catchAuthError (self: AppHttpService) {
     // we have to pass HttpService's own instance here as `self`
     return (res: Response) => {
       this._httpRequestSource.next({loading: false, route: null});

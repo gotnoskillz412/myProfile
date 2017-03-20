@@ -11,8 +11,8 @@ import {ContactPageComponent} from './componenets/contact-page/contact-page.comp
 import {RegisterPageComponent} from './componenets/register-page/register-page.component';
 import {AppHttpService} from './app-http.service';
 import MyErrorHandler from './helpers/myErrorHandler';
-import { ProfilePageComponent } from './componenets/profile-page/profile-page.component';
-import { LoadingContentComponent } from './componenets/loading-content/loading-content.component';
+import {ProfilePageComponent} from './componenets/profile-page/profile-page.component';
+import {LoadingContentComponent} from './componenets/loading-content/loading-content.component';
 
 @NgModule({
   declarations: [

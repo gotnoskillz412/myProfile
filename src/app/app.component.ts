@@ -7,7 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  checkLoginStatus() : boolean  {
-    return localStorage.getItem('myprofile_auth_token') != null;
-  }
 }

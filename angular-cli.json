@@ -1,6 +1,6 @@
 {
   "project": {
-    "version": "1.0.0-beta.30",
+    "version": "1.0.0-rc.2",
     "name": "my-profile"
   },
   "apps": [
@@ -22,6 +22,7 @@
         "../node_modules/bootstrap/dist/css/bootstrap.css"
       ],
       "scripts": [],
+      "environmentSource": "environments/environment.ts",
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",
@@ -45,6 +46,11 @@
     }
   ],
   "test": {
+    "codeCoverage": {
+      "exclude": [
+        "src/app/app-http.service.ts"
+      ]
+    },
     "karma": {
       "config": "./karma.conf.js"
     }
