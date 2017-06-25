@@ -38,13 +38,14 @@ export class AppHttpService extends Http {
   catchAuthError (self: AppHttpService) {
     // we have to pass HttpService's own instance here as `self`
     return (res: Response) => {
-      this._httpRequestSource.next({loading: false, route: null});
+      self._httpRequestSource.next({loading: false, route: null});
       if (res.status === 401) {
         let navExtras: NavigationExtras = {
           queryParams: {redirect_path: this.router.url}
         };
         localStorage.removeItem('myprofile_auth_token');
         this.router.navigate(['/login'], navExtras);
+        return Promise.resolve();
       }
       return Observable.throw(res);
     };
