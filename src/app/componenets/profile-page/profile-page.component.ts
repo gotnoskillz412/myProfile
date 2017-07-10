@@ -8,13 +8,10 @@ import {ProfilePageService} from "./profile-page.service";
   providers:[ProfilePageService]
 })
 export class ProfilePageComponent implements OnInit {
-  loaded: boolean = false;
-  constructor(private service: ProfilePageService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.service.testCredentials().then(() => {
-      this.loaded = true;
-    });
+
   }
 
 }

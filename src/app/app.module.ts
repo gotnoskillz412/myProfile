@@ -3,6 +3,7 @@ import {NgModule, ErrorHandler} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {HttpModule} from '@angular/http';
+import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 
 import {AppComponent} from './app.component';
 import {LoginPageComponent} from './componenets/login-page/login-page.component';
@@ -25,6 +26,7 @@ import {LoadingContentComponent} from './componenets/loading-content/loading-con
     LoadingContentComponent
   ],
   imports: [
+    BsDropdownModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
