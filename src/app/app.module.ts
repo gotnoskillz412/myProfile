@@ -14,6 +14,7 @@ import {AppHttpService} from './app-http.service';
 import MyErrorHandler from './helpers/myErrorHandler';
 import {ProfilePageComponent} from './componenets/profile-page/profile-page.component';
 import {LoadingContentComponent} from './componenets/loading-content/loading-content.component';
+import {ProfilePageResolverService} from "./componenets/profile-page/profile-page-resolver.service";
 
 @NgModule({
   declarations: [
@@ -49,7 +50,10 @@ import {LoadingContentComponent} from './componenets/loading-content/loading-con
       },
       {
         path: 'profile',
-        component: ProfilePageComponent
+        component: ProfilePageComponent,
+        resolve: {
+          profile: ProfilePageResolverService
+        }
       },
       {
         path: '',
@@ -58,7 +62,7 @@ import {LoadingContentComponent} from './componenets/loading-content/loading-con
       }
     ])
   ],
-  providers: [AppHttpService, {provide: ErrorHandler, useClass: MyErrorHandler}],
+  providers: [AppHttpService, {provide: ErrorHandler, useClass: MyErrorHandler}, ProfilePageResolverService],
   bootstrap: [AppComponent]
 })
 
