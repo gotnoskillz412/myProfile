@@ -4,7 +4,10 @@
       <div class="row">
         <div class="col-xs-3">
           <!--profile pic -->
-          <img *ngIf="profilePicture" src="{{profilePicture}}">
+          <!--<img *ngIf="profilePicture" class="profile-picture" [src]="'data:image/png;base64,' + profilePicture">-->
+          <input type="file" ng2FileSelect value="Select" [uploader]="uploader" />
+          <img-cropper #profileCropper [image]="data" [settings]="profileCropperSettings"></img-cropper>
+          <img *ngIf="data.image" [src]="data.image" [width]="profileCropperSettings.croppedWidth" [height]="profileCropperSettings.croppedHeight">
         </div>
         <div class="col-xs-9">
           <!--profile information-->

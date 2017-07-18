@@ -4,7 +4,6 @@ import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/rou
 import {AppHttpService} from "../../app-http.service";
 import {Observable} from "rxjs/Observable";
 import {environment} from "../../../environments/environment";
-import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ProfilePageResolverService implements Resolve<any> {
@@ -16,6 +15,6 @@ export class ProfilePageResolverService implements Resolve<any> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any>|Promise<any>|any {
-    return this.http.get(this.loginUrl).toPromise();
+    return this.http.get(this.loginUrl);
   }
 }

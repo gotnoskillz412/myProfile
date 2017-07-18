@@ -15,6 +15,11 @@ import MyErrorHandler from './helpers/myErrorHandler';
 import {ProfilePageComponent} from './componenets/profile-page/profile-page.component';
 import {LoadingContentComponent} from './componenets/loading-content/loading-content.component';
 import {ProfilePageResolverService} from "./componenets/profile-page/profile-page-resolver.service";
+import {NavbarComponent} from './componenets/navbar/navbar.component';
+
+import {AppHelpersService} from "./app-helpers.service";
+import {FileSelectDirective} from "ng2-file-upload";
+import {ImageCropperModule} from "ng2-img-cropper";
 
 @NgModule({
   declarations: [
@@ -24,13 +29,16 @@ import {ProfilePageResolverService} from "./componenets/profile-page/profile-pag
     RegisterPageComponent,
     ContactPageComponent,
     ProfilePageComponent,
-    LoadingContentComponent
+    LoadingContentComponent,
+    FileSelectDirective,
+    NavbarComponent
   ],
   imports: [
     BsDropdownModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
+    ImageCropperModule,
     RouterModule.forRoot([
       {
         path: 'login',
@@ -62,7 +70,7 @@ import {ProfilePageResolverService} from "./componenets/profile-page/profile-pag
       }
     ])
   ],
-  providers: [AppHttpService, {provide: ErrorHandler, useClass: MyErrorHandler}, ProfilePageResolverService],
+  providers: [AppHttpService, AppHelpersService, {provide: ErrorHandler, useClass: MyErrorHandler}, ProfilePageResolverService],
   bootstrap: [AppComponent]
 })
 
