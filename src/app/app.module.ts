@@ -20,6 +20,8 @@ import {NavbarComponent} from './componenets/navbar/navbar.component';
 import {AppHelpersService} from "./app-helpers.service";
 import {FileSelectDirective} from "ng2-file-upload";
 import {ImageCropperModule} from "ng2-img-cropper";
+import { ProfilePictureModalComponent } from './componenets/profile-picture-modal/profile-picture-modal.component';
+import {BootstrapModalModule} from "ng2-bootstrap-modal";
 
 @NgModule({
   declarations: [
@@ -31,10 +33,12 @@ import {ImageCropperModule} from "ng2-img-cropper";
     ProfilePageComponent,
     LoadingContentComponent,
     FileSelectDirective,
-    NavbarComponent
+    NavbarComponent,
+    ProfilePictureModalComponent
   ],
   imports: [
     BsDropdownModule.forRoot(),
+    BootstrapModalModule,
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -69,6 +73,9 @@ import {ImageCropperModule} from "ng2-img-cropper";
         pathMatch: 'full'
       }
     ])
+  ],
+  entryComponents: [
+    ProfilePictureModalComponent
   ],
   providers: [AppHttpService, AppHelpersService, {provide: ErrorHandler, useClass: MyErrorHandler}, ProfilePageResolverService],
   bootstrap: [AppComponent]
