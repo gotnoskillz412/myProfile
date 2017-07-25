@@ -11,7 +11,7 @@
         </div>
         <div class="col-xs-12 col-sm-2">
           <label class="btn btn-default btn-file">
-            Browse <input type="file" class="file-input-button" ng2FileSelect value="Select" [uploader]="uploader" />
+            Browse <input type="file" class="file-input-button"  value="Select" (change)="fileChangeListener($event)"/>
           </label><br>
         </div>
       </div>

@@ -1,18 +1,17 @@
-<div>
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="row">
-        <div class="col-xs-3">
-          <!--profile pic -->
-          <img *ngIf="!data || !data.image" src="../../../assets/images/emptyProfile.png" class="profile-picture" (click)="openDialog()"><br>
-          <img *ngIf="data && data.image" [src]="data.image" class="profile-picture"><br>
-          <button type="button" class="btn btn-default" (click)="openDialog()">Update Profile Picture</button>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-3">
+                    <!--profile pic -->
+                    <img [src]="data.image || '../../../assets/images/emptyProfile.png'" class="profile-picture"
+                         (click)="openDialog()"><br>
+                    <button type="button" class="btn btn-default center-block" (click)="openDialog()">Update Profile Picture</button>
+                </div>
+                <div class="col-xs-9">
+                    <!--profile information-->
+                </div>
+            </div>
         </div>
-        <div class="col-xs-9">
-          <!--profile information-->
-        </div>
-      </div>
     </div>
-  </div>
-
 </div>

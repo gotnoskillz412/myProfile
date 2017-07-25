@@ -16,10 +16,7 @@ export class NavbarComponent implements OnInit {
   constructor(private http: AppHttpService, private router: Router, private appHelpersService: AppHelpersService) { }
 
   private logoutUrl = Location.joinWithSlash(environment.baseApi, `/auth/logout`);
-
-  getProfilePicture() {
-    return this.appHelpersService.profilePicture;
-  }
+  profilePicture: string;
 
   loggedIn() {
     return AuthService.loggedIn();
@@ -32,6 +29,10 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  ngOnInit(){}
+  ngOnInit(){
+    this.appHelpersService.subscribeToProfilePictureUpdate((profilePicture) => {
+      this.profilePicture = profilePicture;
+    });
+  }
 
 }
