@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.http.get(this.logoutUrl).toPromise().then(() => {
       localStorage.removeItem('myprofile_auth_token');
+      this.appHelpersService.updateProfilePicture(null);
       this.router.navigate(['/home']);
     });
   }

@@ -15,7 +15,6 @@ export class AppHelpersService {
   updateProfilePicture (profilePicture) {
     this.profilePicture = profilePicture;
     this.profilePictureUpdateCallbacks.forEach((cb) => {
-      console.log('here 1');
       cb(this.profilePicture);
     });
   }
