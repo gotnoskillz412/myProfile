@@ -1,33 +1,35 @@
 <div class="container">
-  <h1>Login Form</h1>
-  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-    <div class="row">
-      <div class="col-xs-4">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" id="username" [(ngModel)]="model.username" name="username" required>
+    <h1>Login Form</h1>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" [(ngModel)]="model.username" name="username"
+                           required>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-4">
-        <div class="form-group" [ngClass]="{'has-error': invalidCredentials}">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" [(ngModel)]="model.password" name="password">
-          <span class="help-block" *ngIf="invalidCredentials">Invalid credentials provided.</span>
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="form-group" [ngClass]="{'has-error': invalidCredentials}">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" [(ngModel)]="model.password"
+                           name="password">
+                    <span class="help-block" *ngIf="invalidCredentials">Invalid credentials provided.</span>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-2">
-        <button type="submit" class="btn btn-success">Submit</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-4">
-        <em ></em>
-      </div>
-    </div>
-  </form>
-  <a routerLink="/register" routerLinkActive="active">Register new account here!</a>
+        <div class="row">
+            <div class="col-xs-2">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <em></em>
+            </div>
+        </div>
+    </form>
+    <a routerLink="/register" routerLinkActive="active">Register new account here!</a>
 </div>

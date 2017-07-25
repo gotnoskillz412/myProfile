@@ -7,17 +7,17 @@ import {environment} from "../../../environments/environment";
 
 @Injectable()
 export class RegisterPageService {
-  private registerUrl = Location.joinWithSlash(environment.baseApi, 'auth/register');
+    private registerUrl = Location.joinWithSlash(environment.baseApi, 'auth/register');
 
-  constructor(private http: AppHttpService) {
+    constructor(private http: AppHttpService) {
 
-  }
+    }
 
-  registerAccount(accountInfo): Promise<any> {
-    let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
-    let options = new RequestOptions({headers: headers});
-    let body = `username=${accountInfo.username}&email=${accountInfo.email}&password=${accountInfo.password}`;
-    return this.http.post(this.registerUrl, body, options).toPromise();
-  }
+    registerAccount(accountInfo): Promise<any> {
+        let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+        let options = new RequestOptions({headers: headers});
+        let body = `username=${accountInfo.username}&email=${accountInfo.email}&password=${accountInfo.password}`;
+        return this.http.post(this.registerUrl, body, options).toPromise();
+    }
 
 }

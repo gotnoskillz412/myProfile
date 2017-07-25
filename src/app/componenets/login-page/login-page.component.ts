@@ -32,15 +32,14 @@ export class LoginPageComponent implements OnInit {
     }
 
     onSubmit() {
-        this.loginPageService.sendLoginCredentials(this.model).then(response => {
+        this.loginPageService.sendLoginCredentials(this.model).then((response) => {
             localStorage.setItem('myprofile_auth_token', response.json().token);
             if (response.json().profile.picture) {
                 this.appHelpersService.updateProfilePicture(response.json().profile.picture);
             }
             this.router.navigate([this.redirect]);
-        }, loginError => {
+        }, () => {
             this.invalidCredentials = true;
-            console.log('Error', loginError)
         });
     }
 

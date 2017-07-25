@@ -1,44 +1,41 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ProfilePageComponent } from './profile-page.component';
+import {ProfilePageComponent} from './profile-page.component';
 import {ProfilePageService} from "./profile-page.service";
 
 describe('ProfilePageComponent', () => {
-  let component: ProfilePageComponent;
-  let fixture: ComponentFixture<ProfilePageComponent>;
+    let component: ProfilePageComponent;
+    let fixture: ComponentFixture<ProfilePageComponent>;
 
-  let mockProfilePageService = {
-    testCredentials: () => {
-      return {
-        then: (cb) => {
-          cb();
+    let mockProfilePageService = {
+        testCredentials: () => {
+            return {
+                then: (cb) => {
+                    cb();
+                }
+            };
         }
-      };
-    }
-  };
+    };
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ProfilePageComponent ]
-    }).overrideComponent(ProfilePageComponent, {
-      set: {
-        providers: [{provide: ProfilePageService, useValue: mockProfilePageService}]
-      }
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ProfilePageComponent]
+        }).overrideComponent(ProfilePageComponent, {
+            set: {
+                providers: [{provide: ProfilePageService, useValue: mockProfilePageService}]
+            }
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ProfilePageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(ProfilePageComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should test ngOnInit', () => {
-    component.ngOnInit();
-    expect(component.loaded).toBe(true);
-  });
+    it('should test ngOnInit', () => {
+        component.ngOnInit();
+    });
 });

@@ -7,17 +7,17 @@ import {environment} from "../../../environments/environment";
 
 @Injectable()
 export class LoginPageService {
-  private loginUrl = Location.joinWithSlash(environment.baseApi, 'auth/login');
+    private loginUrl = Location.joinWithSlash(environment.baseApi, 'auth/login');
 
-  constructor(private http: AppHttpService) {
-  }
+    constructor(private http: AppHttpService) {
+    }
 
-  sendLoginCredentials(creds): Promise<any> {
-    let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
-    let options = new RequestOptions({headers: headers});
-    let body = `username=${creds.username}&password=${creds.password}`;
+    sendLoginCredentials(creds): Promise<any> {
+        let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+        let options = new RequestOptions({headers: headers});
+        let body = `username=${creds.username}&password=${creds.password}`;
 
-    return this.http.post(this.loginUrl, body, options).toPromise();
-  }
+        return this.http.post(this.loginUrl, body, options).toPromise();
+    }
 
 }

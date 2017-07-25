@@ -20,65 +20,68 @@ import {NavbarComponent} from './componenets/navbar/navbar.component';
 import {AppHelpersService} from "./app-helpers.service";
 import {FileSelectDirective} from "ng2-file-upload";
 import {ImageCropperModule} from "ng2-img-cropper";
-import { ProfilePictureModalComponent } from './componenets/profile-picture-modal/profile-picture-modal.component';
+import {ProfilePictureModalComponent} from './componenets/profile-picture-modal/profile-picture-modal.component';
 import {BootstrapModalModule} from "ng2-bootstrap-modal";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginPageComponent,
-    HomePageComponent,
-    RegisterPageComponent,
-    ContactPageComponent,
-    ProfilePageComponent,
-    LoadingContentComponent,
-    FileSelectDirective,
-    NavbarComponent,
-    ProfilePictureModalComponent
-  ],
-  imports: [
-    BsDropdownModule.forRoot(),
-    BootstrapModalModule,
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    ImageCropperModule,
-    RouterModule.forRoot([
-      {
-        path: 'login',
-        component: LoginPageComponent
-      },
-      {
-        path: 'register',
-        component: RegisterPageComponent
-      },
-      {
-        path: 'home',
-        component: HomePageComponent
-      },
-      {
-        path: 'contact',
-        component: ContactPageComponent
-      },
-      {
-        path: 'profile',
-        component: ProfilePageComponent,
-        resolve: {
-          profile: ProfilePageResolverService
-        }
-      },
-      {
-        path: '',
-        redirectTo: '/home',
-        pathMatch: 'full'
-      }
-    ])
-  ],
-  entryComponents: [
-    ProfilePictureModalComponent
-  ],
-  providers: [AppHttpService, AppHelpersService, {provide: ErrorHandler, useClass: MyErrorHandler}, ProfilePageResolverService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginPageComponent,
+        HomePageComponent,
+        RegisterPageComponent,
+        ContactPageComponent,
+        ProfilePageComponent,
+        LoadingContentComponent,
+        FileSelectDirective,
+        NavbarComponent,
+        ProfilePictureModalComponent
+    ],
+    imports: [
+        BsDropdownModule.forRoot(),
+        BootstrapModalModule,
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        ImageCropperModule,
+        RouterModule.forRoot([
+            {
+                path: 'login',
+                component: LoginPageComponent
+            },
+            {
+                path: 'register',
+                component: RegisterPageComponent
+            },
+            {
+                path: 'home',
+                component: HomePageComponent
+            },
+            {
+                path: 'contact',
+                component: ContactPageComponent
+            },
+            {
+                path: 'profile',
+                component: ProfilePageComponent,
+                resolve: {
+                    profile: ProfilePageResolverService
+                }
+            },
+            {
+                path: '',
+                redirectTo: '/home',
+                pathMatch: 'full'
+            }
+        ])
+    ],
+    entryComponents: [
+        ProfilePictureModalComponent
+    ],
+    providers: [AppHttpService, AppHelpersService, {
+        provide: ErrorHandler,
+        useClass: MyErrorHandler
+    }, ProfilePageResolverService],
+    bootstrap: [AppComponent]
 })
 
 export class AppModule {

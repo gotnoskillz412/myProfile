@@ -7,14 +7,13 @@ import {environment} from "../../../environments/environment";
 
 @Injectable()
 export class ProfilePageResolverService implements Resolve<any> {
-  constructor(private http: AppHttpService) {}
+    constructor(private http: AppHttpService) {
+    }
 
-  private loginUrl = Location.joinWithSlash(environment.baseApi, 'profile');
+    private loginUrl = Location.joinWithSlash(environment.baseApi, 'profile');
 
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<any>|Promise<any>|any {
-    return this.http.get(this.loginUrl);
-  }
+    resolve(route: ActivatedRouteSnapshot,
+            state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
+        return this.http.get(this.loginUrl);
+    }
 }

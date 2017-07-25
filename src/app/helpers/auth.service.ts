@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class AuthService {
 
-  constructor() { }
+    constructor() {
+    }
 
-  public static loggedIn() {
-    return !!localStorage.getItem('myprofile_auth_token');
-  };
+    public static loggedIn() {
+        return !!localStorage.getItem('myprofile_auth_token');
+    };
 }
