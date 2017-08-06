@@ -3,10 +3,9 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {RegisterPageService} from './register-page.service';
-import {AppHttpService} from "../../app-http.service";
 
 @Component({
-    selector: 'app-register-page',
+    selector: 'sfh-register-page',
     templateUrl: './register-page.component.html',
     styleUrls: ['register-page.component.less'],
     providers: [RegisterPageService]

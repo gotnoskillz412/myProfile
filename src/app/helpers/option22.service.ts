@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
-export class AppHttpService extends Http {
+export class Option22Service extends Http {
     private _httpRequestSource = new BehaviorSubject<any>({loading: false});
 
     constructor(backend: XHRBackend, options: RequestOptions, private router: Router) {
@@ -35,7 +35,7 @@ export class AppHttpService extends Http {
         this._httpRequestSource.next({loading: false, route: route});
     }
 
-    catchAuthError(self: AppHttpService) {
+    catchAuthError(self: Option22Service) {
         // we have to pass HttpService's own instance here as `self`
         return (res: Response) => {
             self._httpRequestSource.next({loading: false, route: null});

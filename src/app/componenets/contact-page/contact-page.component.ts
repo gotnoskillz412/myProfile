@@ -3,7 +3,7 @@ import {ContactPageService} from './contact-page.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
-    selector: 'app-contact-page',
+    selector: 'sfh-contact-page',
     templateUrl: './contact-page.component.html',
     styleUrls: ['./contact-page.component.less'],
     providers: [ContactPageService]

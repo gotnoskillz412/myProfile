@@ -5,8 +5,9 @@ import {DialogComponent, DialogService} from "ng2-bootstrap-modal";
 import {ModalDirective} from "ngx-bootstrap";
 import {CropperSettings, ImageCropperComponent} from "ng2-img-cropper";
 import {environment} from "../../../environments/environment";
-import {AppHttpService} from "../../app-http.service";
-import {AppHelpersService} from "../../app-helpers.service";
+import {Option22Service} from "../../helpers/option22.service";
+import {AccountService} from "../../helpers/account.service";
+import {HelpersService} from "../../helpers/helpers.service";
 
 export interface ConfirmModel {
     title: string;
@@ -14,23 +15,22 @@ export interface ConfirmModel {
 }
 
 @Component({
-    selector: 'app-profile-picture-modal',
+    selector: 'sfh-profile-picture-modal',
     templateUrl: './profile-picture-modal.component.html',
     styleUrls: ['./profile-picture-modal.component.less']
 })
 export class ProfilePictureModalComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {
-    private profilePictureUrl = Location.joinWithSlash(environment.baseApi, 'profile/picture');
-
     title: string;
     image: HTMLImageElement;
     data;
+    profile;
 
     profileCropperSettings: CropperSettings;
     @ViewChild('profileCropper', undefined)
     profileCropper: ImageCropperComponent;
     @ViewChild('profileEditorModal') profileEditorModal: ModalDirective;
 
-    constructor(dialogService: DialogService, private http: AppHttpService, private appHelpersService: AppHelpersService) {
+    constructor(dialogService: DialogService, private http: Option22Service, private accountService: AccountService, private helpersService: HelpersService) {
         super(dialogService);
         this.profileCropperSettings = new CropperSettings();
         this.profileCropperSettings.width = 300;
@@ -59,10 +59,21 @@ export class ProfilePictureModalComponent extends DialogComponent<ConfirmModel, 
 
 
     confirm() {
-        this.http.post(this.profilePictureUrl, {image: this.data.image}).toPromise().then(() => {
-            this.appHelpersService.updateProfilePicture(this.data.image);
-            this.result = this.data;
-            this.close();
-        });
+        this.accountService.getProfile()
+            .then((profile) => {
+                this.profile = profile;
+                profile.picture = this.data.image;
+                return this.helpersService.getAuthUri();
+            })
+            .then((authUri) => {
+                let profileUpdateUri = Location.joinWithSlash(authUri, `profiles/${this.profile._id}`);
+                this.http.put(profileUpdateUri, this.profile).toPromise().then((response) => {
+                    let updatedProfile = response.json();
+                    this.accountService.setProfile(updatedProfile);
+                    this.result = this.data;
+                    this.close();
+                });
+            });
     }
+
 }

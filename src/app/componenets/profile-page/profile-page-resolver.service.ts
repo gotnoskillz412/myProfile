@@ -1,19 +1,15 @@
 import {Injectable} from "@angular/core";
-import {Location} from '@angular/common';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
-import {AppHttpService} from "../../app-http.service";
 import {Observable} from "rxjs/Observable";
-import {environment} from "../../../environments/environment";
+
+import {AccountService} from "../../helpers/account.service";
 
 @Injectable()
 export class ProfilePageResolverService implements Resolve<any> {
-    constructor(private http: AppHttpService) {
+    constructor(private accountService: AccountService) {
     }
 
-    private loginUrl = Location.joinWithSlash(environment.baseApi, 'profile');
-
-    resolve(route: ActivatedRouteSnapshot,
-            state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-        return this.http.get(this.loginUrl);
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
+        return this.accountService.getProfile();
     }
 }

@@ -5,7 +5,7 @@ import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {AppComponent} from './app.component';
 import {LoadingContentComponent} from "./componenets/loading-content/loading-content.component";
 import {RouterTestingModule} from "@angular/router/testing";
-import {AppHttpService} from "./app-http.service";
+import {AppHttpService} from "./helpers/option22.service";
 
 describe('AppComponent', () => {
     let mockHttpService = {

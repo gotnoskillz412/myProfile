@@ -1,27 +1,29 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule, ErrorHandler} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {RouterModule} from '@angular/router';
 import {HttpModule} from '@angular/http';
-import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import {NgModule, ErrorHandler, APP_INITIALIZER} from '@angular/core';
+import {RouterModule} from '@angular/router';
 
+import {AccountService} from './helpers/account.service';
 import {AppComponent} from './app.component';
-import {LoginPageComponent} from './componenets/login-page/login-page.component';
-import {HomePageComponent} from './componenets/home-page/home-page.component';
+import {AuthService} from './helpers/auth.service';
+import {HelpersService} from './helpers/helpers.service';
+import {Option22Service} from './helpers/option22.service';
 import {ContactPageComponent} from './componenets/contact-page/contact-page.component';
-import {RegisterPageComponent} from './componenets/register-page/register-page.component';
-import {AppHttpService} from './app-http.service';
-import MyErrorHandler from './helpers/myErrorHandler';
-import {ProfilePageComponent} from './componenets/profile-page/profile-page.component';
+import {HomePageComponent} from './componenets/home-page/home-page.component';
 import {LoadingContentComponent} from './componenets/loading-content/loading-content.component';
-import {ProfilePageResolverService} from "./componenets/profile-page/profile-page-resolver.service";
+import {LoginPageComponent} from './componenets/login-page/login-page.component';
+import MyErrorHandler from './helpers/myErrorHandler';
 import {NavbarComponent} from './componenets/navbar/navbar.component';
-
-import {AppHelpersService} from "./app-helpers.service";
-import {FileSelectDirective} from "ng2-file-upload";
-import {ImageCropperModule} from "ng2-img-cropper";
+import {ProfilePageComponent} from './componenets/profile-page/profile-page.component';
+import {ProfilePageResolverService} from './componenets/profile-page/profile-page-resolver.service';
 import {ProfilePictureModalComponent} from './componenets/profile-picture-modal/profile-picture-modal.component';
-import {BootstrapModalModule} from "ng2-bootstrap-modal";
+import {RegisterPageComponent} from './componenets/register-page/register-page.component';
+
+import {BootstrapModalModule} from 'ng2-bootstrap-modal';
+import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import {FileSelectDirective} from 'ng2-file-upload';
+import {ImageCropperModule} from 'ng2-img-cropper';
 
 @NgModule({
     declarations: [
@@ -74,13 +76,18 @@ import {BootstrapModalModule} from "ng2-bootstrap-modal";
             }
         ])
     ],
-    entryComponents: [
-        ProfilePictureModalComponent
+    providers: [
+        AccountService,
+        AuthService,
+        Option22Service,
+        HelpersService,
+        ProfilePageResolverService,
+        {
+            provide: ErrorHandler,
+            useClass: MyErrorHandler
+        }
     ],
-    providers: [AppHttpService, AppHelpersService, {
-        provide: ErrorHandler,
-        useClass: MyErrorHandler
-    }, ProfilePageResolverService],
+    entryComponents: [ProfilePictureModalComponent],
     bootstrap: [AppComponent]
 })
 

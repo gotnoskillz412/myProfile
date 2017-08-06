@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
   baseApi: 'http://localhost:3000',
+  authApi: 'http://localhost:3000/accounts/:accountId',
   publicKey: '',
   baseWeb: 'http://localhost:4200/'
 };

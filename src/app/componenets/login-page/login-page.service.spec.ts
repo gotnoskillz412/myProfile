@@ -2,7 +2,7 @@
 
 import {TestBed, async, inject} from '@angular/core/testing';
 import {LoginPageService} from './login-page.service';
-import {AppHttpService} from "../../app-http.service";
+import {Option22Service} from "../../helpers/option22.service";
 
 describe('LoginPageService', () => {
     let testFinished;
@@ -19,7 +19,7 @@ describe('LoginPageService', () => {
     beforeEach(() => {
         testFinished = false;
         TestBed.configureTestingModule({
-            providers: [LoginPageService, {provide: AppHttpService, useValue: mockHttpService}]
+            providers: [LoginPageService, {provide: Option22Service, useValue: mockHttpService}]
         });
     });
 

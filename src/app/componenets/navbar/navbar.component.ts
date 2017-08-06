@@ -1,22 +1,22 @@
 import {Component, OnInit} from '@angular/core';
-import {AppHttpService} from "../../app-http.service";
+import {Option22Service} from "../../helpers/option22.service";
 import {Router} from "@angular/router";
 import {environment} from "../../../environments/environment";
-import {AuthService} from "../../helpers/auth.service";
 import {Location} from '@angular/common';
-import {AppHelpersService} from "../../app-helpers.service";
+import {AccountService} from "../../helpers/account.service";
+import {AuthService} from "../../helpers/auth.service";
 
 @Component({
-    selector: 'app-navbar',
+    selector: 'sfh-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.less']
 })
 export class NavbarComponent implements OnInit {
 
-    constructor(private http: AppHttpService, private router: Router, private appHelpersService: AppHelpersService) {
+    constructor(private http: Option22Service, private router: Router, private accountService: AccountService) {
     }
 
-    private logoutUrl = Location.joinWithSlash(environment.baseApi, `/auth/logout`);
+    private logoutUrl = Location.joinWithSlash(environment.baseApi, '/auth/logout');
     profilePicture: string;
 
     loggedIn() {
@@ -26,13 +26,13 @@ export class NavbarComponent implements OnInit {
     logout() {
         this.http.get(this.logoutUrl).toPromise().then(() => {
             localStorage.removeItem('myprofile_auth_token');
-            this.appHelpersService.updateProfilePicture(null);
+            this.accountService.updateProfilePicture(null);
             this.router.navigate(['/home']);
         });
     }
 
     ngOnInit() {
-        this.appHelpersService.subscribeToProfilePictureUpdate((profilePicture) => {
+        this.accountService.subscribeToProfilePictureUpdate((profilePicture) => {
             this.profilePicture = profilePicture;
         });
     }

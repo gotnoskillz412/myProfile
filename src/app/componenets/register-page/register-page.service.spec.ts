@@ -2,7 +2,7 @@
 
 import {TestBed, async, inject} from '@angular/core/testing';
 import {RegisterPageService} from './register-page.service';
-import {AppHttpService} from "../../app-http.service";
+import {Option22Service} from "../../helpers/option22.service";
 
 describe('RegisterPageService', () => {
     let testFinished;
@@ -18,7 +18,7 @@ describe('RegisterPageService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [RegisterPageService, {provide: AppHttpService, useValue: mockHttpService}]
+            providers: [RegisterPageService, {provide: Option22Service, useValue: mockHttpService}]
         });
     });
 

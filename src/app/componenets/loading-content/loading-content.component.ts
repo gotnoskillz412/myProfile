@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {AppHttpService} from '../../app-http.service';
+import {Option22Service} from '../../helpers/option22.service';
 import {Subscription} from 'rxjs/subscription'
 
 @Component({
-    selector: 'app-loading-content',
+    selector: 'sfh-loading-content',
     templateUrl: 'loading-content.component.html',
     styleUrls: ['loading-content.component.less']
 })
@@ -12,7 +12,7 @@ export class LoadingContentComponent implements OnInit {
     loadingArr = [];
     loadingWheel = false;
 
-    constructor(private http: AppHttpService) {
+    constructor(private http: Option22Service) {
     }
 
     ngOnInit() {

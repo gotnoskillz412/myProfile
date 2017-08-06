@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
-import {TestBed, async, inject} from '@angular/core/testing';
+import {TestBed, inject} from '@angular/core/testing';
 import {ContactPageService} from './contact-page.service';
-import {AppHttpService} from "../../app-http.service";
+import {Option22Service} from "../../helpers/option22.service";
 
 describe('ContactPageService', () => {
-    let requestHapeningResult = false;
+    let requestHappeningResult = false;
     let requestFinishedResult = false;
 
     let mockHttpService = {
         requestHappening: () => {
-            requestHapeningResult = true;
+            requestHappeningResult = true;
         },
         requestFinished: () => {
             requestFinishedResult = true;
@@ -30,7 +30,7 @@ describe('ContactPageService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [ContactPageService, {provide: AppHttpService, useValue: mockHttpService}]
+            providers: [ContactPageService, {provide: Option22Service, useValue: mockHttpService}]
         });
     });
 
@@ -41,7 +41,7 @@ describe('ContactPageService', () => {
             message: 'This is a test'
         };
         service.sendMessage(emailInfo);
-        expect(requestHapeningResult).toBe(true);
+        expect(requestHappeningResult).toBe(true);
         expect(requestFinishedResult).toBe(true);
     }));
 });

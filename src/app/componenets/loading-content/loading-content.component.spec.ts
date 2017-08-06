@@ -4,7 +4,7 @@ import {By} from '@angular/platform-browser';
 import {DebugElement} from '@angular/core';
 
 import {LoadingContentComponent} from './loading-content.component';
-import {AppHttpService} from "../../app-http.service";
+import {AppHttpService} from "../../helpers/option22.service";
 import {Subscription} from "rxjs";
 
 describe('LoadingContentComponent', () => {

@@ -2,23 +2,19 @@
     <div class="row">
         <div class="col-xs-8">
             <div class="logo">
-                <img src="../../../assets/images/logo.png">
+                <img src="../../../assets/images/logo.png" routerLink="/home">
                 <span>Get ya business done right</span>
             </div>
         </div>
         <div class="col-xs-offset-3 col-xs-1">
             <div class="profile-info" dropdown placement="bottom right">
-                <img [src]="profilePicture || '../../../assets/images/emptyProfile.png'" maxwidth="20px"
-                     maxheight="20px" dropdownToggle>
+                <img [src]="profilePicture || '../../../assets/images/emptyProfile.png'" maxwidth="20px" maxheight="20px" dropdownToggle>
                 <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
                     <li role="menuitem"><a class="dropdown-item text-right" routerLink="/home">Dashboard</a></li>
-                    <li *ngIf="loggedIn()" role="menuitem"><a class="dropdown-item text-right" routerLink="/profile">My
-                        Profile</a></li>
+                    <li *ngIf="loggedIn()" role="menuitem"><a class="dropdown-item text-right" routerLink="/profile">My Profile</a></li>
                     <li class="divider dropdown-divider"></li>
-                    <li *ngIf="!loggedIn()" role="menuitem"><a class="dropdown-item text-right" routerLink="/login">Sign
-                        In</a>
-                    <li *ngIf="loggedIn()" role="menuitem"><a class="dropdown-item text-right"
-                                                              (click)="logout()">Logout</a>
+                    <li *ngIf="!loggedIn()" role="menuitem"><a class="dropdown-item text-right" routerLink="/login">Sign In</a>
+                    <li *ngIf="loggedIn()" role="menuitem"><a class="dropdown-item text-right" (click)="logout()">Logout</a>
                     </li>
                 </ul>
             </div>

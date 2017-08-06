@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Location} from '@angular/common';
 import {Headers, RequestOptions} from '@angular/http';
-import {AppHttpService} from '../../app-http.service';
+import {Option22Service} from '../../helpers/option22.service';
 import 'rxjs/add/operator/toPromise';
 import {environment} from "../../../environments/environment";
 
@@ -9,7 +9,7 @@ import {environment} from "../../../environments/environment";
 export class LoginPageService {
     private loginUrl = Location.joinWithSlash(environment.baseApi, 'auth/login');
 
-    constructor(private http: AppHttpService) {
+    constructor(private http: Option22Service) {
     }
 
     sendLoginCredentials(creds): Promise<any> {
