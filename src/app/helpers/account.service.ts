@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Location} from '@angular/common';
+
 import {Account} from '../models/account';
-import {Profile} from "../models/profile";
-import {Option22Service} from "./option22.service";
-import {environment} from "../../environments/environment";
 import {AuthService} from "./auth.service";
+import {environment} from "../../environments/environment";
+import {Option22Service} from "./option22.service";
+import {Profile} from "../models/profile";
 
 @Injectable()
 export class AccountService {
