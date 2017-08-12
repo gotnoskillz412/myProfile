@@ -1,5 +1,5 @@
 'use strict';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {RegisterPageService} from './register-page.service';
@@ -11,9 +11,7 @@ import {RegisterPageService} from './register-page.service';
     providers: [RegisterPageService]
 })
 export class RegisterPageComponent implements OnInit {
-    public passwordFormatValid: boolean = true;
-    public emailFormatValid: boolean = true;
-
+    @ViewChild('registerForm') registerForm;
     constructor(private registerPageService: RegisterPageService,
                 private router: Router) {
     }
@@ -27,6 +25,10 @@ export class RegisterPageComponent implements OnInit {
         password: null,
         confirmPassword: null
     };
+
+    logErrors() {
+        console.log(this.registerForm.controls.confirmPassword.errors.sfhValidateEqual);
+    }
 
     onSubmit() {
         this.registerPageService.registerAccount(this.model).then(response => {

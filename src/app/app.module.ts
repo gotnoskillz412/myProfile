@@ -24,6 +24,7 @@ import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {FileSelectDirective} from 'ng2-file-upload';
 import {ImageCropperModule} from 'ng2-img-cropper';
+import { ValidateEqualDirective } from './helpers/validate-equal.directive';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import {ImageCropperModule} from 'ng2-img-cropper';
         LoadingContentComponent,
         FileSelectDirective,
         NavbarComponent,
-        ProfilePictureModalComponent
+        ProfilePictureModalComponent,
+        ValidateEqualDirective
     ],
     imports: [
         BsDropdownModule.forRoot(),
