@@ -2,14 +2,120 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="row">
-                <div class="col-xs-3">
-                    <!--profile pic -->
-                    <img [src]="data.image || '../../../assets/images/emptyProfile.png'" class="profile-picture"
-                         (click)="openDialog()"><br>
-                    <button type="button" class="btn btn-default center-block" (click)="openDialog()">Update Profile Picture</button>
+                <div class="hidden-xs col-sm-4">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!--profile pic -->
+                            <img [src]="data.image || '../../../assets/images/emptyProfile.png'" class="profile-picture"
+                                 (click)="openDialog()"><br>
+                            <button type="button" class="btn btn-default center-block" (click)="openDialog()">Update Profile Picture</button>
+                        </div>
+                    </div>
+                    <!--Selection Links-->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button type="button" class="btn btn-link" (click)="infoSection = 'aboutMe'">About Me</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button type="button" class="btn btn-link" (click)="infoSection = 'security'">Security</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-xs-9">
+                <div class="visible-xs col-xs-12"dropdown placement="bottom left">
+                    <i class="fa fa-bars" dropdownToggle></i>
+                    <ul *dropdownMenu class="dropdown-menu dropdown-menu-left" role="menu">
+                        <li role="menuitem"><a class="dropdown-item text-left" (click)="infoSection = 'aboutMe'">About Me</a>
+                        <li role="menuitem"><a class="dropdown-item text-left" (click)="infoSection = 'security'">Security</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-8">
                     <!--profile information-->
+                    <div *ngIf="infoSection === 'aboutMe'">
+                        <!--First Name-->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group"></div>
+                                <label for="profile-firstName">First Name</label>
+                                <input class="form-control profile-firstName"
+                                          name="profile-firstName"
+                                          id="profile-firstName"
+                                          [(ngModel)]="profile.firstName"
+                                          maxlength="50"/>
+                            </div>
+                        </div>
+                        <!--Last Name-->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group"></div>
+                                <label for="profile-lastName">Last Name</label>
+                                <input class="form-control profile-lastName"
+                                          name="profile-lastName"
+                                          id="profile-lastName"
+                                          [(ngModel)]="profile.lastName"
+                                          maxlength="50"/>
+                            </div>
+                        </div>
+                        <!--Description-->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group"></div>
+                                <label for="profile-description">Tell us about yourself!</label>
+                                <textarea class="form-control profile-description"
+                                          name="profile-description"
+                                          id="profile-description"
+                                          [(ngModel)]="profile.description"
+                                          maxlength="2000">
+                                </textarea>
+                            </div>
+                        </div>
+                        <!--Likes-->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label for="profile-likes">What do you like?</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-10">
+                                        <div class="form-group">
+                                            <input id="profile-likes" #newLike maxlength="20" (keyup.enter)="addLike(newLike.value); newLike.value = null">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <button type="button" class="btn btn-default" (click)="addLike(newLike.value); newLike.value = null">Add</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-10">
+                                        <sfh-tags *ngFor="let like of profile.likes; let i = index"
+                                                  [tag]="like" [onRemove]="removeLike()" [index]="i">
+                                        </sfh-tags>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row profile-save-button">
+                            <div class="col-xs-12">
+                                <button [disabled]="saving" type="button" class="btn btn-primary" (click)="updateProfile()">SAVE</button>
+                            </div>
+                        </div>
+                        <!--Location (Possibly use ng2-address)-->
+
+                    </div>
+                    <div *ngIf="infoSection === 'security'">
+                        <!--Update Password-->
+                            <!--Probably use modal with confirm info-->
+                        <!--Update Username-->
+                            <!--Just a field here-->
+                        <!--Update Email-->
+                            <!--Two fields one for new email and one for confirm-->
+                    </div>
                 </div>
             </div>
         </div>

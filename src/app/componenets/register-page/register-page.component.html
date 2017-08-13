@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-offset-2 col-sm-8">
                 <div class="form-group" [ngClass]="{'has-error': username.errors && (username.dirty || username.touched)}">
-                    <label for="username">Username</label>
+                    <label for="username">Username <small>Required</small></label>
                     <input type="text"
                            minlength="5"
                            maxlength="50"
@@ -23,8 +23,42 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+                <div class="form-group" [ngClass]="{'has-error': firstName.errors && (firstName.dirty || firstName.touched)}">
+                    <label for="firstName">First Name</label>
+                    <input type="text"
+                           maxlength="50"
+                           class="form-control"
+                           id="firstName"
+                           [(ngModel)]="model.firstName"
+                           name="firstName"
+                           #firstName="ngModel">
+                    <div class="text-danger" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+                        <div [hidden]="!firstName.errors.maxlength">First name cannot be longer than 50 characters</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+                <div class="form-group" [ngClass]="{'has-error': lastName.errors && (lastName.dirty || lastName.touched)}">
+                    <label for="username">Last Name</label>
+                    <input type="text"
+                           maxlength="50"
+                           class="form-control"
+                           id="lastName"
+                           [(ngModel)]="model.lastName"
+                           name="lastName"
+                           #lastName="ngModel">
+                    <div class="text-danger" *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
+                        <div [hidden]="!lastName.errors.maxlength">Last name cannot be longer than 50 characters</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-offset-2 col-sm-8">
                 <div class="form-group" [ngClass]="{'has-error': email.errors && (email.dirty || email.touched)}">
-                    <label for="email">Email Address</label>
+                    <label for="email">Email Address <small>Required</small></label>
                     <input type="email"
                            email="true"
                            class="form-control"
@@ -43,7 +77,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-offset-2 col-sm-8">
                 <div class="form-group" [ngClass]="{'has-error': password.errors && (password.dirty || password.touched)}">
-                    <label for="password">Password</label>
+                    <label for="password">Password <small>Required</small></label>
                     <small>Must at least 8 characters and
                         contain one lowercase letter, one uppercase letter, and one number/special character</small>
                     <input type="password"
@@ -66,12 +100,11 @@
         <div class="row">
             <div class="col-xs-12 col-sm-offset-2 col-sm-8">
                 <div class="form-group" [ngClass]="{'has-error': confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)}">
-                    <label for="confirmPassword">Confirm Password</label>
+                    <label for="confirmPassword">Confirm Password <small>Required</small></label>
                     <input type="password"
                            class="form-control"
                            id="confirmPassword"
                            [(ngModel)]="model.confirmPassword"
-                           (blur)="logErrors()"
                            name="confirmPassword"
                            #confirmPassword="ngModel"
                            sfhValidateEqual="password"
@@ -85,7 +118,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-offset-2 col-sm-8">
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </form>

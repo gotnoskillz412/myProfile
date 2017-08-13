@@ -4,6 +4,7 @@ import {Headers, RequestOptions} from '@angular/http';
 import {Option22Service} from '../../helpers/option22.service';
 import 'rxjs/add/operator/toPromise';
 import {environment} from "../../../environments/environment";
+import {AuthService} from "../../helpers/auth.service";
 
 @Injectable()
 export class LoginPageService {
@@ -13,11 +14,17 @@ export class LoginPageService {
     }
 
     sendLoginCredentials(creds): Promise<any> {
+        if (AuthService.loggedIn()) {
+            AuthService.removeToken();
+        }
         let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
         let options = new RequestOptions({headers: headers});
         let body = `username=${creds.username}&password=${creds.password}`;
 
-        return this.http.post(this.loginUrl, body, options).toPromise();
+        return this.http.post(this.loginUrl, body, options).toPromise().then((response) => {
+            AuthService.setToken(response.json().token);
+            return response;
+        });
     }
 
 }

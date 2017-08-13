@@ -34,9 +34,6 @@ export class LoginPageComponent implements OnInit {
 
     onSubmit() {
         this.loginPageService.sendLoginCredentials(this.model).then((response) => {
-            AuthService.setToken(response.json().token);
-            this.accountService.setAccount(response.json().account);
-            this.accountService.setProfile(response.json().profile);
             if (response.json().profile.picture) {
                 this.accountService.updateProfilePicture(response.json().profile.picture);
             }

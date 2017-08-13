@@ -68,8 +68,7 @@ export class ProfilePictureModalComponent extends DialogComponent<ConfirmModel, 
             .then((authUri) => {
                 let profileUpdateUri = Location.joinWithSlash(authUri, `profiles/${this.profile._id}`);
                 this.http.put(profileUpdateUri, this.profile).toPromise().then((response) => {
-                    let updatedProfile = response.json();
-                    this.accountService.setProfile(updatedProfile);
+                    this.accountService.updateProfilePicture(response.json().picture);
                     this.result = this.data;
                     this.close();
                 });

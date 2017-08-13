@@ -3,18 +3,36 @@ import {ActivatedRoute} from "@angular/router";
 import {DialogService} from "ng2-bootstrap-modal";
 import {ProfilePictureModalComponent} from "../profile-picture-modal/profile-picture-modal.component";
 import {AccountService} from "../../helpers/account.service";
+import {ProfilePageService} from "./profile-page.service";
 
 @Component({
     selector: 'sfh-profile-page',
     templateUrl: './profile-page.component.html',
-    styleUrls: ['./profile-page.component.less']
+    styleUrls: ['./profile-page.component.less'],
+    providers: [ProfilePageService]
 })
 export class ProfilePageComponent implements OnInit {
+    private saving: boolean = false;
+
     data: any;
     profile;
+    infoSection: string = 'aboutMe';
 
-    constructor(private route: ActivatedRoute, private dialogService: DialogService, private accountService: AccountService) {
+    constructor(private route: ActivatedRoute,
+                private dialogService: DialogService,
+                private accountService: AccountService,
+                private profileService: ProfilePageService) {
         this.data = {};
+    }
+
+    updateProfile() {
+        this.saving = true;
+        this.profileService.updateProfile(this.profile).then((profile) => {
+            this.profile = profile;
+            this.saving = false;
+        }).catch(() => {
+            this.saving = false;
+        });
     }
 
     openDialog() {
@@ -27,6 +45,20 @@ export class ProfilePageComponent implements OnInit {
                     this.accountService.getProfile().then((profile) => {this.profile = profile});
                 }
             });
+    }
+
+    addLike(like) {
+        if (like.trim().length > 0 && this.profile.likes.indexOf(like.trim()) === -1) {
+            this.profile.likes.push(like);
+        }
+    }
+
+    removeLike() {
+        return (index) => {
+            if (this.profile && Array.isArray(this.profile.likes) && this.profile.likes[index] != null){
+                this.profile.likes.splice(index, 1);
+            }
+        }
     }
 
     ngOnInit() {

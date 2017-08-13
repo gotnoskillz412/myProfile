@@ -21,34 +21,16 @@ export class RegisterPageComponent implements OnInit {
 
     model = {
         email: null,
+        firstName: null,
+        lastName: null,
         username: null,
         password: null,
         confirmPassword: null
     };
 
-    logErrors() {
-        console.log(this.registerForm.controls.confirmPassword.errors.sfhValidateEqual);
-    }
-
     onSubmit() {
-        this.registerPageService.registerAccount(this.model).then(response => {
-            localStorage.setItem('myprofile_auth_token', response.json().token);
+        this.registerPageService.registerAccount(this.model).then(() => {
             this.router.navigate(['/home']);
-        }, registerError => {
-            // TODO need to do Error codes
-            let status = registerError.status;
-            let message = registerError.json() && registerError.json().message && registerError.json().message.toLowerCase();
-            // Check for reasons why
-            if (status === 400 && message && message.indexOf('email') !== -1) {
-                //username already exists
-            } else if (status === 400 && message && message.indexOf('username')) {
-                //
-            }
         });
     }
-
-    //TODO need validators for email and password
-
-    //TODO need dynamic check on username availability
-
 }
