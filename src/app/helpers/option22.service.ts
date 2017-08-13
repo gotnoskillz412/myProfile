@@ -3,6 +3,7 @@ import {Router, NavigationExtras} from '@angular/router';
 import {Http, Headers, RequestOptions, XHRBackend, Request, RequestOptionsArgs, Response} from '@angular/http';
 import {Observable} from "rxjs";
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {AuthService} from "./auth.service";
 
 @Injectable()
 export class Option22Service extends Http {
@@ -13,7 +14,7 @@ export class Option22Service extends Http {
     }
 
     request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
-        let token = localStorage.getItem('myprofile_auth_token');
+        let token = AuthService.getToken();
         if (typeof url === 'string') {
             if (!options) {
                 options = {headers: new Headers()};
@@ -43,7 +44,7 @@ export class Option22Service extends Http {
                 let navExtras: NavigationExtras = {
                     queryParams: {redirect_path: this.router.url}
                 };
-                localStorage.removeItem('myprofile_auth_token');
+                AuthService.removeToken();
                 this.router.navigate(['/login'], navExtras);
                 return Promise.resolve();
             }

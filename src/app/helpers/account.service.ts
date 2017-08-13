@@ -28,40 +28,26 @@ export class AccountService {
         });
     }
 
-    setAccount(account) {
-        this.account = account;
-    }
-
     getAccount(): Promise<Account> {
-        if (!this.account || !AuthService.loggedIn()) {
-            return this.http.get(Location.joinWithSlash(environment.baseApi, 'auth/account')).toPromise()
-                .then((response) => {
-                    if (response) {
-                        this.setAccount(response.json().account);
-                        this.setProfile(response.json().profile);
-                        return this.account;
-                    }
-                });
-        }
-        return Promise.resolve(this.account);
-    }
-
-    setProfile(profile) {
-        this.profile = profile;
-        this.updateProfilePicture(profile.picture);
+        return this.http.get(Location.joinWithSlash(environment.baseApi, 'auth/account')).toPromise()
+            .then((response) => {
+                if (response) {
+                    return response.json().account;
+                }
+            });
     }
 
     getProfile(): Promise<Profile> {
-        if (!this.profile || !AuthService.loggedIn()) {
-            return this.http.get(Location.joinWithSlash(environment.baseApi, 'auth/account')).toPromise()
-                .then((response) => {
-                    if (response) {
-                        this.setAccount(response.json().account);
-                        this.setProfile(response.json().profile);
-                        return this.profile;
-                    }
-                });
-        }
-        return Promise.resolve(this.profile);
+        return this.http.get(Location.joinWithSlash(environment.baseApi, 'auth/account')).toPromise()
+            .then((response) => {
+                if (response) {
+                    return response.json().profile;
+                } else {
+                    return null;
+                }
+            });
+    }
+
+    logout() {
     }
 }

@@ -6,7 +6,6 @@ import {environment} from "../../environments/environment";
 @Injectable()
 export class HelpersService {
     constructor(private accountService: AccountService) {
-
     }
 
     getAuthUri(): Promise<string> {
