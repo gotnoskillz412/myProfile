@@ -17,7 +17,7 @@ import MyErrorHandler from './helpers/myErrorHandler';
 import {NavbarComponent} from './componenets/navbar/navbar.component';
 import {ProfilePageComponent} from './componenets/profile-page/profile-page.component';
 import {ProfilePageResolverService} from './componenets/profile-page/profile-page-resolver.service';
-import {ProfilePictureModalComponent} from './componenets/profile-picture-modal/profile-picture-modal.component';
+import {ProfilePictureModalComponent} from './componenets/profile-page/profile-picture-modal/profile-picture-modal.component';
 import {RegisterPageComponent} from './componenets/register-page/register-page.component';
 
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
@@ -26,6 +26,7 @@ import {FileSelectDirective} from 'ng2-file-upload';
 import {ImageCropperModule} from 'ng2-img-cropper';
 import { ValidateEqualDirective } from './helpers/validate-equal.directive';
 import { TagsComponent } from './componenets/tags/tags.component';
+import { PasswordUpdateModalComponent } from './componenets/profile-page/password-update-modal/password-update-modal.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import { TagsComponent } from './componenets/tags/tags.component';
         NavbarComponent,
         ProfilePictureModalComponent,
         ValidateEqualDirective,
-        TagsComponent
+        TagsComponent,
+        PasswordUpdateModalComponent
     ],
     imports: [
         BsDropdownModule.forRoot(),
@@ -91,7 +93,7 @@ import { TagsComponent } from './componenets/tags/tags.component';
             useClass: MyErrorHandler
         }
     ],
-    entryComponents: [ProfilePictureModalComponent],
+    entryComponents: [ProfilePictureModalComponent, PasswordUpdateModalComponent],
     bootstrap: [AppComponent]
 })
 

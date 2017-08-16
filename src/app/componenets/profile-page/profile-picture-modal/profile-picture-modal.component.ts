@@ -1,13 +1,13 @@
 import {Component, ViewChild} from '@angular/core';
 import {Location} from '@angular/common';
 
-import {DialogComponent, DialogService} from "ng2-bootstrap-modal";
-import {ModalDirective} from "ngx-bootstrap";
-import {CropperSettings, ImageCropperComponent} from "ng2-img-cropper";
-import {environment} from "../../../environments/environment";
-import {Option22Service} from "../../helpers/option22.service";
-import {AccountService} from "../../helpers/account.service";
-import {HelpersService} from "../../helpers/helpers.service";
+import {CropperSettings, ImageCropperComponent} from 'ng2-img-cropper';
+import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
+import {ModalDirective} from 'ngx-bootstrap';
+
+import {AccountService} from '../../../helpers/account.service';
+import {HelpersService} from '../../../helpers/helpers.service';
+import {Option22Service} from '../../../helpers/option22.service';
 
 export interface ConfirmModel {
     title: string;
@@ -19,7 +19,7 @@ export interface ConfirmModel {
     templateUrl: './profile-picture-modal.component.html',
     styleUrls: ['./profile-picture-modal.component.less']
 })
-export class ProfilePictureModalComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {
+export class ProfilePictureModalComponent extends DialogComponent<ConfirmModel, any> implements ConfirmModel {
     title: string;
     image: HTMLImageElement;
     data;

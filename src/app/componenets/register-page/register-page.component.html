@@ -1,125 +1,127 @@
-<div class="container">
-    <h1 class="text-center">Registration Form</h1>
-    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" name="register-form">
-        <div class="row">
-            <div class="col-xs-12 col-sm-offset-2 col-sm-8">
-                <div class="form-group" [ngClass]="{'has-error': username.errors && (username.dirty || username.touched)}">
-                    <label for="username">Username <small>Required</small></label>
-                    <input type="text"
-                           minlength="5"
-                           maxlength="50"
-                           class="form-control"
-                           id="username"
-                           [(ngModel)]="model.username"
-                           name="username"
-                           #username="ngModel"
-                           required>
-                    <div class="text-danger" *ngIf="username.errors && (username.dirty || username.touched)">
-                        <div [hidden]="!username.errors.required">Username is required</div>
-                        <div [hidden]="!username.errors.maxlength">Username cannot be longer than 50 characters</div>
+<div class="register-page">
+    <div class="container">
+        <h1 class="text-center">Registration Form</h1>
+        <form (ngSubmit)="onSubmit()" #registerForm="ngForm" name="register-form">
+            <div class="row">
+                <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+                    <div class="form-group" [ngClass]="{'has-error': username.errors && (username.dirty || username.touched)}">
+                        <label for="username">Username <small>Required</small></label>
+                        <input type="text"
+                               minlength="5"
+                               maxlength="50"
+                               class="form-control"
+                               id="username"
+                               [(ngModel)]="model.username"
+                               name="username"
+                               #username="ngModel"
+                               required>
+                        <div class="text-danger" *ngIf="username.errors && (username.dirty || username.touched)">
+                            <div [hidden]="!username.errors.required">Username is required</div>
+                            <div [hidden]="!username.errors.maxlength">Username cannot be longer than 50 characters</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-offset-2 col-sm-8">
-                <div class="form-group" [ngClass]="{'has-error': firstName.errors && (firstName.dirty || firstName.touched)}">
-                    <label for="firstName">First Name</label>
-                    <input type="text"
-                           maxlength="50"
-                           class="form-control"
-                           id="firstName"
-                           [(ngModel)]="model.firstName"
-                           name="firstName"
-                           #firstName="ngModel">
-                    <div class="text-danger" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
-                        <div [hidden]="!firstName.errors.maxlength">First name cannot be longer than 50 characters</div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+                    <div class="form-group" [ngClass]="{'has-error': firstName.errors && (firstName.dirty || firstName.touched)}">
+                        <label for="firstName">First Name</label>
+                        <input type="text"
+                               maxlength="50"
+                               class="form-control"
+                               id="firstName"
+                               [(ngModel)]="model.firstName"
+                               name="firstName"
+                               #firstName="ngModel">
+                        <div class="text-danger" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+                            <div [hidden]="!firstName.errors.maxlength">First name cannot be longer than 50 characters</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-offset-2 col-sm-8">
-                <div class="form-group" [ngClass]="{'has-error': lastName.errors && (lastName.dirty || lastName.touched)}">
-                    <label for="username">Last Name</label>
-                    <input type="text"
-                           maxlength="50"
-                           class="form-control"
-                           id="lastName"
-                           [(ngModel)]="model.lastName"
-                           name="lastName"
-                           #lastName="ngModel">
-                    <div class="text-danger" *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
-                        <div [hidden]="!lastName.errors.maxlength">Last name cannot be longer than 50 characters</div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+                    <div class="form-group" [ngClass]="{'has-error': lastName.errors && (lastName.dirty || lastName.touched)}">
+                        <label for="username">Last Name</label>
+                        <input type="text"
+                               maxlength="50"
+                               class="form-control"
+                               id="lastName"
+                               [(ngModel)]="model.lastName"
+                               name="lastName"
+                               #lastName="ngModel">
+                        <div class="text-danger" *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
+                            <div [hidden]="!lastName.errors.maxlength">Last name cannot be longer than 50 characters</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-offset-2 col-sm-8">
-                <div class="form-group" [ngClass]="{'has-error': email.errors && (email.dirty || email.touched)}">
-                    <label for="email">Email Address <small>Required</small></label>
-                    <input type="email"
-                           email="true"
-                           class="form-control"
-                           id="email"
-                           [(ngModel)]="model.email"
-                           name="email"
-                           #email="ngModel"
-                           required>
-                    <div class="text-danger" *ngIf="email.errors && (email.dirty || email.touched)">
-                        <div [hidden]="!email.errors.required">Email is required</div>
-                        <div [hidden]="!email.errors.email || !model.email">Must be a proper email address</div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+                    <div class="form-group" [ngClass]="{'has-error': email.errors && (email.dirty || email.touched)}">
+                        <label for="email">Email Address <small>Required</small></label>
+                        <input type="email"
+                               email="true"
+                               class="form-control"
+                               id="email"
+                               [(ngModel)]="model.email"
+                               name="email"
+                               #email="ngModel"
+                               required>
+                        <div class="text-danger" *ngIf="email.errors && (email.dirty || email.touched)">
+                            <div [hidden]="!email.errors.required">Email is required</div>
+                            <div [hidden]="!email.errors.email || !model.email">Must be a proper email address</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-offset-2 col-sm-8">
-                <div class="form-group" [ngClass]="{'has-error': password.errors && (password.dirty || password.touched)}">
-                    <label for="password">Password <small>Required</small></label>
-                    <small>Must at least 8 characters and
-                        contain one lowercase letter, one uppercase letter, and one number/special character</small>
-                    <input type="password"
-                           class="form-control"
-                           id="password"
-                           [(ngModel)]="model.password"
-                           name="password"
-                           maxlength="30"
-                           pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-                           #password="ngModel"
-                           required>
-                    <div class="text-danger" *ngIf="password.errors && (password.dirty || password.touched)">
-                        <div [hidden]="!password.errors.required">Password is required</div>
-                        <div [hidden]="!password.errors.maxlength">Password cannot be greater than 30 characters</div>
-                        <div [hidden]="!password.errors.pattern">Password does not meet requirements</div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+                    <div class="form-group" [ngClass]="{'has-error': password.errors && (password.dirty || password.touched)}">
+                        <label for="password">Password <small>Required</small></label>
+                        <small>Must at least 8 characters and
+                            contain one lowercase letter, one uppercase letter, and one number/special character</small>
+                        <input type="password"
+                               class="form-control"
+                               id="password"
+                               [(ngModel)]="model.password"
+                               name="password"
+                               maxlength="30"
+                               pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                               #password="ngModel"
+                               required>
+                        <div class="text-danger" *ngIf="password.errors && (password.dirty || password.touched)">
+                            <div [hidden]="!password.errors.required">Password is required</div>
+                            <div [hidden]="!password.errors.maxlength">Password cannot be greater than 30 characters</div>
+                            <div [hidden]="!password.errors.pattern">Password does not meet requirements</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-offset-2 col-sm-8">
-                <div class="form-group" [ngClass]="{'has-error': confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)}">
-                    <label for="confirmPassword">Confirm Password <small>Required</small></label>
-                    <input type="password"
-                           class="form-control"
-                           id="confirmPassword"
-                           [(ngModel)]="model.confirmPassword"
-                           name="confirmPassword"
-                           #confirmPassword="ngModel"
-                           sfhValidateEqual="password"
-                           required>
-                    <div class="text-danger" *ngIf="confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)">
-                        <div [hidden]="!confirmPassword.errors.required">Confirm Password is required</div>
-                        <div [hidden]="confirmPassword.errors.sfhValidateEqual">Must match password</div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+                    <div class="form-group" [ngClass]="{'has-error': confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)}">
+                        <label for="confirmPassword">Confirm Password <small>Required</small></label>
+                        <input type="password"
+                               class="form-control"
+                               id="confirmPassword"
+                               [(ngModel)]="model.confirmPassword"
+                               name="confirmPassword"
+                               #confirmPassword="ngModel"
+                               sfhValidateEqual="password"
+                               required>
+                        <div class="text-danger" *ngIf="confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)">
+                            <div [hidden]="!confirmPassword.errors.required">Confirm Password is required</div>
+                            <div [hidden]="confirmPassword.errors.sfhValidateEqual">Must match password</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-offset-2 col-sm-8">
-                <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="row">
+                <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>

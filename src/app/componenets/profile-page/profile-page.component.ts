@@ -1,9 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {DialogService} from "ng2-bootstrap-modal";
-import {ProfilePictureModalComponent} from "../profile-picture-modal/profile-picture-modal.component";
-import {AccountService} from "../../helpers/account.service";
-import {ProfilePageService} from "./profile-page.service";
+import {ActivatedRoute} from '@angular/router';
+import {DialogService} from 'ng2-bootstrap-modal';
+import {ProfilePictureModalComponent} from './profile-picture-modal/profile-picture-modal.component';
+import {AccountService} from '../../helpers/account.service';
+import {ProfilePageService} from './profile-page.service';
+import {Profile} from '../../models/profile';
+import {Account} from '../../models/account';
+import {PasswordUpdateModalComponent} from "./password-update-modal/password-update-modal.component";
 
 @Component({
     selector: 'sfh-profile-page',
@@ -15,8 +18,13 @@ export class ProfilePageComponent implements OnInit {
     private saving: boolean = false;
 
     data: any;
-    profile;
-    infoSection: string = 'aboutMe';
+    account: Account;
+    profile: Profile;
+    sections = {
+        aboutMe: 'aboutMe',
+        security: 'security'
+    };
+    infoSection: string = this.sections.aboutMe;
 
     constructor(private route: ActivatedRoute,
                 private dialogService: DialogService,
@@ -26,18 +34,20 @@ export class ProfilePageComponent implements OnInit {
     }
 
     updateProfile() {
-        this.saving = true;
-        this.profileService.updateProfile(this.profile).then((profile) => {
-            this.profile = profile;
-            this.saving = false;
-        }).catch(() => {
-            this.saving = false;
-        });
+        if (!this.saving) {
+            this.saving = true;
+            this.profileService.updateProfile(this.profile).then((profile) => {
+                this.profile = profile;
+                this.saving = false;
+            }).catch(() => {
+                this.saving = false;
+            });
+        }
     }
 
     openDialog() {
         this.dialogService.addDialog(ProfilePictureModalComponent, {
-            title: 'Add Your Picture',
+            title: 'Add Your Picture'
         })
             .subscribe((data) => {
                 if (data) {
@@ -47,9 +57,38 @@ export class ProfilePageComponent implements OnInit {
             });
     }
 
+    openPasswordModal() {
+        this.dialogService.addDialog(PasswordUpdateModalComponent, {
+            title: 'Update Your Password'
+        })
+            .subscribe((account) => {
+                if (account) {
+                    this.account = account;
+                }
+            });
+    }
+
     addLike(like) {
         if (like.trim().length > 0 && this.profile.likes.indexOf(like.trim()) === -1) {
             this.profile.likes.push(like);
+        }
+    }
+
+    loadSecurityInfo() {
+        if (this.infoSection !== this.sections.security){
+            this.accountService.getAccount().then((response) => {
+                this.account = response;
+                this.infoSection = this.sections.security;
+            });
+        }
+    }
+
+    loadAboutMeInfo() {
+        if (this.infoSection !== this.sections.aboutMe) {
+            this.accountService.getProfile().then((response) => {
+                this.profile = response;
+                this.infoSection = this.sections.aboutMe;
+            });
         }
     }
 
