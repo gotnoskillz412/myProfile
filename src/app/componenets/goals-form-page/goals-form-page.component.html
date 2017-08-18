@@ -1,0 +1,29 @@
+<div class="goals-form">
+    <div class="container">
+        <div *ngIf="goal._id"><h3>Edit Goal</h3></div>
+        <div *ngIf="!goal._id"><h3>New Goal</h3></div>
+        <div class="main-container">
+            <form name="goal-form" #goalForm="ngForm">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group" [ngClass]="{'has-error': goalDescription.errors && (goalDescription.dirty || goalDescription.touched)}">
+                            <label for="goal-description">Description</label>
+                            <textarea id="goal-description"
+                                      name="goal-description"
+                                      maxlength="2000"
+                                      #goalDescription="ngModel"
+                                      class="form-control"
+                                      [(ngModel)] = goal.description
+                                      required>
+                            </textarea>
+                            <div class="text-danger" *ngIf="goalDescription.errors && (goalDescription.dirty || goalDescription.touched)">
+                                <div [hidden]="!goalDescription.errors.required">Description is required</div>
+                                <div [hidden]="!goalDescription.errors.maxlength">Description cannot be longer than 2000 characters</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
