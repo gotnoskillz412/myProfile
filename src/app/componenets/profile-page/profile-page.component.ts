@@ -45,6 +45,18 @@ export class ProfilePageComponent implements OnInit {
         }
     }
 
+    updateAccount() {
+        if (!this.saving) {
+            this.saving = true;
+            this.profileService.updateAccount(this.account).then((account) => {
+                this.account = account;
+                this.saving = false;
+            }).catch(() => {
+                this.saving = false;
+            });
+        }
+    }
+
     openDialog() {
         this.dialogService.addDialog(ProfilePictureModalComponent, {
             title: 'Add Your Picture'
@@ -59,7 +71,8 @@ export class ProfilePageComponent implements OnInit {
 
     openPasswordModal() {
         this.dialogService.addDialog(PasswordUpdateModalComponent, {
-            title: 'Update Your Password'
+            title: 'Update Your Password',
+            account: this.account
         })
             .subscribe((account) => {
                 if (account) {

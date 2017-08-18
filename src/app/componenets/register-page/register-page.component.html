@@ -18,6 +18,7 @@
                         <div class="text-danger" *ngIf="username.errors && (username.dirty || username.touched)">
                             <div [hidden]="!username.errors.required">Username is required</div>
                             <div [hidden]="!username.errors.maxlength">Username cannot be longer than 50 characters</div>
+                            <div [hidden]="!username.errors.minlength">Username must be at least 5 characters</div>
                         </div>
                     </div>
                 </div>

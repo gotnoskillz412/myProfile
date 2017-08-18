@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ContactPageService} from './contact-page.service';
 import 'rxjs/add/operator/toPromise';
+import {AccountService} from "../../helpers/account.service";
 
 @Component({
     selector: 'sfh-contact-page',
@@ -10,20 +11,27 @@ import 'rxjs/add/operator/toPromise';
 })
 export class ContactPageComponent implements OnInit {
 
-    constructor(private service: ContactPageService) {
+    constructor(private service: ContactPageService, private accountService: AccountService) {
     }
 
     emailSuccess: boolean = false;
     emailFailed: boolean = false;
-
-    ngOnInit() {
-    }
-
+    profile;
+    account;
     model = {
         name: null,
         email: null,
         message: null
     };
+
+    ngOnInit() {
+        this.accountService.getProfile().then((profile) => {
+            this.model.name = `${profile.firstName} ${profile.lastName}`;
+        });
+        this.accountService.getAccount().then((account) => {
+            this.model.email = account.email;
+        });
+    }
 
     private setModel() {
         this.model.name = null;

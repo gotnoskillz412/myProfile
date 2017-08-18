@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Router, ActivatedRoute, Params} from '@angular/router';
+import {Router} from '@angular/router';
 
 import {AccountService} from '../../helpers/account.service'
-import {AuthService} from '../../helpers/auth.service';
 import {LoginPageService} from './login-page.service';
-import 'rxjs/add/operator/toPromise';
 
 @Component({
     selector: 'sfh-login-page',
@@ -15,7 +13,6 @@ import 'rxjs/add/operator/toPromise';
 export class LoginPageComponent implements OnInit {
     constructor(private loginPageService: LoginPageService,
                 private router: Router,
-                private activatedRoute: ActivatedRoute,
                 private accountService: AccountService) {
     }
 
@@ -27,9 +24,6 @@ export class LoginPageComponent implements OnInit {
     };
 
     ngOnInit() {
-        this.activatedRoute.queryParams.subscribe((params: Params) => {
-            this.redirect = params['redirect_path'] || '/home';
-        });
     }
 
     onSubmit() {
@@ -37,7 +31,7 @@ export class LoginPageComponent implements OnInit {
             if (response.json().profile.picture) {
                 this.accountService.updateProfilePicture(response.json().profile.picture);
             }
-            this.router.navigate([this.redirect]);
+            this.router.navigate(['/home']);
         }, () => {
             this.invalidCredentials = true;
         });

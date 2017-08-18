@@ -7,6 +7,8 @@ import {HelpersService} from "../../helpers/helpers.service";
 import {AccountService} from "../../helpers/account.service";
 import {Profile} from "../../models/profile";
 import {Account} from "../../models/account";
+import {environment} from "../../../environments/environment";
+import {AuthService} from "../../helpers/auth.service";
 
 
 @Injectable()
@@ -25,15 +27,21 @@ export class ProfilePageService {
         });
     }
 
-    updatePassword(passwords): Promise<Account> {
-        return this.helpersService.getAuthUri().then((url) => {
-            let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
-            let options = new RequestOptions({headers: headers});
-            let body = `password=${passwords.currentPassword}&newpassword=${passwords.newPassword}`;
-            return this.http.put(Location.joinWithSlash(url, ''), body, options).toPromise().then((response) => {
-                return response.json() as Account;
-            });
+    updatePassword(passwords, accountId): Promise<Account> {
+        let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+        let options = new RequestOptions({headers: headers});
+        let body = `currentPassword=${passwords.currentPassword}&newPassword=${passwords.newPassword}`;
+        return this.http.put(Location.joinWithSlash(environment.baseApi, `/auth/account/${accountId}/password`), body, options).toPromise().then((response) => {
+            AuthService.setToken(response.json().token);
+            return response.json().account as Account;
         });
+    }
+
+    updateAccount(account): Promise<Account> {
+        return this.http.put(Location.joinWithSlash(environment.baseApi, `/auth/account/${account._id}/update`), account).toPromise().then((response) => {
+            AuthService.setToken(response.json().token);
+            return response.json().account as Account;
+        })
     }
 
 }

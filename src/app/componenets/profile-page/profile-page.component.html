@@ -105,7 +105,7 @@
                             <div class="row profile-save-button">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <button [disabled]="saving" type="submit" class="btn btn-primary" (click)="updateProfile()">SAVE</button>
+                                        <button [disabled]="saving" type="submit" class="btn btn-primary">UPDATE</button>
                                     </div>
                                 </div>
                             </div>
@@ -113,35 +113,59 @@
                         </form>
                     </div>
                     <div *ngIf="infoSection === sections.security">
-                        <form #securitySection="ngForm" name="security-form">
+                        <form #securitySection="ngForm" name="security-form" (ngSubmit)="updateAccount()">
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input id="email"
-                                               name="email"
+                                        <label for="update-password-button">Password</label>
+                                        <button id="update-password-button" type="button" class="btn btn-default" (click)="openPasswordModal()">Update Password</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group" [ngClass]="{'has-error': emailUpdate.errors && (emailUpdate.dirty || emailUpdate.touched)}">
+                                        <label for="email-update">Email Address <small>Required</small></label>
+                                        <input type="email"
+                                               email="true"
                                                class="form-control"
+                                               id="email-update"
+                                               [(ngModel)]="account.email"
+                                               name="email-update"
+                                               #emailUpdate="ngModel"
+                                               required>
+                                        <div class="text-danger" *ngIf="emailUpdate.errors && (emailUpdate.dirty || emailUpdate.touched)">
+                                            <div [hidden]="!emailUpdate.errors.required">Email is required</div>
+                                            <div [hidden]="!emailUpdate.errors.email || !account.email">Must be a proper email address</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group" [ngClass]="{'has-error': usernameUpdate.errors && (usernameUpdate.dirty || usernameUpdate.touched)}">
+                                        <label for="username-update">Username <small>Required</small></label>
+                                        <input type="text"
+                                               minlength="5"
                                                maxlength="50"
-                                               [(ngModel)]="account.email"/>
+                                               class="form-control"
+                                               id="username-update"
+                                               [(ngModel)]="account.username"
+                                               name="username-update"
+                                               #usernameUpdate="ngModel"
+                                               required>
+                                        <div class="text-danger" *ngIf="usernameUpdate.errors && (usernameUpdate.dirty || usernameUpdate.touched)">
+                                            <div [hidden]="!usernameUpdate.errors.required">Username is required</div>
+                                            <div [hidden]="!usernameUpdate.errors.maxlength">Username cannot be longer than 50 characters</div>
+                                            <div [hidden]="!usernameUpdate.errors.minlength">Username must be at least 5 characters</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <label for="username">Username</label>
-                                        <input id="username"
-                                               name="username"
-                                               class="form-control"
-                                               maxlength="50"
-                                               [(ngModel)]="account.username"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-secondary" (click)="openPasswordModal()">Update Password</button>
+                                        <button [disabled]="saving" type="submit" class="btn btn-primary">UPDATE</button>
                                     </div>
                                 </div>
                             </div>
