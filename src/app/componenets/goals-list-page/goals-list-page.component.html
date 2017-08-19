@@ -1,0 +1,16 @@
+<div class="goals-list">
+    <div class="container">
+        <h3>Goals</h3>
+        <div class="main-container">
+            <div class="add-goal-button" routerLink="/goals/new">+</div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div *ngIf="goals.length === 0" class="text-center"><em>You have not set any goals yet</em></div>
+                    <!--<div class="goal" *ngFor="let goal of goals track by goal._id">-->
+
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

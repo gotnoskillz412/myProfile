@@ -36,9 +36,6 @@ export class NavbarComponent implements OnInit {
         this.accountService.subscribeToProfilePictureUpdate((profilePicture) => {
             this.profilePicture = profilePicture;
         });
-        this.accountService.getProfile().then((profile) => {
-            this.profilePicture = profile.picture;
-        });
     }
 
 }

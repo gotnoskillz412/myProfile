@@ -24,9 +24,13 @@ import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {FileSelectDirective} from 'ng2-file-upload';
 import {ImageCropperModule} from 'ng2-img-cropper';
-import { ValidateEqualDirective } from './helpers/validate-equal.directive';
-import { TagsComponent } from './componenets/tags/tags.component';
-import { PasswordUpdateModalComponent } from './componenets/profile-page/password-update-modal/password-update-modal.component';
+import {ValidateEqualDirective} from './helpers/validate-equal.directive';
+import {TagsComponent} from './componenets/tags/tags.component';
+import {PasswordUpdateModalComponent} from './componenets/profile-page/password-update-modal/password-update-modal.component';
+import {GoalsListPageComponent} from './componenets/goals-list-page/goals-list-page.component';
+import {GoalsFormPageComponent} from './componenets/goals-form-page/goals-form-page.component';
+import {GoalsListPageResolverService} from "./componenets/goals-list-page/goals-list-page-resolver.service";
+import {GoalsFormPageResolverService} from "./componenets/goals-form-page/goals-form-page-resolver.service";
 
 @NgModule({
     declarations: [
@@ -42,7 +46,9 @@ import { PasswordUpdateModalComponent } from './componenets/profile-page/passwor
         ProfilePictureModalComponent,
         ValidateEqualDirective,
         TagsComponent,
-        PasswordUpdateModalComponent
+        PasswordUpdateModalComponent,
+        GoalsListPageComponent,
+        GoalsFormPageComponent
     ],
     imports: [
         BsDropdownModule.forRoot(),
@@ -69,6 +75,20 @@ import { PasswordUpdateModalComponent } from './componenets/profile-page/passwor
                 component: ContactPageComponent
             },
             {
+                path: 'goals',
+                component: GoalsListPageComponent,
+                resolve: {
+                    goals: GoalsListPageResolverService
+                }
+            },
+            {
+                path: 'goals/:id',
+                component: GoalsFormPageComponent,
+                resolve: {
+                    goal: GoalsFormPageResolverService
+                }
+            },
+            {
                 path: 'profile',
                 component: ProfilePageComponent,
                 resolve: {
@@ -88,6 +108,8 @@ import { PasswordUpdateModalComponent } from './componenets/profile-page/passwor
         Option22Service,
         HelpersService,
         ProfilePageResolverService,
+        GoalsListPageResolverService,
+        GoalsFormPageResolverService,
         {
             provide: ErrorHandler,
             useClass: MyErrorHandler

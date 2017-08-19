@@ -1,177 +1,179 @@
 <div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="row">
-                <div class="hidden-xs col-sm-4">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <!--profile pic -->
-                            <img [src]="data.image || '../../../assets/images/emptyProfile.png'" class="profile-picture"
-                                 (click)="openDialog()"><br>
-                            <button type="button" class="btn btn-default center-block" (click)="openDialog()">Update Profile Picture</button>
+    <div class="main-container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="hidden-xs col-sm-4">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <!--profile pic -->
+                                <img [src]="data.image || '../../../assets/images/emptyProfile.png'" class="profile-picture"
+                                     (click)="openDialog()"><br>
+                                <button type="button" class="btn btn-default center-block" (click)="openDialog()">Update Profile Picture</button>
+                            </div>
+                        </div>
+                        <!--Selection Links-->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <button type="button" class="btn btn-link" (click)="loadAboutMeInfo()">About Me</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <button type="button" class="btn btn-link" (click)="loadSecurityInfo()">Security</button>
+                            </div>
                         </div>
                     </div>
-                    <!--Selection Links-->
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <button type="button" class="btn btn-link" (click)="loadAboutMeInfo()">About Me</button>
-                        </div>
+                    <div class="visible-xs col-xs-12"dropdown placement="bottom left">
+                        <i class="fa fa-bars" dropdownToggle></i>
+                        <ul *dropdownMenu class="dropdown-menu dropdown-menu-left" role="menu">
+                            <li role="menuitem"><a class="dropdown-item text-left" (click)="loadAboutMeInfo()">About Me</a>
+                            <li role="menuitem"><a class="dropdown-item text-left" (click)=loadSecurityInfo()>Security</a>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <button type="button" class="btn btn-link" (click)="loadSecurityInfo()">Security</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="visible-xs col-xs-12"dropdown placement="bottom left">
-                    <i class="fa fa-bars" dropdownToggle></i>
-                    <ul *dropdownMenu class="dropdown-menu dropdown-menu-left" role="menu">
-                        <li role="menuitem"><a class="dropdown-item text-left" (click)="loadAboutMeInfo()">About Me</a>
-                        <li role="menuitem"><a class="dropdown-item text-left" (click)=loadSecurityInfo()>Security</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-xs-12 col-sm-8">
-                    <!--profile information-->
-                    <div *ngIf="infoSection === sections.aboutMe">
-                        <form (ngSubmit)="updateProfile()" #aboutMeForm="ngForm" name="about-me-form" >
-                            <!--First Name-->
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label for="profile-firstName">First Name</label>
-                                        <input class="form-control profile-firstName"
-                                                  name="profile-firstName"
-                                                  id="profile-firstName"
-                                                  [(ngModel)]="profile.firstName"
-                                                  maxlength="50"
-                                                  (keydown.enter)="$event.preventDefault();"/>
+                    <div class="col-xs-12 col-sm-8">
+                        <!--profile information-->
+                        <div *ngIf="infoSection === sections.aboutMe">
+                            <form (ngSubmit)="updateProfile()" #aboutMeForm="ngForm" name="about-me-form" >
+                                <!--First Name-->
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label for="profile-firstName">First Name</label>
+                                            <input class="form-control profile-firstName"
+                                                      name="profile-firstName"
+                                                      id="profile-firstName"
+                                                      [(ngModel)]="profile.firstName"
+                                                      maxlength="50"
+                                                      (keydown.enter)="$event.preventDefault();"/>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!--Last Name-->
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label for="profile-lastName">Last Name</label>
-                                        <input class="form-control profile-lastName"
-                                               name="profile-lastName"
-                                               id="profile-lastName"
-                                               [(ngModel)]="profile.lastName"
-                                               maxlength="50"
-                                               (keydown.enter)="$event.preventDefault();"/>
+                                <!--Last Name-->
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label for="profile-lastName">Last Name</label>
+                                            <input class="form-control profile-lastName"
+                                                   name="profile-lastName"
+                                                   id="profile-lastName"
+                                                   [(ngModel)]="profile.lastName"
+                                                   maxlength="50"
+                                                   (keydown.enter)="$event.preventDefault();"/>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!--Description-->
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label for="profile-description">Tell us about yourself!</label>
-                                        <textarea class="form-control profile-description"
-                                                  name="profile-description"
-                                                  id="profile-description"
-                                                  [(ngModel)]="profile.description"
-                                                  maxlength="2000">
-                                    </textarea>
+                                <!--Description-->
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label for="profile-description">Tell us about yourself!</label>
+                                            <textarea class="form-control profile-description"
+                                                      name="profile-description"
+                                                      id="profile-description"
+                                                      [(ngModel)]="profile.description"
+                                                      maxlength="2000">
+                                        </textarea>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!--Likes-->
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="row">
-                                        <div class="col-xs-10">
-                                            <div class="form-group">
-                                                <label for="profile-likes">What do you like?</label>
-                                                <input id="profile-likes" #newLike maxlength="20"
-                                                       (keyup.enter)="addLike(newLike.value); newLike.value = null"
-                                                       (keydown.enter)="$event.preventDefault();">
+                                <!--Likes-->
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-10">
+                                                <div class="form-group">
+                                                    <label for="profile-likes">What do you like?</label>
+                                                    <input id="profile-likes" #newLike maxlength="20"
+                                                           (keyup.enter)="addLike(newLike.value); newLike.value = null"
+                                                           (keydown.enter)="$event.preventDefault();">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <button type="button" class="btn btn-default add-like-button" (click)="addLike(newLike.value); newLike.value = null">Add</button>
                                             </div>
                                         </div>
-                                        <div class="col-xs-2">
-                                            <button type="button" class="btn btn-default add-like-button" (click)="addLike(newLike.value); newLike.value = null">Add</button>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-10">
-                                            <sfh-tags *ngFor="let like of profile.likes; let i = index"
-                                                      [tag]="like" [onRemove]="removeLike()" [index]="i">
-                                            </sfh-tags>
+                                        <div class="row">
+                                            <div class="col-xs-10">
+                                                <sfh-tags *ngFor="let like of profile.likes; let i = index"
+                                                          [tag]="like" [onRemove]="removeLike()" [index]="i">
+                                                </sfh-tags>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row profile-save-button">
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <button [disabled]="saving" type="submit" class="btn btn-primary">UPDATE</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Location (Possibly use ng2-address)-->
-                        </form>
-                    </div>
-                    <div *ngIf="infoSection === sections.security">
-                        <form #securitySection="ngForm" name="security-form" (ngSubmit)="updateAccount()">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label for="update-password-button">Password</label>
-                                        <button id="update-password-button" type="button" class="btn btn-default" (click)="openPasswordModal()">Update Password</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-group" [ngClass]="{'has-error': emailUpdate.errors && (emailUpdate.dirty || emailUpdate.touched)}">
-                                        <label for="email-update">Email Address <small>Required</small></label>
-                                        <input type="email"
-                                               email="true"
-                                               class="form-control"
-                                               id="email-update"
-                                               [(ngModel)]="account.email"
-                                               name="email-update"
-                                               #emailUpdate="ngModel"
-                                               required>
-                                        <div class="text-danger" *ngIf="emailUpdate.errors && (emailUpdate.dirty || emailUpdate.touched)">
-                                            <div [hidden]="!emailUpdate.errors.required">Email is required</div>
-                                            <div [hidden]="!emailUpdate.errors.email || !account.email">Must be a proper email address</div>
+                                <div class="row profile-save-button">
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <button [disabled]="saving" type="submit" class="btn btn-primary">UPDATE</button>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-group" [ngClass]="{'has-error': usernameUpdate.errors && (usernameUpdate.dirty || usernameUpdate.touched)}">
-                                        <label for="username-update">Username <small>Required</small></label>
-                                        <input type="text"
-                                               minlength="5"
-                                               maxlength="50"
-                                               class="form-control"
-                                               id="username-update"
-                                               [(ngModel)]="account.username"
-                                               name="username-update"
-                                               #usernameUpdate="ngModel"
-                                               required>
-                                        <div class="text-danger" *ngIf="usernameUpdate.errors && (usernameUpdate.dirty || usernameUpdate.touched)">
-                                            <div [hidden]="!usernameUpdate.errors.required">Username is required</div>
-                                            <div [hidden]="!usernameUpdate.errors.maxlength">Username cannot be longer than 50 characters</div>
-                                            <div [hidden]="!usernameUpdate.errors.minlength">Username must be at least 5 characters</div>
+                                <!--Location (Possibly use ng2-address)-->
+                            </form>
+                        </div>
+                        <div *ngIf="infoSection === sections.security">
+                            <form #securitySection="ngForm" name="security-form" (ngSubmit)="updateAccount()">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label for="update-password-button">Password</label>
+                                            <button id="update-password-button" type="button" class="btn btn-default" (click)="openPasswordModal()">Update Password</button>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <button [disabled]="saving" type="submit" class="btn btn-primary">UPDATE</button>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-group" [ngClass]="{'has-error': emailUpdate.errors && (emailUpdate.dirty || emailUpdate.touched)}">
+                                            <label for="email-update">Email Address <small>Required</small></label>
+                                            <input type="email"
+                                                   email="true"
+                                                   class="form-control"
+                                                   id="email-update"
+                                                   [(ngModel)]="account.email"
+                                                   name="email-update"
+                                                   #emailUpdate="ngModel"
+                                                   required>
+                                            <div class="text-danger" *ngIf="emailUpdate.errors && (emailUpdate.dirty || emailUpdate.touched)">
+                                                <div [hidden]="!emailUpdate.errors.required">Email is required</div>
+                                                <div [hidden]="!emailUpdate.errors.email || !account.email">Must be a proper email address</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
-                        <!--Update Password-->
-                            <!--Probably use modal with confirm info-->
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-group" [ngClass]="{'has-error': usernameUpdate.errors && (usernameUpdate.dirty || usernameUpdate.touched)}">
+                                            <label for="username-update">Username <small>Required</small></label>
+                                            <input type="text"
+                                                   minlength="5"
+                                                   maxlength="50"
+                                                   class="form-control"
+                                                   id="username-update"
+                                                   [(ngModel)]="account.username"
+                                                   name="username-update"
+                                                   #usernameUpdate="ngModel"
+                                                   required>
+                                            <div class="text-danger" *ngIf="usernameUpdate.errors && (usernameUpdate.dirty || usernameUpdate.touched)">
+                                                <div [hidden]="!usernameUpdate.errors.required">Username is required</div>
+                                                <div [hidden]="!usernameUpdate.errors.maxlength">Username cannot be longer than 50 characters</div>
+                                                <div [hidden]="!usernameUpdate.errors.minlength">Username must be at least 5 characters</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <button [disabled]="saving" type="submit" class="btn btn-primary">UPDATE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <!--Update Password-->
+                                <!--Probably use modal with confirm info-->
+                        </div>
                     </div>
                 </div>
             </div>
