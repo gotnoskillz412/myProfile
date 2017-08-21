@@ -13,7 +13,6 @@ export class GoalsFormPageResolverService implements Resolve<any> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
         return new Promise((resolve) => {
-            console.log(route.params['id']);
             if (route.params['id'] === 'new') {
                 resolve(null);
                 return;

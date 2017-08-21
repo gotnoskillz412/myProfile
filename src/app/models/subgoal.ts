@@ -1,5 +1,6 @@
 export class Subgoal {
-    complete: boolean;
-    description: string;
-    goalId: string;
+    complete: boolean = false;
+    description: string = null;
+    goalId: string = null;
+    _id: string;
 }

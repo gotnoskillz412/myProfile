@@ -6,9 +6,31 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div *ngIf="goals.length === 0" class="text-center"><em>You have not set any goals yet</em></div>
-                    <!--<div class="goal" *ngFor="let goal of goals track by goal._id">-->
-
-                    <!--</div>-->
+                    <div class="list-page-item" *ngFor="let goal of goals; let i = index">
+                        <div class="row">
+                            <div class="col-xs-11">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="truncate goal">
+                                            {{goal.description}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngFor="let subgoal of goal.subgoals;">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="truncate subgoal">
+                                                {{subgoal.description}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <i tabindex="0" class="fa fa-trash" (click)="removeGoal(i)"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
