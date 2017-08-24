@@ -14,24 +14,17 @@ export class GoalsFormPageService {
         return new Promise((resolve) => {
             this.helpersService.getAuthUri()
                 .then((authUri) => {
-                    let collectionUrl = Location.joinWithSlash(authUri, 'goals');
-                    return this.http.post(collectionUrl, goal).toPromise();
+                    if (!goal._id){
+                        let collectionUrl = Location.joinWithSlash(authUri, 'goals');
+                        return this.http.post(collectionUrl, goal).toPromise();
+                    }
+                    let collectionUrl = Location.joinWithSlash(authUri, `goals/${goal._id}`);
+                    return this.http.put(collectionUrl, goal).toPromise();
+
                 })
                 .then((response) => {
                     resolve(response.json());
                 });
         });
     }
-
-    deleteGoal(goal: Goal): Promise<any> {
-        return new Promise((resolve) => {
-            this.helpersService.getAuthUri()
-                .then((authUri) => {
-                    let collectionUrl = Location.joinWithSlash(authUri, `goals/${goal._id}`);
-                    return this.http.delete(collectionUrl).toPromise();
-                })
-                .then(resolve);
-        });
-    }
-
 }

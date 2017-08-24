@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Goal} from "../../models/goal";
 import {ActivatedRoute} from "@angular/router";
 import {GoalsListPageService} from "./goals-list-page.service";
+import {ConfirmModalComponent} from "../confirm-modal/confirm-modal.component";
+import {DialogService} from "ng2-bootstrap-modal";
 
 @Component({
     selector: 'sfh-goals-list-page',
@@ -12,7 +14,7 @@ import {GoalsListPageService} from "./goals-list-page.service";
 export class GoalsListPageComponent implements OnInit {
 
     goals: Goal[];
-    constructor(private activatedRoute: ActivatedRoute, private goalsListService: GoalsListPageService) {
+    constructor(private activatedRoute: ActivatedRoute, private goalsListService: GoalsListPageService, private dialogService: DialogService) {
     }
 
     ngOnInit() {
@@ -20,12 +22,20 @@ export class GoalsListPageComponent implements OnInit {
     }
 
     removeGoal(index) {
-        this.goalsListService.deleteGoal(this.goals[index])
-            .then(() => {
-                return this.goalsListService.getGoals();
-            })
-            .then((response) => {
-                this.goals = response.data;
-            })
+        this.dialogService.addDialog(ConfirmModalComponent, {
+            title: 'Delete Goal',
+            okText: 'Delete',
+            cancelText: 'Cancel',
+            message: 'Are you sure you want to delete this goal?',
+            confirmFunction: () => {
+                return this.goalsListService.deleteGoal(this.goals[index])
+                    .then(() => {
+                        return this.goalsListService.getGoals();
+                    });
+            }
+        })
+            .subscribe((goals) => {
+                this.goals = goals.data;
+            });
     }
 }

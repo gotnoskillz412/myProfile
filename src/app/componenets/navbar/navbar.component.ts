@@ -33,6 +33,11 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (this.loggedIn()) {
+            this.accountService.getProfile().then((profile) => {
+                this.profilePicture = profile.picture;
+            });
+        }
         this.accountService.subscribeToProfilePictureUpdate((profilePicture) => {
             this.profilePicture = profilePicture;
         });

@@ -1,23 +1,31 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Goal} from "../../models/goal";
 import {Subgoal} from "../../models/subgoal";
 import {GoalsFormPageService} from "./goals-form-page.service";
 import {Profile} from "../../models/profile";
 import {AccountService} from "../../helpers/account.service";
+import {ConfirmModalComponent} from "../confirm-modal/confirm-modal.component";
+import {DialogService} from "ng2-bootstrap-modal";
+import {GoalsListPageService} from "../goals-list-page/goals-list-page.service";
 
 @Component({
     selector: 'sfh-goals-form-page',
     templateUrl: './goals-form-page.component.html',
     styleUrls: ['./goals-form-page.component.less'],
-    providers: [GoalsFormPageService]
+    providers: [GoalsFormPageService, GoalsListPageService]
 })
 export class GoalsFormPageComponent implements OnInit {
 
     goal: Goal;
     profile: Profile;
 
-    constructor(private activatedRoute: ActivatedRoute, private goalsFormService: GoalsFormPageService, private accountService: AccountService) {
+    constructor(private activatedRoute: ActivatedRoute,
+                private router: Router,
+                private goalsFormService: GoalsFormPageService,
+                private dialogService: DialogService,
+                private goalsListService: GoalsListPageService,
+                private accountService: AccountService) {
     }
 
     @ViewChild('goalForm') form;
@@ -45,7 +53,10 @@ export class GoalsFormPageComponent implements OnInit {
             }
         }
         this.goal.profileId = this.profile._id;
-        this.goalsFormService.saveGoal(this.goal);
+        this.goalsFormService.saveGoal(this.goal).then((response) => {
+            this.goal = response;
+            this.router.navigate(['/goals']);
+        });
     }
 
     removeSubgoal(index) {
@@ -55,6 +66,21 @@ export class GoalsFormPageComponent implements OnInit {
         if (this.goal.subgoals.length === 0) {
             this.addSubgoal();
         }
+    }
+
+    removeGoal(index) {
+        this.dialogService.addDialog(ConfirmModalComponent, {
+            title: 'Delete Goal',
+            okText: 'Delete',
+            cancelText: 'Cancel',
+            message: 'Are you sure you want to delete this goal?',
+            confirmFunction: () => {
+                return this.goalsListService.deleteGoal(this.goal);
+            }
+        })
+            .subscribe((goals) => {
+                this.router.navigate(['/goals']);
+            });
     }
 
 }

@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
-import {NgModule, ErrorHandler, APP_INITIALIZER} from '@angular/core';
+import {NgModule, ErrorHandler} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
 import {AccountService} from './helpers/account.service';
@@ -31,6 +31,7 @@ import {GoalsListPageComponent} from './componenets/goals-list-page/goals-list-p
 import {GoalsFormPageComponent} from './componenets/goals-form-page/goals-form-page.component';
 import {GoalsListPageResolverService} from "./componenets/goals-list-page/goals-list-page-resolver.service";
 import {GoalsFormPageResolverService} from "./componenets/goals-form-page/goals-form-page-resolver.service";
+import {ConfirmModalComponent} from './componenets/confirm-modal/confirm-modal.component';
 
 @NgModule({
     declarations: [
@@ -48,7 +49,8 @@ import {GoalsFormPageResolverService} from "./componenets/goals-form-page/goals-
         TagsComponent,
         PasswordUpdateModalComponent,
         GoalsListPageComponent,
-        GoalsFormPageComponent
+        GoalsFormPageComponent,
+        ConfirmModalComponent
     ],
     imports: [
         BsDropdownModule.forRoot(),
@@ -115,7 +117,7 @@ import {GoalsFormPageResolverService} from "./componenets/goals-form-page/goals-
             useClass: MyErrorHandler
         }
     ],
-    entryComponents: [ProfilePictureModalComponent, PasswordUpdateModalComponent],
+    entryComponents: [ProfilePictureModalComponent, PasswordUpdateModalComponent, ConfirmModalComponent],
     bootstrap: [AppComponent]
 })
 

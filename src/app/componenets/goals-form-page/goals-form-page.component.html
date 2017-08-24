@@ -51,8 +51,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12">
-                        <button type="submit" class="btn btn-primary save-goal-button">SAVE GOAL</button>
+                    <div class="col-xs-3 col-sm-2 col-md-1">
+                        <button type="submit" class="btn btn-primary save-goal-button">SAVE</button>
+                    </div>
+                    <div class="col-xs-3 col-sm-2 col-md-1">
+                        <button type="button" class="btn btn-link save-goal-button" routerLink="/goals">Cancel</button>
+                    </div>
+                    <div class="col-xs-6 col-sm-8 col-md-10">
+                        <button type="button" class="btn btn-link delete-goal-button pull-right" (click)="removeGoal()">DELETE</button>
                     </div>
                 </div>
             </form>
