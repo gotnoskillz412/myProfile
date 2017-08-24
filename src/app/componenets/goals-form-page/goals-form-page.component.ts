@@ -68,7 +68,7 @@ export class GoalsFormPageComponent implements OnInit {
         }
     }
 
-    removeGoal(index) {
+    removeGoal() {
         this.dialogService.addDialog(ConfirmModalComponent, {
             title: 'Delete Goal',
             okText: 'Delete',
