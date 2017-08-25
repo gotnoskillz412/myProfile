@@ -44,6 +44,7 @@
                                             <input class="form-control profile-firstName"
                                                       name="profile-firstName"
                                                       id="profile-firstName"
+                                                      focus="true"
                                                       [(ngModel)]="profile.firstName"
                                                       maxlength="50"
                                                       (keydown.enter)="$event.preventDefault();"/>
@@ -133,6 +134,7 @@
                                                    id="email-update"
                                                    [(ngModel)]="account.email"
                                                    name="email-update"
+                                                   focus="true"
                                                    #emailUpdate="ngModel"
                                                    required>
                                             <div class="text-danger" *ngIf="emailUpdate.errors && (emailUpdate.dirty || emailUpdate.touched)">

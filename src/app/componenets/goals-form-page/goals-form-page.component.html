@@ -3,7 +3,7 @@
         <div *ngIf="goal._id"><h3>Edit Goal</h3></div>
         <div *ngIf="!goal._id"><h3>New Goal</h3></div>
         <div class="main-container">
-            <form name="goal-form" #goalForm="ngForm" (ngSubmit)="saveGoal()">
+            <form name="goal-form" #goalForm="ngForm" #goalFormElement (ngSubmit)="saveGoal()">
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="form-group" [ngClass]="{'has-error': goalDescription.errors && (goalDescription.dirty || goalDescription.touched)}">
@@ -37,7 +37,7 @@
                                        name="subgoal_{{i}}"
                                        [(ngModel)]="goal.subgoals[i].description"
                                        #subgoal{{i}}="ngModel"
-                                       (keydown.enter)="$event.preventDefault();">
+                                       (keydown.enter)="$event.preventDefault(); addSubgoal()">
                             </div>
                         </div>
                         <div class="col-xs-1">
@@ -57,7 +57,7 @@
                     <div class="col-xs-3 col-sm-2 col-md-1">
                         <button type="button" class="btn btn-link save-goal-button" routerLink="/goals">Cancel</button>
                     </div>
-                    <div class="col-xs-6 col-sm-8 col-md-10">
+                    <div class="col-xs-6 col-sm-8 col-md-10" *ngIf="goal._id">
                         <button type="button" class="btn btn-link delete-goal-button pull-right" (click)="removeGoal()">DELETE</button>
                     </div>
                 </div>

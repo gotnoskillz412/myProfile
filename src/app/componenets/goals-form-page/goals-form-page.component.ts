@@ -32,7 +32,7 @@ export class GoalsFormPageComponent implements OnInit {
     {
     }
 
-    @ViewChild('goalForm') form;
+    @ViewChild('goalFormElement') formElement;
 
     ngOnInit() {
         this.goal = this.activatedRoute.snapshot.data['goal'] as Goal || new Goal();
@@ -47,6 +47,9 @@ export class GoalsFormPageComponent implements OnInit {
     addSubgoal() {
         let subgoal = new Subgoal();
         this.goal.subgoals.push(subgoal);
+        setTimeout(() => {
+            this.formElement.nativeElement.querySelectorAll('input')[this.goal.subgoals.length - 1].focus();
+        });
     }
 
     saveGoal() {
@@ -65,7 +68,21 @@ export class GoalsFormPageComponent implements OnInit {
     }
 
     removeSubgoal(index) {
-        if (this.goal.subgoals.length > 1 || (this.goal.subgoals[index].description && this.goal.subgoals[index].description.trim().length > 0)) {
+        if (this.goal.subgoals[index].description && this.goal.subgoals[index].description.trim().length > 0) {
+            this.dialogService.addDialog(ConfirmModalComponent, {
+                title: 'Delete Subtask',
+                message: 'Are you sure you want to delete this subtask?',
+                okText: 'Delete',
+                cancelText: 'Cancel',
+                confirmFunction: () => {
+                    this.goal.subgoals.splice(index, 1);
+                    if (this.goal.subgoals.length === 0) {
+                        this.addSubgoal();
+                    }
+                    return Promise.resolve()
+                }
+            });
+        } else {
             this.goal.subgoals.splice(index, 1);
         }
         if (this.goal.subgoals.length === 0) {
@@ -84,7 +101,10 @@ export class GoalsFormPageComponent implements OnInit {
             }
         })
             .subscribe((goals) => {
-                this.router.navigate(['/goals']);
+                if (goals) {
+                    this.notifications.success('Deleted', 'Goal Deleted Successfully!');
+                    this.router.navigate(['/goals']);
+                }
             });
     }
 

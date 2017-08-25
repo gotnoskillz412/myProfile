@@ -24,6 +24,7 @@ import {RegisterPageComponent} from './componenets/register-page/register-page.c
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {FileSelectDirective} from 'ng2-file-upload';
+import {FocusModule} from "angular2-focus";
 import {ImageCropperModule} from 'ng2-img-cropper';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 
@@ -59,6 +60,7 @@ import {ConfirmModalComponent} from './componenets/confirm-modal/confirm-modal.c
         BsDropdownModule.forRoot(),
         BootstrapModalModule,
         BrowserAnimationsModule,
+        FocusModule.forRoot(),
         BrowserModule,
         FormsModule,
         HttpModule,

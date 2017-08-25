@@ -7,6 +7,7 @@ import {ProfilePageService} from './profile-page.service';
 import {Profile} from '../../models/profile';
 import {Account} from '../../models/account';
 import {PasswordUpdateModalComponent} from "./password-update-modal/password-update-modal.component";
+import {NotificationsService} from "angular2-notifications/dist";
 
 @Component({
     selector: 'sfh-profile-page',
@@ -29,6 +30,7 @@ export class ProfilePageComponent implements OnInit {
     constructor(private route: ActivatedRoute,
                 private dialogService: DialogService,
                 private accountService: AccountService,
+                private notifications: NotificationsService,
                 private profileService: ProfilePageService) {
         this.data = {};
     }
@@ -39,6 +41,7 @@ export class ProfilePageComponent implements OnInit {
             this.profileService.updateProfile(this.profile).then((profile) => {
                 this.profile = profile;
                 this.saving = false;
+                this.notifications.success('Updated', 'Profile Updated Successfully');
             }).catch(() => {
                 this.saving = false;
             });
@@ -51,6 +54,7 @@ export class ProfilePageComponent implements OnInit {
             this.profileService.updateAccount(this.account).then((account) => {
                 this.account = account;
                 this.saving = false;
+                this.notifications.success('Updated', 'Account Updated Successfully');
             }).catch(() => {
                 this.saving = false;
             });
@@ -64,7 +68,10 @@ export class ProfilePageComponent implements OnInit {
             .subscribe((data) => {
                 if (data) {
                     this.data = data;
-                    this.accountService.getProfile().then((profile) => {this.profile = profile});
+                    this.accountService.getProfile().then((profile) => {
+                        this.profile = profile;
+                        this.notifications.success('Updated', 'Profile Picture Updated Successfully');
+                    });
                 }
             });
     }
@@ -77,6 +84,7 @@ export class ProfilePageComponent implements OnInit {
             .subscribe((account) => {
                 if (account) {
                     this.account = account;
+                    this.notifications.success('Updated', 'Password Updated Successfully');
                 }
             });
     }

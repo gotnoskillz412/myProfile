@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {GoalsListPageService} from "./goals-list-page.service";
 import {ConfirmModalComponent} from "../confirm-modal/confirm-modal.component";
 import {DialogService} from "ng2-bootstrap-modal";
+import {NotificationsService} from "angular2-notifications/dist";
 
 @Component({
     selector: 'sfh-goals-list-page',
@@ -14,7 +15,10 @@ import {DialogService} from "ng2-bootstrap-modal";
 export class GoalsListPageComponent implements OnInit {
 
     goals: Goal[];
-    constructor(private activatedRoute: ActivatedRoute, private goalsListService: GoalsListPageService, private dialogService: DialogService) {
+    constructor(private activatedRoute: ActivatedRoute,
+                private goalsListService: GoalsListPageService,
+                private dialogService: DialogService,
+                private notifications: NotificationsService) {
     }
 
     ngOnInit() {
@@ -35,6 +39,7 @@ export class GoalsListPageComponent implements OnInit {
             }
         })
             .subscribe((goals) => {
+                this.notifications.success('Deleted', 'Goal Deleted Successfully');
                 this.goals = goals.data;
             });
     }

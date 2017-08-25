@@ -4,12 +4,13 @@ import {Http, Headers, RequestOptions, XHRBackend, Request, RequestOptionsArgs, 
 import {Observable} from "rxjs";
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {AuthService} from "./auth.service";
+import {NotificationsService} from "angular2-notifications/dist";
 
 @Injectable()
 export class Option22Service extends Http {
     private _httpRequestSource = new BehaviorSubject<any>({loading: false});
 
-    constructor(backend: XHRBackend, options: RequestOptions, private router: Router) {
+    constructor(backend: XHRBackend, options: RequestOptions, private router: Router, private notifications: NotificationsService) {
         super(backend, options);
     }
 
@@ -48,7 +49,11 @@ export class Option22Service extends Http {
                 this.router.navigate(['/login'], navExtras);
                 return Promise.resolve();
             }
-            return Observable.throw(res);
+            if (res.status !== 404 ) {
+                this.notifications.error('Internal Server Error', 'Problem communicating with backend services. Please try again later.')
+            }
+            Observable.throw(res);
+            return
         };
     }
 }
