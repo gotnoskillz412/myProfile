@@ -8,4 +8,9 @@ import {Component} from '@angular/core';
 export class AppComponent {
     constructor() {
     }
+
+    notificationOptions = {
+        position: ['top', 'right'],
+        timeOut: 2000
+    };
 }

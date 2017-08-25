@@ -14,9 +14,13 @@ export class GoalsListPageResolverService implements Resolve<any> {
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
         return new Promise((resolve) => {
             this.helpersService.getAuthUri().then((url) => {
-                this.http.get(Location.joinWithSlash(url, 'goals')).toPromise().then((response) => {
-                    resolve(response.json());
-                });
+                if (url) {
+                    this.http.get(Location.joinWithSlash(url, 'goals')).toPromise().then((response) => {
+                        resolve(response.json());
+                    });
+                } else {
+                    resolve(null);
+                }
             });
         });
     }

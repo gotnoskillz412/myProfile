@@ -8,6 +8,8 @@ import {AccountService} from "../../helpers/account.service";
 import {ConfirmModalComponent} from "../confirm-modal/confirm-modal.component";
 import {DialogService} from "ng2-bootstrap-modal";
 import {GoalsListPageService} from "../goals-list-page/goals-list-page.service";
+import {NotificationsService} from "angular2-notifications/dist";
+
 
 @Component({
     selector: 'sfh-goals-form-page',
@@ -25,7 +27,9 @@ export class GoalsFormPageComponent implements OnInit {
                 private goalsFormService: GoalsFormPageService,
                 private dialogService: DialogService,
                 private goalsListService: GoalsListPageService,
-                private accountService: AccountService) {
+                private notifications: NotificationsService,
+                private accountService: AccountService)
+    {
     }
 
     @ViewChild('goalForm') form;
@@ -55,6 +59,7 @@ export class GoalsFormPageComponent implements OnInit {
         this.goal.profileId = this.profile._id;
         this.goalsFormService.saveGoal(this.goal).then((response) => {
             this.goal = response;
+            this.notifications.success('Saved', 'Goal Saved Successfully!');
             this.router.navigate(['/goals']);
         });
     }

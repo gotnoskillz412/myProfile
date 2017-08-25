@@ -1,3 +1,4 @@
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
@@ -24,6 +25,8 @@ import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {FileSelectDirective} from 'ng2-file-upload';
 import {ImageCropperModule} from 'ng2-img-cropper';
+import {SimpleNotificationsModule} from 'angular2-notifications';
+
 import {ValidateEqualDirective} from './helpers/validate-equal.directive';
 import {TagsComponent} from './componenets/tags/tags.component';
 import {PasswordUpdateModalComponent} from './componenets/profile-page/password-update-modal/password-update-modal.component';
@@ -55,10 +58,12 @@ import {ConfirmModalComponent} from './componenets/confirm-modal/confirm-modal.c
     imports: [
         BsDropdownModule.forRoot(),
         BootstrapModalModule,
+        BrowserAnimationsModule,
         BrowserModule,
         FormsModule,
         HttpModule,
         ImageCropperModule,
+        SimpleNotificationsModule.forRoot(),
         RouterModule.forRoot([
             {
                 path: 'login',

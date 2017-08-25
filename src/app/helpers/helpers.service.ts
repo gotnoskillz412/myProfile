@@ -11,12 +11,15 @@ export class HelpersService {
     getAuthUri(): Promise<string> {
         let accountIndex;
         return this.accountService.getAccount().then((account) => {
-            let accountId = account ? account._id : 'null';
-            let authUri = environment.authApi;
-            let uriParams = authUri.split('/');
-            accountIndex = uriParams.indexOf(':accountId');
-            uriParams[accountIndex] = accountId;
-            return uriParams.join('/');
+            if (account) {
+                let accountId = account ? account._id : 'null';
+                let authUri = environment.authApi;
+                let uriParams = authUri.split('/');
+                accountIndex = uriParams.indexOf(':accountId');
+                uriParams[accountIndex] = accountId;
+                return uriParams.join('/');
+            }
+            return null;
         });
     }
 }

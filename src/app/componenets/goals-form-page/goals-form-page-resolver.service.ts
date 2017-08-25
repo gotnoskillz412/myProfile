@@ -18,9 +18,13 @@ export class GoalsFormPageResolverService implements Resolve<any> {
                 return;
             }
             this.helpersService.getAuthUri().then((url) => {
-                this.http.get(Location.joinWithSlash(url, `goals/${route.params['id']}`)).toPromise().then((response) => {
-                    resolve(response.json());
-                });
+                if (url) {
+                    this.http.get(Location.joinWithSlash(url, `goals/${route.params['id']}`)).toPromise().then((response) => {
+                        resolve(response.json());
+                    });
+                } else {
+                    resolve();
+                }
             });
         });
     }
