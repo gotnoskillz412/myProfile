@@ -39,8 +39,10 @@ export class GoalsListPageComponent implements OnInit {
             }
         })
             .subscribe((goals) => {
-                this.notifications.success('Deleted', 'Goal Deleted Successfully');
-                this.goals = goals.data;
+                if (goals) {
+                    this.notifications.success('Deleted', 'Goal Deleted Successfully');
+                    this.goals = goals.data;
+                }
             });
     }
 }

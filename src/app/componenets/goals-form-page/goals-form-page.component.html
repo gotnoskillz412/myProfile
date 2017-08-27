@@ -5,7 +5,7 @@
         <div class="main-container">
             <form name="goal-form" #goalForm="ngForm" #goalFormElement (ngSubmit)="saveGoal()">
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12 col-sm-9 col-md-10">
                         <div class="form-group" [ngClass]="{'has-error': goalDescription.errors && (goalDescription.dirty || goalDescription.touched)}">
                             <label for="goal-description">Description</label>
                             <textarea id="goal-description"
@@ -23,25 +23,55 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-xs-12 col-sm-3 col-md-2" *ngIf="goal._id">
+                        <div dropdown placement="bottom right">
+                            <div class="form-group">
+                                <label for="progress-dropdown">Progress:</label>
+                                <select class="form-control" id="progress-dropdown" name="progress-dropdown" [(ngModel)]="goal.progress">
+                                    <option value="0">0%</option>
+                                    <option value="10">10%</option>
+                                    <option value="20">20%</option>
+                                    <option value="30">30%</option>
+                                    <option value="40">40%</option>
+                                    <option value="50">50%</option>
+                                    <option value="60">60%</option>
+                                    <option value="70">70%</option>
+                                    <option value="80">80%</option>
+                                    <option value="90">90%</option>
+                                    <option value="100">100%</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-xs-8 col-sm-9 col-md-10">
                         <label>Subgoals</label>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-2">
+                        <label>Complete</label>
                     </div>
                 </div>
                 <div class="subgoals" *ngFor="let subgoal of goal.subgoals; let i = index">
                     <div class="row">
-                        <div class="col-xs-11">
+                        <div class="col-xs-8 col-sm-9 col-md-10">
                             <div class="form-group">
-                                <input class="form-control"
+                                <input class="form-control subgoal-description"
                                        name="subgoal_{{i}}"
                                        [(ngModel)]="goal.subgoals[i].description"
                                        #subgoal{{i}}="ngModel"
-                                       (keydown.enter)="$event.preventDefault(); addSubgoal()">
+                                       (keydown.enter)="$event.preventDefault(); addSubgoal();">
                             </div>
                         </div>
+                        <div class="col-xs-3 col-sm-2 col-md-1">
+                            <input type="checkbox" class="subgoal-complete"
+                                   [disabled]="subgoal.description == null || subgoal.description.trim().length === 0"
+                                   (click)="completeSubgoal(i)"
+                                   (keydown.enter)="$event.preventDefault(); completeSubgoal(i);"
+                                   [checked]="subgoal.description != null && subgoal.description.trim().length > 0 && goal.subgoals[i].completed"/>
+                        </div>
                         <div class="col-xs-1">
-                            <i tabindex="0" class="fa fa-trash" (click)="removeSubgoal(i)"></i>
+                            <i tabindex="0" class="fa fa-trash" (keydown.enter)="removeSubgoal(i)" (click)="removeSubgoal(i)"></i>
                         </div>
                     </div>
                 </div>

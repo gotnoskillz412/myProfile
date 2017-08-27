@@ -28,8 +28,7 @@ export class GoalsFormPageComponent implements OnInit {
                 private dialogService: DialogService,
                 private goalsListService: GoalsListPageService,
                 private notifications: NotificationsService,
-                private accountService: AccountService)
-    {
+                private accountService: AccountService) {
     }
 
     @ViewChild('goalFormElement') formElement;
@@ -48,7 +47,7 @@ export class GoalsFormPageComponent implements OnInit {
         let subgoal = new Subgoal();
         this.goal.subgoals.push(subgoal);
         setTimeout(() => {
-            this.formElement.nativeElement.querySelectorAll('input')[this.goal.subgoals.length - 1].focus();
+            this.formElement.nativeElement.querySelectorAll('.subgoal-description')[this.goal.subgoals.length - 1].focus();
         });
     }
 
@@ -59,12 +58,27 @@ export class GoalsFormPageComponent implements OnInit {
                 i--;
             }
         }
+        this.goal.progress = parseInt(this.goal.progress.toString(), 10) || this.goal.progress;
         this.goal.profileId = this.profile._id;
+        if (!this.goal._id) {
+            this.goal.startDate = new Date().toISOString();
+        } else if (this.goal.progress === 100 && !this.goal.finishDate) {
+            this.goal.finishDate = new Date().toISOString();
+        } else if (this.goal.progress !== 100) {
+            this.goal.finishDate = null;
+        }
         this.goalsFormService.saveGoal(this.goal).then((response) => {
             this.goal = response;
             this.notifications.success('Saved', 'Goal Saved Successfully!');
             this.router.navigate(['/goals']);
+        }, () => {
+            this.goal.startDate = null;
+            this.goal.finishDate = null;
         });
+    }
+
+    completeSubgoal(i) {
+        this.goal.subgoals[i].completed = !this.goal.subgoals[i].completed;
     }
 
     removeSubgoal(index) {

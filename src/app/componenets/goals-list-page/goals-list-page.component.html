@@ -6,9 +6,17 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div *ngIf="goals.length === 0" class="text-center"><em>You have not set any goals yet</em></div>
+                    <div class="row">
+                        <div class="col-xs-7 col-sm-9 col-md-9">
+                            <div class="description-heading"><strong>Description</strong></div>
+                        </div>
+                        <div class="col-xs-3 col-sm-2 col-md-2">
+                            <div><strong>Progress</strong></div>
+                        </div>
+                    </div>
                     <div class="list-page-item" *ngFor="let goal of goals; let i = index" routerLink="/goals/{{goal._id}}">
                         <div class="row">
-                            <div class="col-xs-10 col-sm-11">
+                            <div class="col-xs-7 col-sm-9 col-md-9">
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="truncate goal text-primary">
@@ -16,14 +24,21 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-xs-3 col-sm-2 col-md-2">
+                                <div class="goal-progress">{{goal.progress}}%</div>
+                            </div>
+                            <div class="col-xs-2 col-sm-1">
+                                <i tabindex="0" class="fa fa-trash fa-lg text-info pull-right" (click)="$event.stopPropagation(); removeGoal(i)"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
                                 <ul>
                                     <li *ngFor="let subgoal of goal.subgoals; let j = index" class="truncate subgoal text-muted">
                                         {{subgoal.description}}
                                     </li>
                                 </ul>
-                            </div>
-                            <div class="col-xs-2 col-sm-1">
-                                <i tabindex="0" class="fa fa-trash fa-lg delete-goal text-info pull-right" (click)="$event.stopPropagation(); removeGoal(i)"></i>
                             </div>
                         </div>
                     </div>

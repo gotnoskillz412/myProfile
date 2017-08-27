@@ -5,7 +5,7 @@
                 <div class="logo">
                     <div class="row">
                         <div class="col-xs-12">
-                            <h2 class="title" routerLink="/home">#SquadGoals</h2>
+                            <h2 class="title" routerLink="/home">Goal Tending</h2>
                         </div>
                     </div>
                     <div class="row">
@@ -39,9 +39,9 @@
     </div>
     <div *ngIf="loggedIn()" class="container">
         <ul class="nav nav-tabs">
-            <li role="presentation" routerLinkActive="active"><a routerLink="/home">Home</a></li>
-            <li role="presentation" routerLinkActive="active"><a routerLink="/goals">Goals</a></li>
-            <li role="presentation" routerLinkActive="active"><a routerLink="/contact">Contact</a></li>
+            <li role="presentation" class="cursor-pointer" routerLinkActive="active"><a routerLink="/home">Home</a></li>
+            <li role="presentation" class="cursor-pointer" routerLinkActive="active"><a routerLink="/goals">Goals</a></li>
+            <li role="presentation" class="cursor-pointer" routerLinkActive="active"><a routerLink="/contact">Contact</a></li>
         </ul>
     </div>
 </div>
