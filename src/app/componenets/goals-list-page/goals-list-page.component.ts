@@ -25,6 +25,16 @@ export class GoalsListPageComponent implements OnInit {
         this.goals = this.activatedRoute.snapshot.data['goals'].data;
     }
 
+    getProgressClass(i) {
+        let progress = parseInt(this.goals[i].progress.toString(), 10) || 0;
+        if (progress > 0 && progress < 100) {
+            return 'in-progress';
+        } else if (progress === 100) {
+            return 'complete'
+        }
+        return null;
+    }
+
     removeGoal(index) {
         this.dialogService.addDialog(ConfirmModalComponent, {
             title: 'Delete Goal',

@@ -14,7 +14,10 @@
                             <div><strong>Progress</strong></div>
                         </div>
                     </div>
-                    <div class="list-page-item" *ngFor="let goal of goals; let i = index" routerLink="/goals/{{goal._id}}">
+                    <div class="list-page-item"
+                         [ngClass]="getProgressClass(i)"
+                         *ngFor="let goal of goals; let i = index"
+                         routerLink="/goals/{{goal._id}}">
                         <div class="row">
                             <div class="col-xs-7 col-sm-9 col-md-9">
                                 <div class="row">

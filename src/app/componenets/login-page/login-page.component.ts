@@ -31,7 +31,7 @@ export class LoginPageComponent implements OnInit {
             if (response.json().profile.picture) {
                 this.accountService.updateProfilePicture(response.json().profile.picture);
             }
-            this.router.navigate(['/home']);
+            this.router.navigate(['/goals']);
         }, () => {
             this.invalidCredentials = true;
         });
