@@ -7,5 +7,4 @@ var MyErrorHandler = (function () {
     };
     return MyErrorHandler;
 }());
-exports.__esModule = true;
-exports["default"] = MyErrorHandler;
+exports.MyErrorHandler = MyErrorHandler;

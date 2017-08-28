@@ -10,32 +10,33 @@ import {AppComponent} from './app.component';
 import {AuthService} from './helpers/auth.service';
 import {HelpersService} from './helpers/helpers.service';
 import {Option22Service} from './helpers/option22.service';
-import {ContactPageComponent} from './componenets/contact-page/contact-page.component';
-import {HomePageComponent} from './componenets/home-page/home-page.component';
-import {LoadingContentComponent} from './componenets/loading-content/loading-content.component';
-import {LoginPageComponent} from './componenets/login-page/login-page.component';
-import MyErrorHandler from './helpers/myErrorHandler';
-import {NavbarComponent} from './componenets/navbar/navbar.component';
-import {ProfilePageComponent} from './componenets/profile-page/profile-page.component';
-import {ProfilePageResolverService} from './componenets/profile-page/profile-page-resolver.service';
-import {ProfilePictureModalComponent} from './componenets/profile-page/profile-picture-modal/profile-picture-modal.component';
-import {RegisterPageComponent} from './componenets/register-page/register-page.component';
+import {ContactPageComponent} from './components/contact-page/contact-page.component';
+import {HomePageComponent} from './components/home-page/home-page.component';
+import {LoadingContentComponent} from './components/loading-content/loading-content.component';
+import {LoginPageComponent} from './components/login-page/login-page.component';
+import {MyErrorHandler} from './helpers/myErrorHandler';
+import {NavbarComponent} from './components/navbar/navbar.component';
+import {ProfilePageComponent} from './components/profile-page/profile-page.component';
+import {ProfilePageResolverService} from './components/profile-page/profile-page-resolver.service';
+import {ProfilePictureModalComponent} from './components/profile-page/profile-picture-modal/profile-picture-modal.component';
+import {RegisterPageComponent} from './components/register-page/register-page.component';
 
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
-import {FileSelectDirective} from 'ng2-file-upload';
+// import {FileSelectDirective, FileUploadModule} from 'ng2-file-upload';
 import {FocusModule} from "angular2-focus";
 import {ImageCropperModule} from 'ng2-img-cropper';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 
 import {ValidateEqualDirective} from './helpers/validate-equal.directive';
-import {TagsComponent} from './componenets/tags/tags.component';
-import {PasswordUpdateModalComponent} from './componenets/profile-page/password-update-modal/password-update-modal.component';
-import {GoalsListPageComponent} from './componenets/goals-list-page/goals-list-page.component';
-import {GoalsFormPageComponent} from './componenets/goals-form-page/goals-form-page.component';
-import {GoalsListPageResolverService} from "./componenets/goals-list-page/goals-list-page-resolver.service";
-import {GoalsFormPageResolverService} from "./componenets/goals-form-page/goals-form-page-resolver.service";
-import {ConfirmModalComponent} from './componenets/confirm-modal/confirm-modal.component';
+import {TagsComponent} from './components/tags/tags.component';
+import {PasswordUpdateModalComponent} from './components/profile-page/password-update-modal/password-update-modal.component';
+import {GoalsListPageComponent} from './components/goals-list-page/goals-list-page.component';
+import {GoalsFormPageComponent} from './components/goals-form-page/goals-form-page.component';
+import {GoalsListPageResolverService} from "./components/goals-list-page/goals-list-page-resolver.service";
+import {GoalsFormPageResolverService} from "./components/goals-form-page/goals-form-page-resolver.service";
+import {ConfirmModalComponent} from './components/confirm-modal/confirm-modal.component';
+import {FileUploadModule} from "ng2-file-upload";
 
 @NgModule({
     declarations: [
@@ -46,7 +47,6 @@ import {ConfirmModalComponent} from './componenets/confirm-modal/confirm-modal.c
         ContactPageComponent,
         ProfilePageComponent,
         LoadingContentComponent,
-        FileSelectDirective,
         NavbarComponent,
         ProfilePictureModalComponent,
         ValidateEqualDirective,
@@ -60,6 +60,7 @@ import {ConfirmModalComponent} from './componenets/confirm-modal/confirm-modal.c
         BsDropdownModule.forRoot(),
         BootstrapModalModule,
         BrowserAnimationsModule,
+        FileUploadModule,
         FocusModule.forRoot(),
         BrowserModule,
         FormsModule,

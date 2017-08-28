@@ -24,7 +24,7 @@ export class AuthService {
         return localStorage.getItem('myprofile_auth_token');
     }
 
-    public static setToken(token) {
+    public static setToken(token: string) {
         let oneHourFromNow = new Date().getTime() + (1000 * 3600);
         localStorage.setItem('myprofile_auth_token', token);
         localStorage.setItem('myprofile_expiration', oneHourFromNow.toString());

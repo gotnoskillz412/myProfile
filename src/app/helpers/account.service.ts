@@ -17,11 +17,11 @@ export class AccountService {
     constructor(private http: Option22Service) {
     }
 
-    subscribeToProfilePictureUpdate(callback) {
+    subscribeToProfilePictureUpdate(callback: Function) {
         this.profilePictureUpdateCallbacks.push(callback);
     }
 
-    updateProfilePicture(profilePicture) {
+    updateProfilePicture(profilePicture: string) {
         this.profilePicture = profilePicture;
         this.profilePictureUpdateCallbacks.forEach((cb) => {
             cb(this.profilePicture);
