@@ -14,7 +14,7 @@ export class Option22Service extends Http {
         super(backend, options);
     }
 
-    request(url: string | Request, options?: RequestOptionsArgs): Observable<void | Response> {
+    request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
         let token = AuthService.getToken();
         if (typeof url === 'string') {
             if (!options) {
@@ -24,7 +24,7 @@ export class Option22Service extends Http {
         } else {
             url.headers.set('Authorization', `Bearer ${token}`);
         }
-        return super.request(url, options).catch(this.catchAuthError(this));
+        return super.request(url, options).catch(this.catchAuthError(this)) as Observable<Response>;
     }
 
     httpRequest$ = this._httpRequestSource.asObservable();
