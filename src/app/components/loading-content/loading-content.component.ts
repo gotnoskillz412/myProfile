@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Option22Service} from '../../helpers/option22.service';
-import {Subscription} from 'rxjs/subscription'
+import {Subscription} from 'rxjs/Subscription'
 
 @Component({
     selector: 'sfh-loading-content',

@@ -14,7 +14,7 @@ export class Option22Service extends Http {
         super(backend, options);
     }
 
-    request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
+    request(url: string | Request, options?: RequestOptionsArgs): Observable<void | Response> {
         let token = AuthService.getToken();
         if (typeof url === 'string') {
             if (!options) {
