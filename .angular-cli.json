@@ -1,67 +1,68 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "project": {
-    "version": "1.0.0-rc.2",
-    "name": "my-profile"
-  },
-  "apps": [
-    {
-      "root": "src",
-      "outDir": "dist",
-      "assets": [
-        "assets",
-        "favicon.ico"
-      ],
-      "index": "index.html",
-      "main": "main.ts",
-      "polyfills": "polyfills.ts",
-      "test": "test.ts",
-      "tsconfig": "tsconfig.app.json",
-      "testTsconfig": "tsconfig.spec.json",
-      "prefix": "sfh",
-      "styles": [
-        "styles.less",
-        "../node_modules/bootstrap/dist/css/bootstrap.css"
-      ],
-      "scripts": [],
-      "environmentSource": "environments/environment.ts",
-      "environments": {
-        "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts"
-      }
-    }
-  ],
-  "e2e": {
-    "protractor": {
-      "config": "./protractor.conf.js"
-    }
-  },
-  "lint": [
-    {
-      "project": "src/tsconfig.json"
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "project": {
+        "version": "1.0.0-rc.2",
+        "name": "my-profile"
     },
-    {
-      "project": "e2e/tsconfig.json"
+    "apps": [
+        {
+            "root": "src",
+            "outDir": "dist",
+            "assets": [
+                "assets",
+                "assets/images",
+                "favicon.ico"
+            ],
+            "index": "index.html",
+            "main": "main.ts",
+            "polyfills": "polyfills.ts",
+            "test": "test.ts",
+            "tsconfig": "tsconfig.app.json",
+            "testTsconfig": "tsconfig.spec.json",
+            "prefix": "sfh",
+            "styles": [
+                "styles.less",
+                "../node_modules/bootstrap/dist/css/bootstrap.css"
+            ],
+            "scripts": [],
+            "environmentSource": "environments/environment.ts",
+            "environments": {
+                "dev": "environments/environment.ts",
+                "prod": "environments/environment.prod.ts"
+            }
+        }
+    ],
+    "e2e": {
+        "protractor": {
+            "config": "./protractor.conf.js"
+        }
     },
-    {
-      "project": "src/tsconfig.spec.json"
-    }
-  ],
-  "test": {
-    "codeCoverage": {
-      "exclude": [
-        "src/app/app-http.service.ts"
-      ]
+    "lint": [
+        {
+            "project": "src/tsconfig.json"
+        },
+        {
+            "project": "e2e/tsconfig.json"
+        },
+        {
+            "project": "src/tsconfig.spec.json"
+        }
+    ],
+    "test": {
+        "codeCoverage": {
+            "exclude": [
+                "src/app/app-http.service.ts"
+            ]
+        },
+        "karma": {
+            "config": "./karma.conf.js"
+        }
     },
-    "karma": {
-      "config": "./karma.conf.js"
+    "defaults": {
+        "styleExt": "less",
+        "component": {
+            "inlineTemplate": false,
+            "spec": true
+        }
     }
-  },
-  "defaults": {
-    "styleExt": "less",
-    "component": {
-      "inlineTemplate": false,
-      "spec": true
-    }
-  }
 }
