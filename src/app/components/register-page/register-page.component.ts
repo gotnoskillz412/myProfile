@@ -33,7 +33,7 @@ export class RegisterPageComponent implements OnInit {
     onSubmit() {
         this.registerPageService.registerAccount(this.model).then(() => {
             this.notifications.success('Created Account', 'New Account Created Successfully');
-            this.router.navigate(['/home']);
+            this.router.navigate(['/goals']);
         });
     }
 }

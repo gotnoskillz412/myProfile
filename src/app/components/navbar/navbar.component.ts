@@ -33,6 +33,10 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit() {
+        //healthcheck to wake API up (dang you heroku dyno sleeps)
+        this.http.get(environment.baseApi).toPromise().then(() => {
+            return;
+        });
         if (this.loggedIn()) {
             this.accountService.getProfile().then((profile) => {
                 this.profilePicture = profile.picture;

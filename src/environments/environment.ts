@@ -4,7 +4,8 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  production: false,
-  baseApi: 'http://localhost:3000',
-  authApi: 'http://localhost:3000/accounts/:accountId'
+    production: false,
+    baseApi: 'http://localhost:3000',
+    authApi: 'http://localhost:3000/accounts/:accountId',
+    tokenKey: '2a51ab22-1e41-4d41-a8bf-5da5172d07e6'
 };

@@ -36,8 +36,6 @@ export class ContactPageComponent implements OnInit {
     }
 
     private setModel() {
-        this.model.name = null;
-        this.model.email = null;
         this.model.message = null;
     }
 
