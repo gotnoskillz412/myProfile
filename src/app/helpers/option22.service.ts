@@ -29,7 +29,7 @@ export class Option22Service extends Http {
             .catch(this.catchAuthError(this))
             .finally(() => {
                 this.requestFinished();
-            });
+            }) as Observable<Response>;
     }
 
     httpRequest$ = this._httpRequestSource.asObservable();

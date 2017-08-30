@@ -21,7 +21,7 @@ var Option22Service = (function (_super) {
         var _this = _super.call(this, backend, options) || this;
         _this.router = router;
         _this.notifications = notifications;
-        _this._httpRequestSource = new BehaviorSubject_1.BehaviorSubject({ loading: false });
+        _this._httpRequestSource = new BehaviorSubject_1.BehaviorSubject(null);
         _this.httpRequest$ = _this._httpRequestSource.asObservable();
         return _this;
     }
@@ -37,26 +37,22 @@ var Option22Service = (function (_super) {
         else {
             url.headers.set('Authorization', "Bearer " + token);
         }
-        return _super.prototype.request.call(this, url, options)["catch"](this.catchAuthError(this))["do"](function () {
-            console.log(url.toString());
-            _this.requestHappening();
-        })["finally"](function () {
+        this.requestHappening();
+        return _super.prototype.request.call(this, url, options)["catch"](this.catchAuthError(this))["finally"](function () {
             _this.requestFinished();
         });
     };
     Option22Service.prototype.requestHappening = function () {
-        console.log('here 2');
-        this._httpRequestSource.next(true);
+        this._httpRequestSource.next('start');
     };
     Option22Service.prototype.requestFinished = function () {
-        this._httpRequestSource.next(false);
+        this._httpRequestSource.next('end');
     };
     Option22Service.prototype.catchAuthError = function (self) {
         var _this = this;
         // console.log('here');
         // we have to pass HttpService's own instance here as `self`
         return function (res) {
-            self._httpRequestSource.next({ loading: false, route: null });
             if (res.status === 401) {
                 var navExtras = {
                     queryParams: { redirect_path: _this.router.url }
