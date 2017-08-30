@@ -28,25 +28,28 @@ var Option22Service = (function (_super) {
     Option22Service.prototype.request = function (url, options) {
         var _this = this;
         var token = auth_service_1.AuthService.getToken();
+        var key;
         if (typeof url === 'string') {
+            key = url;
             if (!options) {
                 options = { headers: new http_1.Headers() };
             }
             options.headers.set('Authorization', "Bearer " + token);
         }
         else {
+            key = url.url;
             url.headers.set('Authorization', "Bearer " + token);
         }
-        this.requestHappening();
+        this.requestHappening(key);
         return _super.prototype.request.call(this, url, options)["catch"](this.catchAuthError(this))["finally"](function () {
-            _this.requestFinished();
+            _this.requestFinished(key);
         });
     };
-    Option22Service.prototype.requestHappening = function () {
-        this._httpRequestSource.next('start');
+    Option22Service.prototype.requestHappening = function (url) {
+        this._httpRequestSource.next({ type: 'start', url: url });
     };
-    Option22Service.prototype.requestFinished = function () {
-        this._httpRequestSource.next('end');
+    Option22Service.prototype.requestFinished = function (url) {
+        this._httpRequestSource.next({ type: 'end', url: url });
     };
     Option22Service.prototype.catchAuthError = function (self) {
         var _this = this;
