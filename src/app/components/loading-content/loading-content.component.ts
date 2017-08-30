@@ -10,21 +10,39 @@ import {Subscription} from 'rxjs/Subscription'
 export class LoadingContentComponent implements OnInit {
     subscription: Subscription;
     loadingWheel = false;
-    incoming = 1;
+    loadingArr = [];
+    dontLoad = [];
 
     constructor(private http: Option22Service) {
     }
 
     ngOnInit() {
         this.subscription = this.http.httpRequest$.subscribe(event => {
-            if (event === 'start') {
+            if (event.type === 'start') {
                 setTimeout(() => {
-                    this.incoming += 1;
-                    this.loadingWheel = this.incoming > 0;
+                    let startIndex = this.dontLoad.indexOf(event.url);
+                    if (startIndex === -1) {
+                        this.loadingArr.push(event.url);
+                    } else {
+                        this.dontLoad.splice(startIndex, 1);
+                    }
+                    console.log('start loading arr', this.loadingArr);
+                    console.log('start dontshow', this.dontLoad);
+                    this.loadingWheel = this.loadingArr.length > 0;
                 }, 500);
-            } else if (event === 'end') {
-                this.incoming -= 1;
-                this.loadingWheel = this.incoming > 0;
+            } else if (event.type === 'end') {
+                let endIndex = this.loadingArr.indexOf(event.url);
+                if (endIndex === -1){
+                    this.dontLoad.push(event.url);
+                } else {
+                    this.loadingArr.splice(endIndex, 1);
+                }
+                this.loadingWheel = this.loadingArr.length > 0;
+                console.log('end loading arr', this.loadingArr);
+                console.log('end dontshow', this.dontLoad);
+            } else {
+                this.loadingArr = [];
+                this.dontLoad = [];
             }
         });
     }

@@ -16,30 +16,33 @@ export class Option22Service extends Http {
 
     request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
         let token = AuthService.getToken();
+        let key;
         if (typeof url === 'string') {
+            key = url;
             if (!options) {
                 options = {headers: new Headers()};
             }
             options.headers.set('Authorization', `Bearer ${token}`);
         } else {
+            key = url.url;
             url.headers.set('Authorization', `Bearer ${token}`);
         }
-        this.requestHappening();
+        this.requestHappening(key);
         return super.request(url, options)
             .catch(this.catchAuthError(this))
             .finally(() => {
-                this.requestFinished();
+                this.requestFinished(key);
             }) as Observable<Response>;
     }
 
     httpRequest$ = this._httpRequestSource.asObservable();
 
-    requestHappening() {
-        this._httpRequestSource.next('start');
+    requestHappening(url) {
+        this._httpRequestSource.next({type: 'start', url});
     }
 
-    requestFinished() {
-        this._httpRequestSource.next('end');
+    requestFinished(url) {
+        this._httpRequestSource.next({type: 'end', url});
     }
 
     catchAuthError(self: Option22Service) {
