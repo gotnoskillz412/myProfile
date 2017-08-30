@@ -17,7 +17,6 @@ export class LoadingContentComponent implements OnInit {
 
     ngOnInit() {
         this.subscription = this.http.httpRequest$.subscribe(event => {
-            console.log(event);
             if (event === 'start') {
                 setTimeout(() => {
                     this.incoming += 1;
