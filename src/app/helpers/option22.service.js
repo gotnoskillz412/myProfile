@@ -26,6 +26,7 @@ var Option22Service = (function (_super) {
         return _this;
     }
     Option22Service.prototype.request = function (url, options) {
+        var _this = this;
         var token = auth_service_1.AuthService.getToken();
         if (typeof url === 'string') {
             if (!options) {
@@ -36,16 +37,23 @@ var Option22Service = (function (_super) {
         else {
             url.headers.set('Authorization', "Bearer " + token);
         }
-        return _super.prototype.request.call(this, url, options)["catch"](this.catchAuthError(this));
+        return _super.prototype.request.call(this, url, options)["catch"](this.catchAuthError(this))["do"](function () {
+            console.log(url.toString());
+            _this.requestHappening();
+        })["finally"](function () {
+            _this.requestFinished();
+        });
     };
-    Option22Service.prototype.requestHappening = function (route) {
-        this._httpRequestSource.next({ loading: true, route: route });
+    Option22Service.prototype.requestHappening = function () {
+        console.log('here 2');
+        this._httpRequestSource.next(true);
     };
-    Option22Service.prototype.requestFinished = function (route) {
-        this._httpRequestSource.next({ loading: false, route: route });
+    Option22Service.prototype.requestFinished = function () {
+        this._httpRequestSource.next(false);
     };
     Option22Service.prototype.catchAuthError = function (self) {
         var _this = this;
+        // console.log('here');
         // we have to pass HttpService's own instance here as `self`
         return function (res) {
             self._httpRequestSource.next({ loading: false, route: null });

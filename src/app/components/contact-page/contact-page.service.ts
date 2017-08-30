@@ -21,9 +21,7 @@ export class ContactPageService {
             subject: 'EMAIL INQUIRY FROM WEBSITE',
             message: emailInfo.message
         };
-        this.http.requestHappening(this.emailUrl);
         return this.http.post(this.emailUrl, body, options).toPromise().then(function (response: Response) {
-            this.http.requestFinished(this.emailUrl);
             return response;
         }.bind(this));
     }

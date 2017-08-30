@@ -2,7 +2,7 @@
     <div class="container">
         <h3>Goals</h3>
         <div class="main-container">
-            <div class="add-goal-button" routerLink="/goals/new">+</div>
+            <div class="add-goal-button" (keydown.enter)="addNewGoal('new')" routerLink="/goals/new">+</div>
             <div class="row">
                 <div class="col-xs-12">
                     <div *ngIf="goals.length === 0" class="text-center"><em>You have not set any goals yet</em></div>
@@ -15,6 +15,7 @@
                         </div>
                     </div>
                     <div class="list-page-item"
+                         (keydown.enter)="addNewGoal(goal._id)"
                          [ngClass]="getProgressClass(i)"
                          *ngFor="let goal of goals; let i = index"
                          routerLink="/goals/{{goal._id}}">

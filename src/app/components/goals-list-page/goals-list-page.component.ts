@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Goal} from "../../models/goal";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {GoalsListPageService} from "./goals-list-page.service";
 import {ConfirmModalComponent} from "../confirm-modal/confirm-modal.component";
 import {DialogService} from "ng2-bootstrap-modal";
@@ -16,6 +16,7 @@ export class GoalsListPageComponent implements OnInit {
 
     goals: Goal[];
     constructor(private activatedRoute: ActivatedRoute,
+                private router: Router,
                 private goalsListService: GoalsListPageService,
                 private dialogService: DialogService,
                 private notifications: NotificationsService) {
@@ -33,6 +34,10 @@ export class GoalsListPageComponent implements OnInit {
             return 'complete'
         }
         return null;
+    }
+
+    addNewGoal(id) {
+        this.router.navigate([`/goals/${id}`]);
     }
 
     removeGoal(index) {

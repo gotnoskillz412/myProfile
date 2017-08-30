@@ -83,7 +83,7 @@
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="row">
-                                            <div class="col-xs-10">
+                                            <div class="col-xs-9 col-sm-10">
                                                 <div class="form-group">
                                                     <label for="profile-likes">What do you like?</label>
                                                     <input id="profile-likes" #newLike maxlength="20"
@@ -91,12 +91,12 @@
                                                            (keydown.enter)="$event.preventDefault();">
                                                 </div>
                                             </div>
-                                            <div class="col-xs-2">
+                                            <div class="col-xs-3 col-sm-2">
                                                 <button type="button" class="btn btn-default add-like-button" (click)="addLike(newLike.value); newLike.value = null">Add</button>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-10">
+                                            <div class="col-xs-12">
                                                 <sfh-tags *ngFor="let like of profile.likes; let i = index"
                                                           [tag]="like" [onRemove]="removeLike()" [index]="i">
                                                 </sfh-tags>

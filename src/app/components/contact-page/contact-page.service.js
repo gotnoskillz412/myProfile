@@ -24,9 +24,7 @@ var ContactPageService = (function () {
             subject: 'EMAIL INQUIRY FROM WEBSITE',
             message: emailInfo.message
         };
-        this.http.requestHappening(this.emailUrl);
         return this.http.post(this.emailUrl, body, options).toPromise().then(function (response) {
-            this.http.requestFinished(this.emailUrl);
             return response;
         }.bind(this));
     };

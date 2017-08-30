@@ -6,38 +6,46 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var AuthService = (function () {
+var environment_1 = require("../../environments/environment");
+var AuthService = AuthService_1 = (function () {
     function AuthService() {
     }
+    AuthService.getTokenKey = function () {
+        return "myprofile_" + environment_1.environment.tokenKey + "_auth_token";
+    };
+    AuthService.getExpirationKey = function () {
+        return "myprofile_" + environment_1.environment.tokenKey + "_expiration";
+    };
     AuthService.loggedIn = function () {
-        var token = localStorage.getItem('myprofile_auth_token');
-        var expiration = localStorage.getItem('myprofile_expiration');
+        var token = localStorage.getItem(AuthService_1.getTokenKey());
+        var expiration = localStorage.getItem(AuthService_1.getExpirationKey());
         var now = new Date().getTime();
         if (token && expiration && parseInt(expiration, 10) && parseInt(expiration, 10) > now) {
             return true;
         }
         else {
-            localStorage.removeItem('myprofile_auth_token');
-            localStorage.removeItem('myprofile_expiration');
+            localStorage.removeItem(AuthService_1.getTokenKey());
+            localStorage.removeItem(AuthService_1.getExpirationKey());
             return false;
         }
     };
     ;
     AuthService.getToken = function () {
-        return localStorage.getItem('myprofile_auth_token');
+        return localStorage.getItem(AuthService_1.getTokenKey());
     };
     AuthService.setToken = function (token) {
         var oneHourFromNow = new Date().getTime() + (1000 * 3600);
-        localStorage.setItem('myprofile_auth_token', token);
-        localStorage.setItem('myprofile_expiration', oneHourFromNow.toString());
+        localStorage.setItem(AuthService_1.getTokenKey(), token);
+        localStorage.setItem(AuthService_1.getExpirationKey(), oneHourFromNow.toString());
     };
     AuthService.removeToken = function () {
-        localStorage.removeItem('myprofile_auth_token');
-        localStorage.removeItem('myprofile_expiration');
+        localStorage.removeItem(AuthService_1.getTokenKey());
+        localStorage.removeItem(AuthService_1.getExpirationKey());
     };
     return AuthService;
 }());
-AuthService = __decorate([
+AuthService = AuthService_1 = __decorate([
     core_1.Injectable()
 ], AuthService);
 exports.AuthService = AuthService;
+var AuthService_1;
