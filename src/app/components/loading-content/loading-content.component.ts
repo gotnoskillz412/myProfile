@@ -18,7 +18,7 @@ export class LoadingContentComponent implements OnInit {
 
     ngOnInit() {
         this.subscription = this.http.httpRequest$.subscribe(event => {
-            if (event.type === 'start') {
+            if (event && event.type === 'start') {
                 setTimeout(() => {
                     let startIndex = this.dontLoad.indexOf(event.url);
                     if (startIndex === -1) {
@@ -26,11 +26,9 @@ export class LoadingContentComponent implements OnInit {
                     } else {
                         this.dontLoad.splice(startIndex, 1);
                     }
-                    console.log('start loading arr', this.loadingArr);
-                    console.log('start dontshow', this.dontLoad);
                     this.loadingWheel = this.loadingArr.length > 0;
                 }, 500);
-            } else if (event.type === 'end') {
+            } else if (event && event.type === 'end') {
                 let endIndex = this.loadingArr.indexOf(event.url);
                 if (endIndex === -1){
                     this.dontLoad.push(event.url);
@@ -38,8 +36,6 @@ export class LoadingContentComponent implements OnInit {
                     this.loadingArr.splice(endIndex, 1);
                 }
                 this.loadingWheel = this.loadingArr.length > 0;
-                console.log('end loading arr', this.loadingArr);
-                console.log('end dontshow', this.dontLoad);
             } else {
                 this.loadingArr = [];
                 this.dontLoad = [];
