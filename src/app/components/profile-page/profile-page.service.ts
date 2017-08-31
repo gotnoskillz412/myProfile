@@ -14,7 +14,10 @@ import {AuthService} from "../../helpers/auth.service";
 @Injectable()
 export class ProfilePageService {
 
-    constructor(private http: Option22Service, private helpersService: HelpersService, private accountService: AccountService){
+    constructor(private http: Option22Service,
+                private helpersService: HelpersService,
+                private accountService: AccountService,
+                private authService: AuthService){
     }
 
     updateProfile(profile): Promise<Profile> {
@@ -32,14 +35,14 @@ export class ProfilePageService {
         let options = new RequestOptions({headers: headers});
         let body = `currentPassword=${passwords.currentPassword}&newPassword=${passwords.newPassword}`;
         return this.http.put(Location.joinWithSlash(environment.baseApi, `/auth/account/${accountId}/password`), body, options).toPromise().then((response) => {
-            AuthService.setToken(response.json().token);
+            this.authService.setToken(response.json().token);
             return response.json().account as Account;
         });
     }
 
     updateAccount(account): Promise<Account> {
         return this.http.put(Location.joinWithSlash(environment.baseApi, `/auth/account/${account._id}/update`), account).toPromise().then((response) => {
-            AuthService.setToken(response.json().token);
+            this.authService.setToken(response.json().token);
             return response.json().account as Account;
         })
     }

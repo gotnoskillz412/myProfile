@@ -10,19 +10,19 @@ import {AuthService} from "../../helpers/auth.service";
 export class LoginPageService {
     private loginUrl = Location.joinWithSlash(environment.baseApi, 'auth/login');
 
-    constructor(private http: Option22Service) {
+    constructor(private http: Option22Service, private authService: AuthService) {
     }
 
     sendLoginCredentials(creds): Promise<any> {
-        if (AuthService.loggedIn()) {
-            AuthService.removeToken();
+        if (this.authService.loggedIn()) {
+            this.authService.removeToken();
         }
         let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
         let options = new RequestOptions({headers: headers});
         let body = `username=${creds.username}&password=${creds.password}`;
 
         return this.http.post(this.loginUrl, body, options).toPromise().then((response) => {
-            AuthService.setToken(response.json().token);
+            this.authService.setToken(response.json().token);
             return response;
         });
     }

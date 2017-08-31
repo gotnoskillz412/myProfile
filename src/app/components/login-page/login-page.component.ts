@@ -16,7 +16,6 @@ export class LoginPageComponent implements OnInit {
                 private accountService: AccountService) {
     }
 
-    redirect: string;
     invalidCredentials: boolean = false;
     model = {
         username: null,

@@ -14,21 +14,21 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var rxjs_1 = require("rxjs");
 var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
-var auth_service_1 = require("./auth.service");
 var requestEvent_1 = require("../models/requestEvent");
 var Option22Service = (function (_super) {
     __extends(Option22Service, _super);
-    function Option22Service(backend, options, router, notifications) {
+    function Option22Service(backend, options, router, notifications, authService) {
         var _this = _super.call(this, backend, options) || this;
         _this.router = router;
         _this.notifications = notifications;
+        _this.authService = authService;
         _this._httpRequestSource = new BehaviorSubject_1.BehaviorSubject(null);
         _this.httpRequest$ = _this._httpRequestSource.asObservable();
         return _this;
     }
     Option22Service.prototype.request = function (url, options) {
         var _this = this;
-        var token = auth_service_1.AuthService.getToken();
+        var token = this.authService.getToken();
         var key;
         if (typeof url === 'string') {
             key = url;
@@ -60,16 +60,14 @@ var Option22Service = (function (_super) {
     };
     Option22Service.prototype.catchAuthError = function () {
         var _this = this;
-        // console.log('here');
         // we have to pass HttpService's own instance here as `self`
         return function (res) {
             if (res.status === 401) {
                 var navExtras = {
                     queryParams: { redirect_path: _this.router.url }
                 };
-                auth_service_1.AuthService.removeToken();
-                _this.router.navigate(['/login'], navExtras);
-                return Promise.resolve();
+                _this.authService.removeToken();
+                return _this.router.navigate(['/login'], navExtras);
             }
             if (res.status !== 404) {
                 _this.notifications.error('Internal Server Error', 'Problem communicating with backend services. Please try again later.');

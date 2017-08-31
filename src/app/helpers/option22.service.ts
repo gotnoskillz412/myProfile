@@ -11,12 +11,16 @@ import {RequestEvent} from "../models/requestEvent";
 export class Option22Service extends Http {
     private _httpRequestSource = new BehaviorSubject<any>(null);
 
-    constructor(backend: XHRBackend, options: RequestOptions, private router: Router, private notifications: NotificationsService) {
+    constructor(backend: XHRBackend,
+                options: RequestOptions,
+                private router: Router,
+                private notifications: NotificationsService,
+                private authService: AuthService) {
         super(backend, options);
     }
 
     request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
-        let token = AuthService.getToken();
+        let token = this.authService.getToken();
         let key;
         if (typeof url === 'string') {
             key = url;
@@ -53,22 +57,20 @@ export class Option22Service extends Http {
     }
 
     private catchAuthError() {
-        // console.log('here');
         // we have to pass HttpService's own instance here as `self`
         return (res: Response) => {
             if (res.status === 401) {
                 let navExtras: NavigationExtras = {
                     queryParams: {redirect_path: this.router.url}
                 };
-                AuthService.removeToken();
-                this.router.navigate(['/login'], navExtras);
-                return Promise.resolve();
+                this.authService.removeToken();
+                return this.router.navigate(['/login'], navExtras);
             }
             if (res.status !== 404) {
                 this.notifications.error('Internal Server Error', 'Problem communicating with backend services. Please try again later.')
             }
             Observable.throw(res);
-            return
+            return;
         };
     }
 }

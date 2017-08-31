@@ -7,22 +7,25 @@ import {LoginPageComponent} from './login-page.component';
 import {LoginPageService} from "./login-page.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
+import {AccountService} from "../../helpers/account.service";
 
 describe('LoginPageComponent', () => {
     let component: LoginPageComponent;
     let fixture: ComponentFixture<LoginPageComponent>;
-    let testPath;
-    let testToken = 'test_token';
-    let resultRedirectUrl = null;
+    let testPicture = 'test_picture';
+    let resultRedirectUrl;
+    let updatedProfilePicture;
 
-    let mockLoginPageService = {
-        sendLoginCredentials: () => {
+    class MockLoginPageService {
+        sendLoginCredentials() {
             return {
                 then: (cb, errCb) => {
                     cb({
                         json: () => {
                             return {
-                                token: testToken
+                                profile: {
+                                    picture: testPicture
+                                }
                             }
                         }
                     });
@@ -30,55 +33,61 @@ describe('LoginPageComponent', () => {
                 }
             };
         }
-    };
+    }
 
-    let mockActivatedRoute = {
-        queryParams: {
-            subscribe: (cb) => {
-                cb({redirect_path: testPath});
-            }
+    class MockAccountService {
+        updateProfilePicture(picture) {
+            updatedProfilePicture = picture;
         }
-    };
+    }
 
-    let mockRouter = {
-        navigate: (url) => {
+    class MockRouter {
+        navigate(url) {
             resultRedirectUrl = url[0];
         }
-    };
+    }
+
+
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [FormsModule],
-            declarations: [LoginPageComponent]
+            declarations: [LoginPageComponent],
+            providers: [
+                {provide: AccountService, useClass: MockAccountService},
+                {provide: Router, useClass: MockRouter}
+            ]
         }).overrideComponent(LoginPageComponent, {
             set: {
-                providers: [{provide: LoginPageService, useValue: mockLoginPageService},
-                    {provide: ActivatedRoute, useValue: mockActivatedRoute},
-                    {provide: Router, useValue: mockRouter}]
+                providers: [{provide: LoginPageService, useClass: MockLoginPageService}]
             }
         }).compileComponents();
     }));
 
     beforeEach(() => {
+        updatedProfilePicture = null;
+        resultRedirectUrl = null;
         fixture = TestBed.createComponent(LoginPageComponent);
         component = fixture.componentInstance;
-        fixture.detectChanges();
-        testPath = 'test_path';
     });
 
     it('should test the ngOnInit', () => {
         component.ngOnInit();
-        expect(component.redirect).toBe(testPath);
-        testPath = null;
-        component.ngOnInit();
-        expect(component.redirect).toBe('/home');
+        expect(component.invalidCredentials).toBe(false);
     });
 
-    it('should test the onSubmit', () => {
-        component.ngOnInit();
+    it('should test the onSubmit with profile picture', () => {
         component.onSubmit();
-        expect(localStorage.getItem('myprofile_auth_token')).toBe(testToken);
-        expect(resultRedirectUrl).toBe(testPath);
+        expect(updatedProfilePicture).toBe(testPicture);
+        expect(resultRedirectUrl).toBe('/goals');
+        expect(component.invalidCredentials).toBe(true);
+    });
+
+    it('should test the onSubmit without profile picture', () => {
+        testPicture = null;
+        component.onSubmit();
+        expect(updatedProfilePicture).toBe(null);
+        expect(resultRedirectUrl).toBe('/goals');
         expect(component.invalidCredentials).toBe(true);
     });
 });

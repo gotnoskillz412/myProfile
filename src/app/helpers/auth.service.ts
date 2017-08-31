@@ -7,40 +7,40 @@ export class AuthService {
     constructor() {
     }
 
-    public static getTokenKey () {
+    getTokenKey () {
         return `myprofile_${environment.tokenKey}_auth_token`;
     }
 
-    public static getExpirationKey () {
+    getExpirationKey () {
         return `myprofile_${environment.tokenKey}_expiration`;
     }
 
-    public static loggedIn() {
-        let token = localStorage.getItem(AuthService.getTokenKey());
-        let expiration = localStorage.getItem(AuthService.getExpirationKey());
+    loggedIn() {
+        let token = localStorage.getItem(this.getTokenKey());
+        let expiration = localStorage.getItem(this.getExpirationKey());
         let now = new Date().getTime();
 
         if (token && expiration && parseInt(expiration, 10) && parseInt(expiration, 10) > now) {
             return true;
         } else {
-            localStorage.removeItem(AuthService.getTokenKey());
-            localStorage.removeItem(AuthService.getExpirationKey());
+            localStorage.removeItem(this.getTokenKey());
+            localStorage.removeItem(this.getExpirationKey());
             return false;
         }
     };
 
-    public static getToken() {
-        return localStorage.getItem(AuthService.getTokenKey());
+    getToken() {
+        return localStorage.getItem(this.getTokenKey());
     }
 
-    public static setToken(token: string) {
+    setToken(token: string) {
         let oneHourFromNow = new Date().getTime() + (1000 * 3600);
-        localStorage.setItem(AuthService.getTokenKey(), token);
-        localStorage.setItem(AuthService.getExpirationKey(), oneHourFromNow.toString());
+        localStorage.setItem(this.getTokenKey(), token);
+        localStorage.setItem(this.getExpirationKey(), oneHourFromNow.toString());
     }
 
-    public static removeToken() {
-        localStorage.removeItem(AuthService.getTokenKey());
-        localStorage.removeItem(AuthService.getExpirationKey());
+    removeToken() {
+        localStorage.removeItem(this.getTokenKey());
+        localStorage.removeItem(this.getExpirationKey());
     }
 }

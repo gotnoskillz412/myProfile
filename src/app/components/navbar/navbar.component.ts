@@ -13,20 +13,20 @@ import {AuthService} from "../../helpers/auth.service";
 })
 export class NavbarComponent implements OnInit {
 
-    constructor(private http: Option22Service, private router: Router, private accountService: AccountService) {
+    constructor(private http: Option22Service, private router: Router, private accountService: AccountService, private authService: AuthService) {
     }
 
     private logoutUrl = Location.joinWithSlash(environment.baseApi, '/auth/logout');
     profilePicture: string;
 
     loggedIn() {
-        return AuthService.loggedIn();
+        return this.authService.loggedIn();
     }
 
     logout() {
         this.http.get(this.logoutUrl).toPromise().then(() => {
             this.accountService.logout();
-            AuthService.removeToken();
+            this.authService.removeToken();
             this.accountService.updateProfilePicture(null);
             this.router.navigate(['/home']);
         });
