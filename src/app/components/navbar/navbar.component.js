@@ -8,22 +8,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var environment_1 = require("../../../environments/environment");
 var common_1 = require("@angular/common");
-var auth_service_1 = require("../../helpers/auth.service");
 var NavbarComponent = (function () {
-    function NavbarComponent(http, router, accountService) {
+    function NavbarComponent(http, router, accountService, authService) {
         this.http = http;
         this.router = router;
         this.accountService = accountService;
+        this.authService = authService;
         this.logoutUrl = common_1.Location.joinWithSlash(environment_1.environment.baseApi, '/auth/logout');
     }
     NavbarComponent.prototype.loggedIn = function () {
-        return auth_service_1.AuthService.loggedIn();
+        return this.authService.loggedIn();
     };
     NavbarComponent.prototype.logout = function () {
         var _this = this;
         this.http.get(this.logoutUrl).toPromise().then(function () {
             _this.accountService.logout();
-            auth_service_1.AuthService.removeToken();
+            _this.authService.removeToken();
             _this.accountService.updateProfilePicture(null);
             _this.router.navigate(['/home']);
         });
