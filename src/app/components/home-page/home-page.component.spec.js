@@ -1,7 +1,7 @@
 "use strict";
 /* tslint:disable:no-unused-variable */
-var testing_1 = require('@angular/core/testing');
-var home_page_component_1 = require('./home-page.component');
+var testing_1 = require("@angular/core/testing");
+var home_page_component_1 = require("./home-page.component");
 describe('HomePageComponent', function () {
     var component;
     var fixture;

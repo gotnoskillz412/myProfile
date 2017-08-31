@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {AuthService} from "./auth.service";
 import {NotificationsService} from "angular2-notifications/dist";
+import {RequestEvent} from "../models/requestEvent";
 
 @Injectable()
 export class Option22Service extends Http {
@@ -29,23 +30,29 @@ export class Option22Service extends Http {
         }
         this.requestHappening(key);
         return super.request(url, options)
-            .catch(this.catchAuthError(this))
+            .catch(this.catchAuthError())
             .finally(() => {
                 this.requestFinished(key);
             }) as Observable<Response>;
     }
 
-    httpRequest$ = this._httpRequestSource.asObservable();
+    public httpRequest$ = this._httpRequestSource.asObservable();
 
-    requestHappening(url) {
-        this._httpRequestSource.next({type: 'start', url});
+    private requestHappening(url) {
+        let event = new RequestEvent();
+        event.type = 'start';
+        event.url = url;
+        this._httpRequestSource.next(event);
     }
 
-    requestFinished(url) {
-        this._httpRequestSource.next({type: 'end', url});
+    private requestFinished(url) {
+        let event = new RequestEvent();
+        event.type = 'end';
+        event.url = url;
+        this._httpRequestSource.next(event);
     }
 
-    catchAuthError(self: Option22Service) {
+    private catchAuthError() {
         // console.log('here');
         // we have to pass HttpService's own instance here as `self`
         return (res: Response) => {
@@ -57,7 +64,7 @@ export class Option22Service extends Http {
                 this.router.navigate(['/login'], navExtras);
                 return Promise.resolve();
             }
-            if (res.status !== 404 ) {
+            if (res.status !== 404) {
                 this.notifications.error('Internal Server Error', 'Problem communicating with backend services. Please try again later.')
             }
             Observable.throw(res);

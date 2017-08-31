@@ -5,22 +5,13 @@ import {ContactPageService} from './contact-page.service';
 import {Option22Service} from "../../helpers/option22.service";
 
 describe('ContactPageService', () => {
-    let requestHappeningResult = false;
-    let requestFinishedResult = false;
-
     let mockHttpService = {
-        requestHappening: () => {
-            requestHappeningResult = true;
-        },
-        requestFinished: () => {
-            requestFinishedResult = true;
-        },
-        post: () => {
+        post: (url, emailInfo) => {
             return {
                 toPromise: () => {
                     return {
                         then: (cb) => {
-                            cb();
+                            return Promise.resolve(cb(emailInfo));
                         }
                     };
                 }
@@ -40,8 +31,10 @@ describe('ContactPageService', () => {
             email: 'testEmail@test.com',
             message: 'This is a test'
         };
-        service.sendMessage(emailInfo);
-        expect(requestHappeningResult).toBe(true);
-        expect(requestFinishedResult).toBe(true);
+        service.sendMessage(emailInfo).then((response) => {
+            expect(response.name).toBe(emailInfo.name);
+            expect(response.email).toBe(emailInfo.email);
+            expect(response.message).toBe(emailInfo.message);
+        });
     }));
 });

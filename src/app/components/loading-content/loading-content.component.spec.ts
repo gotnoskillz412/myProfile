@@ -1,23 +1,21 @@
 /* tslint:disable:no-unused-variable */
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {DebugElement} from '@angular/core';
 
 import {LoadingContentComponent} from './loading-content.component';
 import {Option22Service} from "../../helpers/option22.service";
 import {Subscription} from "rxjs";
+import {RequestEvent} from "../../models/requestEvent";
 
 describe('LoadingContentComponent', () => {
     let component: LoadingContentComponent;
     let fixture: ComponentFixture<LoadingContentComponent>;
-    let event = {
-        loading: true,
-        route: '/test'
-    };
+    let event;
     let testDestroy = false;
 
-    let mockHttpServive = {
-        httpRequest$: {
+    class mockHttpService {
+        httpRequest$ = {
             subscribe: (cb) => {
                 cb(event);
                 return {
@@ -27,60 +25,87 @@ describe('LoadingContentComponent', () => {
                 }
             }
         }
-    };
+    }
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [LoadingContentComponent]
-        }).overrideComponent(LoadingContentComponent, {
-            set: {
-                providers: [{provide: Option22Service, useValue: mockHttpServive}]
-            }
-        })
-            .compileComponents();
+            declarations: [LoadingContentComponent],
+            providers: [{provide: Option22Service, useClass: mockHttpService}]
+        }).compileComponents();
     }));
 
     beforeEach(() => {
+        event = new RequestEvent();
         fixture = TestBed.createComponent(LoadingContentComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
 
-    it('should test the event listener as loading', () => {
-        component.loadingArr = [];
+    it('should test the event listener as loading, and then not loading', fakeAsync(() => {
+        event.type = 'start';
+        event.url = 'testUrl';
         component.ngOnInit();
+        expect(component.incoming.length).toBe(1);
+        expect(component.incoming[0]).toBe(event.url);
+        tick(600);
         expect(component.loadingArr.length).toBe(1);
-        expect(component.loadingArr[0]).toBe('/test');
+        expect(component.loadingArr[0]).toBe(event.url);
         expect(component.loadingWheel).toBe(true);
-    });
 
-    it('should test the event listener as not loading', () => {
-        component.loadingArr = ['/test'];
-        event = {
-            loading: false,
-            route: '/test'
-        };
+        event.type = 'end';
+        event.url = 'testUrl';
         component.ngOnInit();
         expect(component.loadingArr.length).toBe(0);
+        expect(component.incoming.length).toBe(0);
+        expect(component.loadingWheel).toBe(false);
+    }));
+
+    it('should test a finish comes in without a start', () => {
+        event.type = 'end';
+        event.url = 'testUrl';
+        component.ngOnInit();
+        expect(component.loadingArr.length).toBe(0);
+        expect(component.dontLoad.length).toBe(0);
+        expect(component.incoming.length).toBe(0);
         expect(component.loadingWheel).toBe(false);
     });
 
-    it('should test the event listener as errored', () => {
-        component.loadingArr = ['/test'];
-        event = {
-            loading: false,
-            route: null
-        };
+    it('should test the request finishes before 500 milliseconds', fakeAsync(() => {
+        event.type = 'start';
+        event.url = 'testUrl';
         component.ngOnInit();
+        expect(component.loadingArr.length).toBe(0);
+        expect(component.incoming.length).toBe(1);
+        expect(component.incoming[0]).toBe(event.url);
+        expect(component.loadingWheel).toBe(false);
+        tick(100);
+
+        event.type = 'end';
+        event.url = 'testUrl';
+        component.ngOnInit();
+        expect(component.dontLoad.length).toBe(1);
+        expect(component.dontLoad[0]).toBe(event.url);
+        expect(component.incoming.length).toBe(0);
+
+        tick(500);
+        expect(component.loadingArr.length).toBe(0);
+        expect(component.dontLoad.length).toBe(0);
+        expect(component.loadingWheel).toBe(false);
+    }));
+
+    it('should test an unknown event', () => {
+        event.type = 'blah';
+        event.url = 'testUrl';
+        component.ngOnInit();
+        expect(component.dontLoad.length).toBe(0);
+        expect(component.incoming.length).toBe(0);
         expect(component.loadingArr.length).toBe(0);
         expect(component.loadingWheel).toBe(false);
     });
 
     it('should test ngOnDestroy', () => {
-        event = {
-            loading: false,
-            route: null
-        };
+        event.type = 'blah';
+        event.url = 'testUrl';
         component.ngOnInit();
         component.ngOnDestroy();
         expect(testDestroy).toBe(true);

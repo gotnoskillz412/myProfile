@@ -15,6 +15,7 @@ var http_1 = require("@angular/http");
 var rxjs_1 = require("rxjs");
 var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
 var auth_service_1 = require("./auth.service");
+var requestEvent_1 = require("../models/requestEvent");
 var Option22Service = (function (_super) {
     __extends(Option22Service, _super);
     function Option22Service(backend, options, router, notifications) {
@@ -41,17 +42,23 @@ var Option22Service = (function (_super) {
             url.headers.set('Authorization', "Bearer " + token);
         }
         this.requestHappening(key);
-        return _super.prototype.request.call(this, url, options)["catch"](this.catchAuthError(this))["finally"](function () {
+        return _super.prototype.request.call(this, url, options)["catch"](this.catchAuthError())["finally"](function () {
             _this.requestFinished(key);
         });
     };
     Option22Service.prototype.requestHappening = function (url) {
-        this._httpRequestSource.next({ type: 'start', url: url });
+        var event = new requestEvent_1.RequestEvent();
+        event.type = 'start';
+        event.url = url;
+        this._httpRequestSource.next(event);
     };
     Option22Service.prototype.requestFinished = function (url) {
-        this._httpRequestSource.next({ type: 'end', url: url });
+        var event = new requestEvent_1.RequestEvent();
+        event.type = 'end';
+        event.url = url;
+        this._httpRequestSource.next(event);
     };
-    Option22Service.prototype.catchAuthError = function (self) {
+    Option22Service.prototype.catchAuthError = function () {
         var _this = this;
         // console.log('here');
         // we have to pass HttpService's own instance here as `self`

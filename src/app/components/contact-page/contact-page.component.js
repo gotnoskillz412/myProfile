@@ -30,8 +30,6 @@ var ContactPageComponent = (function () {
         });
     };
     ContactPageComponent.prototype.setModel = function () {
-        this.model.name = null;
-        this.model.email = null;
         this.model.message = null;
     };
     ContactPageComponent.prototype.onSubmit = function () {

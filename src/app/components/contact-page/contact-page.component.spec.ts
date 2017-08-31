@@ -7,13 +7,22 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {ContactPageComponent} from './contact-page.component';
 import {ContactPageService} from './contact-page.service'
 import {FormsModule} from "@angular/forms";
+import {Profile} from "../../models/profile";
+import {Account} from "../../models/account";
+import {AccountService} from "../../helpers/account.service";
+import {Option22Service} from "../../helpers/option22.service";
 
 describe('ContactPageComponent', () => {
     let component: ContactPageComponent;
     let fixture: ComponentFixture<ContactPageComponent>;
+    let mockProfile = new Profile();
+    mockProfile.firstName = 'Spencer';
+    mockProfile.lastName = 'Hockeborn';
+    let mockAccount = new Account();
+    mockAccount.email = 'blah@blah.com';
 
-    let contactPageServiceStub = {
-        sendMessage: () => {
+    class MockContactPageService {
+        sendMessage() {
             return {
                 then: (cb1, cb2) => {
                     cb1();
@@ -21,15 +30,35 @@ describe('ContactPageComponent', () => {
                 }
             }
         }
-    };
+    }
+
+    class accountServiceStub {
+        getProfile() {
+            return {
+                then: (cb) => {
+                    cb(mockProfile);
+                }
+            }
+        }
+        getAccount() {
+            return {
+                then: (cb) => {
+                    cb(mockAccount);
+                }
+            }
+        }
+    }
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [FormsModule, RouterTestingModule],
-            declarations: [ContactPageComponent]
+            declarations: [ContactPageComponent],
+            providers: [
+                {provide: AccountService, useClass: accountServiceStub}
+            ]
         }).overrideComponent(ContactPageComponent, {
             set: {
-                providers: [{provide: ContactPageService, useValue: contactPageServiceStub}]
+                providers: [{provide: ContactPageService, useClass: MockContactPageService}]
             }
         }).compileComponents();
     }));
@@ -41,11 +70,11 @@ describe('ContactPageComponent', () => {
     });
 
     it('should test onSubmit', () => {
-        component.model.email = 'test';
+        component.model.message = 'test';
         component.onSubmit();
         expect(component.emailSuccess).toBe(true);
         expect(component.emailFailed).toBe(true);
-        expect(component.model.email).toBeNull();
+        expect(component.model.message).toBeNull();
     });
 
     it('should test showContactInfo', () => {

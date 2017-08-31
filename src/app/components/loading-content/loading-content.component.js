@@ -9,23 +9,46 @@ var core_1 = require("@angular/core");
 var LoadingContentComponent = (function () {
     function LoadingContentComponent(http) {
         this.http = http;
-        this.loadingArr = [];
         this.loadingWheel = false;
+        this.incoming = [];
+        this.loadingArr = [];
+        this.dontLoad = [];
     }
     LoadingContentComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.subscription = this.http.httpRequest$.subscribe(function (event) {
-            if (event.loading) {
-                _this.loadingArr.push(event.route);
+            if (event && event.type === 'start') {
+                _this.incoming.push(event.url);
+                setTimeout(function () {
+                    var startIndex = _this.dontLoad.indexOf(event.url);
+                    if (startIndex === -1) {
+                        _this.loadingArr.push(event.url);
+                    }
+                    else {
+                        _this.dontLoad.splice(startIndex, 1);
+                    }
+                    _this.loadingWheel = _this.loadingArr.length > 0;
+                }, 500);
             }
-            else if (!event.loading && event.route) {
-                var index = _this.loadingArr.indexOf(event.route);
-                _this.loadingArr.splice(index, 1);
+            else if (event && event.type === 'end') {
+                var incomingIndex = _this.incoming.indexOf(event.url);
+                if (incomingIndex === -1) {
+                    return;
+                }
+                var endIndex = _this.loadingArr.indexOf(event.url);
+                if (endIndex === -1) {
+                    _this.dontLoad.push(event.url);
+                }
+                else {
+                    _this.loadingArr.splice(endIndex, 1);
+                }
+                _this.incoming.splice(incomingIndex, 1);
+                _this.loadingWheel = _this.loadingArr.length > 0;
             }
             else {
                 _this.loadingArr = [];
+                _this.dontLoad = [];
             }
-            _this.loadingWheel = _this.loadingArr.length !== 0;
         });
     };
     LoadingContentComponent.prototype.ngOnDestroy = function () {

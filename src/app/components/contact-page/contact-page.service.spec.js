@@ -4,21 +4,13 @@ var testing_1 = require("@angular/core/testing");
 var contact_page_service_1 = require("./contact-page.service");
 var option22_service_1 = require("../../helpers/option22.service");
 describe('ContactPageService', function () {
-    var requestHappeningResult = false;
-    var requestFinishedResult = false;
     var mockHttpService = {
-        requestHappening: function () {
-            requestHappeningResult = true;
-        },
-        requestFinished: function () {
-            requestFinishedResult = true;
-        },
-        post: function () {
+        post: function (url, emailInfo) {
             return {
                 toPromise: function () {
                     return {
                         then: function (cb) {
-                            cb();
+                            return Promise.resolve(cb(emailInfo));
                         }
                     };
                 }
@@ -36,8 +28,10 @@ describe('ContactPageService', function () {
             email: 'testEmail@test.com',
             message: 'This is a test'
         };
-        service.sendMessage(emailInfo);
-        expect(requestHappeningResult).toBe(true);
-        expect(requestFinishedResult).toBe(true);
+        service.sendMessage(emailInfo).then(function (response) {
+            expect(response.name).toBe(emailInfo.name);
+            expect(response.email).toBe(emailInfo.email);
+            expect(response.message).toBe(emailInfo.message);
+        });
     }));
 });

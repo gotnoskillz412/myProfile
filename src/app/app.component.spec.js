@@ -1,18 +1,19 @@
 /* tslint:disable:no-unused-variable */
 "use strict";
-var testing_1 = require('@angular/core/testing');
-var core_1 = require('@angular/core');
-var app_component_1 = require('./app.component');
-var loading_content_component_1 = require("./componenets/loading-content/loading-content.component");
+var testing_1 = require("@angular/core/testing");
+var core_1 = require("@angular/core");
+var app_component_1 = require("./app.component");
+var loading_content_component_1 = require("./components/loading-content/loading-content.component");
 var testing_2 = require("@angular/router/testing");
-var app_http_service_1 = require("./app-http.service");
+var option22_service_1 = require("./helpers/option22.service");
 describe('AppComponent', function () {
     var mockHttpService = {
         httpRequest$: {
             subscribe: function (cb) {
                 cb(event);
                 return {
-                    unsubscribe: function () { }
+                    unsubscribe: function () {
+                    }
                 };
             }
         }
@@ -26,7 +27,7 @@ describe('AppComponent', function () {
             schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA]
         }).overrideComponent(loading_content_component_1.LoadingContentComponent, {
             set: {
-                providers: [{ provide: app_http_service_1.AppHttpService, useValue: mockHttpService }]
+                providers: [{ provide: option22_service_1.Option22Service, useValue: mockHttpService }]
             }
         });
         testing_1.TestBed.compileComponents();
