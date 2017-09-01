@@ -1,34 +1,78 @@
 /* tslint:disable:no-unused-variable */
 
-import {TestBed, async, inject} from '@angular/core/testing';
+import {TestBed, async, inject, fakeAsync, tick} from '@angular/core/testing';
 import {RegisterPageService} from './register-page.service';
 import {Option22Service} from "../../helpers/option22.service";
+import {AuthService} from "../../helpers/auth.service";
 
 describe('RegisterPageService', () => {
-    let testFinished;
-    let mockHttpService = {
-        post: () => {
+    let loggedIn;
+    let token;
+    class MockHttpService {
+        post() {
             return {
                 toPromise: () => {
-                    testFinished = true;
+                    return Promise.resolve({
+                        json: () => {
+                            return {
+                                token: 'test_token'
+                            }
+                        }
+                    });
                 }
             };
         }
-    };
+    }
+
+    class MockAuthService {
+        loggedIn() {
+            return loggedIn;
+        }
+
+        removeToken() {
+            token = null;
+        }
+
+        setToken(t) {
+            token = t;
+        }
+
+    }
 
     beforeEach(() => {
+        token = null;
+        loggedIn = null;
         TestBed.configureTestingModule({
-            providers: [RegisterPageService, {provide: Option22Service, useValue: mockHttpService}]
+            providers: [
+                RegisterPageService,
+                {provide: Option22Service, useClass: MockHttpService},
+                {provide: AuthService, useClass: MockAuthService}
+            ]
         });
     });
 
-    it('should test registerAccount', inject([RegisterPageService], (service: RegisterPageService) => {
+    it('should test registerAccount while logged in', inject([RegisterPageService], (service: RegisterPageService) => {
         let accountInfo = {
             username: 'test',
             password: 'test',
             email: 'test'
         };
-        service.registerAccount(accountInfo);
-        expect(testFinished).toBe(true);
+        token = 'test';
+        loggedIn = true;
+        service.registerAccount(accountInfo).then(() => {
+            expect(token).toBe('test_token');
+        });
     }));
+
+    it('should test registerAccount while logged out', fakeAsync(inject([RegisterPageService], (service: RegisterPageService) => {
+        let accountInfo = {
+            username: 'test',
+            password: 'test',
+            email: 'test'
+        };
+        loggedIn = false;
+        service.registerAccount(accountInfo);
+        tick();
+        expect(token).toBe('test_token');
+    })));
 });

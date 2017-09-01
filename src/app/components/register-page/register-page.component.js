@@ -27,7 +27,7 @@ var RegisterPageComponent = (function () {
         var _this = this;
         this.registerPageService.registerAccount(this.model).then(function () {
             _this.notifications.success('Created Account', 'New Account Created Successfully');
-            _this.router.navigate(['/home']);
+            _this.router.navigate(['/goals']);
         });
     };
     return RegisterPageComponent;

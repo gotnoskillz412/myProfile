@@ -10,21 +10,22 @@ var common_1 = require("@angular/common");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/toPromise");
 var environment_1 = require("../../../environments/environment");
-var auth_service_1 = require("../../helpers/auth.service");
 var RegisterPageService = (function () {
-    function RegisterPageService(http) {
+    function RegisterPageService(http, authService) {
         this.http = http;
+        this.authService = authService;
         this.registerUrl = common_1.Location.joinWithSlash(environment_1.environment.baseApi, 'auth/register');
     }
     RegisterPageService.prototype.registerAccount = function (accountInfo) {
-        if (auth_service_1.AuthService.loggedIn()) {
-            auth_service_1.AuthService.removeToken();
+        var _this = this;
+        if (this.authService.loggedIn()) {
+            this.authService.removeToken();
         }
         var headers = new http_1.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         var options = new http_1.RequestOptions({ headers: headers });
         var body = "username=" + accountInfo.username + "&email=" + accountInfo.email + "&password=" + accountInfo.password + "&firstName=" + accountInfo.firstName + "&lastName=" + accountInfo.lastName;
         return this.http.post(this.registerUrl, body, options).toPromise().then(function (response) {
-            auth_service_1.AuthService.setToken(response.json().token);
+            _this.authService.setToken(response.json().token);
             return response;
         });
     };
