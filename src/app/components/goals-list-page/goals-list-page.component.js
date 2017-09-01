@@ -9,8 +9,9 @@ var core_1 = require("@angular/core");
 var goals_list_page_service_1 = require("./goals-list-page.service");
 var confirm_modal_component_1 = require("../confirm-modal/confirm-modal.component");
 var GoalsListPageComponent = (function () {
-    function GoalsListPageComponent(activatedRoute, goalsListService, dialogService, notifications) {
+    function GoalsListPageComponent(activatedRoute, router, goalsListService, dialogService, notifications) {
         this.activatedRoute = activatedRoute;
+        this.router = router;
         this.goalsListService = goalsListService;
         this.dialogService = dialogService;
         this.notifications = notifications;
@@ -27,6 +28,9 @@ var GoalsListPageComponent = (function () {
             return 'complete';
         }
         return null;
+    };
+    GoalsListPageComponent.prototype.addNewGoal = function (id) {
+        this.router.navigate(["/goals/" + id]);
     };
     GoalsListPageComponent.prototype.removeGoal = function (index) {
         var _this = this;
