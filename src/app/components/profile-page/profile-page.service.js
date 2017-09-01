@@ -9,12 +9,12 @@ var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var environment_1 = require("../../../environments/environment");
-var auth_service_1 = require("../../helpers/auth.service");
 var ProfilePageService = (function () {
-    function ProfilePageService(http, helpersService, accountService) {
+    function ProfilePageService(http, helpersService, accountService, authService) {
         this.http = http;
         this.helpersService = helpersService;
         this.accountService = accountService;
+        this.authService = authService;
     }
     ProfilePageService.prototype.updateProfile = function (profile) {
         var _this = this;
@@ -27,17 +27,19 @@ var ProfilePageService = (function () {
         });
     };
     ProfilePageService.prototype.updatePassword = function (passwords, accountId) {
+        var _this = this;
         var headers = new http_1.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         var options = new http_1.RequestOptions({ headers: headers });
         var body = "currentPassword=" + passwords.currentPassword + "&newPassword=" + passwords.newPassword;
         return this.http.put(common_1.Location.joinWithSlash(environment_1.environment.baseApi, "/auth/account/" + accountId + "/password"), body, options).toPromise().then(function (response) {
-            auth_service_1.AuthService.setToken(response.json().token);
+            _this.authService.setToken(response.json().token);
             return response.json().account;
         });
     };
     ProfilePageService.prototype.updateAccount = function (account) {
+        var _this = this;
         return this.http.put(common_1.Location.joinWithSlash(environment_1.environment.baseApi, "/auth/account/" + account._id + "/update"), account).toPromise().then(function (response) {
-            auth_service_1.AuthService.setToken(response.json().token);
+            _this.authService.setToken(response.json().token);
             return response.json().account;
         });
     };

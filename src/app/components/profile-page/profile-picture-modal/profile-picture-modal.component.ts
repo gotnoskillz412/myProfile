@@ -28,7 +28,8 @@ export class ProfilePictureModalComponent extends DialogComponent<ConfirmModel, 
     profileCropperSettings: CropperSettings;
     @ViewChild('profileCropper', undefined)
     profileCropper: ImageCropperComponent;
-    @ViewChild('profileEditorModal') profileEditorModal: ModalDirective;
+    @ViewChild('profileEditorModal')
+    profileEditorModal: ModalDirective;
 
     constructor(dialogService: DialogService, private http: Option22Service, private accountService: AccountService, private helpersService: HelpersService) {
         super(dialogService);

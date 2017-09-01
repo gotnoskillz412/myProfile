@@ -11,7 +11,7 @@
     "ng": "ng",
     "start": "node server.js",
     "build": "ng build",
-    "test": "ng test --code-coverage --watch=false",
+    "test": "ng test --code-coverage --watch=false -sm=false",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "ng build --aot=false -prod"
