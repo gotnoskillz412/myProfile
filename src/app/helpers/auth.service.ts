@@ -7,11 +7,11 @@ export class AuthService {
     constructor() {
     }
 
-    getTokenKey () {
+    getTokenKey() {
         return `myprofile_${environment.tokenKey}_auth_token`;
     }
 
-    getExpirationKey () {
+    getExpirationKey() {
         return `myprofile_${environment.tokenKey}_expiration`;
     }
 

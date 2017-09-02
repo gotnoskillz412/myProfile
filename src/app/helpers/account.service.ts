@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Location} from '@angular/common';
 
 import {Account} from '../models/account';
-import {AuthService} from "./auth.service";
 import {environment} from "../../environments/environment";
 import {Option22Service} from "./option22.service";
 import {Profile} from "../models/profile";
@@ -12,7 +11,6 @@ export class AccountService {
     private profilePictureUpdateCallbacks: Function[] = [];
     private profilePicture: string;
     private account: Account;
-    private profile: Profile;
 
     constructor(private http: Option22Service) {
     }
