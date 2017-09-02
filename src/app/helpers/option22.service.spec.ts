@@ -1,4 +1,4 @@
-import {fakeAsync, inject, TestBed, tick} from "@angular/core/testing";
+import {inject, TestBed} from "@angular/core/testing";
 import {Option22Service} from "./option22.service";
 import {AuthService} from "./auth.service";
 import {HttpModule, XHRBackend} from "@angular/http";
