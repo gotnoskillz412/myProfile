@@ -80,10 +80,11 @@ var GoalsFormPageComponent = (function () {
                 cancelText: 'Cancel',
                 confirmFunction: function () {
                     _this.goal.subgoals.splice(index, 1);
-                    if (_this.goal.subgoals.length === 0) {
-                        _this.addSubgoal();
-                    }
-                    return Promise.resolve();
+                    return Promise.resolve(true);
+                }
+            }).subscribe(function () {
+                if (_this.goal.subgoals.length === 0) {
+                    _this.addSubgoal();
                 }
             });
         }

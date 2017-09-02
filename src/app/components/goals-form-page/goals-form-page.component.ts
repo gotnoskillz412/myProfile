@@ -90,10 +90,11 @@ export class GoalsFormPageComponent implements OnInit {
                 cancelText: 'Cancel',
                 confirmFunction: () => {
                     this.goal.subgoals.splice(index, 1);
-                    if (this.goal.subgoals.length === 0) {
-                        this.addSubgoal();
-                    }
-                    return Promise.resolve()
+                    return Promise.resolve(true)
+                }
+            }).subscribe(() => {
+                if (this.goal.subgoals.length === 0) {
+                    this.addSubgoal();
                 }
             });
         } else {

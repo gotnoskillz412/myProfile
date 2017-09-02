@@ -23,7 +23,7 @@ export class GoalsFormPageResolverService implements Resolve<any> {
                         resolve(response.json());
                     });
                 } else {
-                    resolve();
+                    resolve(null);
                 }
             });
         });

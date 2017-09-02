@@ -26,7 +26,7 @@ var GoalsFormPageResolverService = (function () {
                     });
                 }
                 else {
-                    resolve();
+                    resolve(null);
                 }
             });
         });
