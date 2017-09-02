@@ -21,9 +21,9 @@ export class ContactPageComponent implements OnInit {
     profile: Profile;
     account: Account;
     model = {
-        name: null,
-        email: null,
-        message: null
+        name: <string> null,
+        email: <string> null,
+        message: <string> null
     };
 
     ngOnInit() {

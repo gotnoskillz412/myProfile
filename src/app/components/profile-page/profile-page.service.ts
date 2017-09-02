@@ -20,7 +20,7 @@ export class ProfilePageService {
                 private authService: AuthService){
     }
 
-    updateProfile(profile): Promise<Profile> {
+    updateProfile(profile: Profile): Promise<Profile> {
         return this.helpersService.getAuthUri().then((url) => {
             return this.http.put(Location.joinWithSlash(url, `profiles/${profile._id}`), profile).toPromise().then((response) => {
                 let profile: Profile = response.json();
@@ -30,7 +30,7 @@ export class ProfilePageService {
         });
     }
 
-    updatePassword(passwords, accountId): Promise<Account> {
+    updatePassword(passwords: any, accountId: string): Promise<Account> {
         let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
         let options = new RequestOptions({headers: headers});
         let body = `currentPassword=${passwords.currentPassword}&newPassword=${passwords.newPassword}`;
@@ -40,7 +40,7 @@ export class ProfilePageService {
         });
     }
 
-    updateAccount(account): Promise<Account> {
+    updateAccount(account: Account): Promise<Account> {
         return this.http.put(Location.joinWithSlash(environment.baseApi, `/auth/account/${account._id}/update`), account).toPromise().then((response) => {
             this.authService.setToken(response.json().token);
             return response.json().account as Account;

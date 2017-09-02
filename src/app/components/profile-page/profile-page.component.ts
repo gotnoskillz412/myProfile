@@ -89,7 +89,7 @@ export class ProfilePageComponent implements OnInit {
             });
     }
 
-    addLike(like) {
+    addLike(like: string) {
         if (like.trim().length > 0 && this.profile.likes.indexOf(like.trim()) === -1) {
             this.profile.likes.push(like);
         }
@@ -114,7 +114,7 @@ export class ProfilePageComponent implements OnInit {
     }
 
     removeLike() {
-        return (index) => {
+        return (index: number) => {
             if (this.profile && Array.isArray(this.profile.likes) && this.profile.likes[index] != null){
                 this.profile.likes.splice(index, 1);
             }

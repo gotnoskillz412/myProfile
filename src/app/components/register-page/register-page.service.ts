@@ -12,7 +12,7 @@ export class RegisterPageService {
 
     constructor(private http: Option22Service, private authService: AuthService) {}
 
-    registerAccount(accountInfo): Promise<any> {
+    registerAccount(accountInfo: any): Promise<any> {
         if (this.authService.loggedIn()) {
             this.authService.removeToken();
         }

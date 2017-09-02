@@ -27,7 +27,7 @@ export class ConfirmModalComponent extends DialogComponent<ConfirmModel, any> im
     }
 
     confirm() {
-        this.confirmFunction().then((response) => {
+        this.confirmFunction().then((response: any) => {
             this.result = response;
             this.close();
         });

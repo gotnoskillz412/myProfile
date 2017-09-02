@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Goal} from "../../models/goal";
 import {Subgoal} from "../../models/subgoal";
@@ -31,7 +31,7 @@ export class GoalsFormPageComponent implements OnInit {
                 private accountService: AccountService) {
     }
 
-    @ViewChild('goalFormElement') formElement;
+    @ViewChild('goalFormElement') formElement: ElementRef;
 
     ngOnInit() {
         this.goal = this.activatedRoute.snapshot.data['goal'] as Goal || new Goal();
@@ -77,11 +77,11 @@ export class GoalsFormPageComponent implements OnInit {
         });
     }
 
-    completeSubgoal(i) {
+    completeSubgoal(i: number) {
         this.goal.subgoals[i].completed = !this.goal.subgoals[i].completed;
     }
 
-    removeSubgoal(index) {
+    removeSubgoal(index: number) {
         if (this.goal.subgoals[index].description && this.goal.subgoals[index].description.trim().length > 0) {
             this.dialogService.addDialog(ConfirmModalComponent, {
                 title: 'Delete Subtask',

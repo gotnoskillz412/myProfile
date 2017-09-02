@@ -8,6 +8,7 @@ import {ModalDirective} from 'ngx-bootstrap';
 import {AccountService} from '../../../helpers/account.service';
 import {HelpersService} from '../../../helpers/helpers.service';
 import {Option22Service} from '../../../helpers/option22.service';
+import {Profile} from "../../../models/profile";
 
 export interface ConfirmModel {
     title: string;
@@ -22,8 +23,8 @@ export interface ConfirmModel {
 export class ProfilePictureModalComponent extends DialogComponent<ConfirmModel, any> implements ConfirmModel {
     title: string;
     image: HTMLImageElement;
-    data;
-    profile;
+    data: any;
+    profile: Profile;
 
     profileCropperSettings: CropperSettings;
     @ViewChild('profileCropper', undefined)
@@ -45,7 +46,7 @@ export class ProfilePictureModalComponent extends DialogComponent<ConfirmModel, 
         this.data = {};
     }
 
-    fileChangeListener($event) {
+    fileChangeListener($event: any) {
         this.image = new Image();
         let file: File = $event.target.files[0];
         let myReader: FileReader = new FileReader();

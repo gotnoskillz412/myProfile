@@ -13,7 +13,7 @@ export class LoginPageService {
     constructor(private http: Option22Service, private authService: AuthService) {
     }
 
-    sendLoginCredentials(creds): Promise<any> {
+    sendLoginCredentials(creds: any): Promise<any> {
         if (this.authService.loggedIn()) {
             this.authService.removeToken();
         }

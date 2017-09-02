@@ -18,8 +18,8 @@ export class LoginPageComponent implements OnInit {
 
     invalidCredentials: boolean = false;
     model = {
-        username: null,
-        password: null
+        username: <string> null,
+        password: <string> null
     };
 
     ngOnInit() {

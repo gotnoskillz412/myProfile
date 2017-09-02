@@ -12,7 +12,6 @@ import {NotificationsService} from "angular2-notifications/dist";
     providers: [RegisterPageService]
 })
 export class RegisterPageComponent implements OnInit {
-    @ViewChild('registerForm') registerForm;
     constructor(private registerPageService: RegisterPageService,
                 private notifications: NotificationsService,
                 private router: Router) {
@@ -22,12 +21,12 @@ export class RegisterPageComponent implements OnInit {
     }
 
     model = {
-        email: null,
-        firstName: null,
-        lastName: null,
-        username: null,
-        password: null,
-        confirmPassword: null
+        email: <string> null,
+        firstName: <string> null,
+        lastName: <string> null,
+        username: <string> null,
+        password: <string> null,
+        confirmPassword: <string> null
     };
 
     onSubmit() {

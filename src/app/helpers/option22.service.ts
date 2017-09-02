@@ -21,7 +21,7 @@ export class Option22Service extends Http {
 
     request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
         let token = this.authService.getToken();
-        let key;
+        let key: string;
         if (typeof url === 'string') {
             key = url;
             if (!options) {
@@ -42,14 +42,14 @@ export class Option22Service extends Http {
 
     public httpRequest$ = this._httpRequestSource.asObservable();
 
-    private requestHappening(url) {
+    private requestHappening(url: string) {
         let event = new RequestEvent();
         event.type = 'start';
         event.url = url;
         this._httpRequestSource.next(event);
     }
 
-    private requestFinished(url) {
+    private requestFinished(url: string) {
         let event = new RequestEvent();
         event.type = 'end';
         event.url = url;
