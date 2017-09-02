@@ -64,6 +64,7 @@ describe('GoalsFormPageService', () => {
     }));
 
     it('should test saveGoal new', inject([GoalsFormPageService], (service: GoalsFormPageService) => {
+        mockGoal._id = null;
         service.saveGoal(mockGoal).then((resp) => {
             expect(resp).toBe('saved');
         });

@@ -65,6 +65,7 @@ describe('GoalsFormPageService', function () {
         });
     }));
     it('should test saveGoal new', testing_1.inject([goals_form_page_service_1.GoalsFormPageService], function (service) {
+        mockGoal._id = null;
         service.saveGoal(mockGoal).then(function (resp) {
             expect(resp).toBe('saved');
         });
