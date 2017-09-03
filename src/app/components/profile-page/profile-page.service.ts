@@ -2,13 +2,13 @@ import {Headers, RequestOptions} from '@angular/http';
 import {Injectable} from '@angular/core';
 import {Location} from '@angular/common';
 
-import {Option22Service} from "../../helpers/option22.service";
-import {HelpersService} from "../../helpers/helpers.service";
-import {AccountService} from "../../helpers/account.service";
-import {Profile} from "../../models/profile";
 import {Account} from "../../models/account";
-import {environment} from "../../../environments/environment";
+import {AccountService} from "../../helpers/account.service";
 import {AuthService} from "../../helpers/auth.service";
+import {environment} from "../../../environments/environment";
+import {HelpersService} from "../../helpers/helpers.service";
+import {Option22Service} from "../../helpers/option22.service";
+import {Profile} from "../../models/profile";
 
 
 @Injectable()

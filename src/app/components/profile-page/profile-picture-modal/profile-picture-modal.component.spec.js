@@ -1,12 +1,13 @@
 "use strict";
+/* tslint:disable:no-unused-variable */
 var testing_1 = require("@angular/core/testing");
-var profile_picture_modal_component_1 = require("./profile-picture-modal.component");
-var ng2_img_cropper_1 = require("ng2-img-cropper");
 var ng2_bootstrap_modal_1 = require("ng2-bootstrap-modal");
+var ng2_img_cropper_1 = require("ng2-img-cropper");
 var account_service_1 = require("../../../helpers/account.service");
-var option22_service_1 = require("../../../helpers/option22.service");
 var helpers_service_1 = require("../../../helpers/helpers.service");
+var option22_service_1 = require("../../../helpers/option22.service");
 var profile_1 = require("../../../models/profile");
+var profile_picture_modal_component_1 = require("./profile-picture-modal.component");
 describe('ProfilePictureModalComponent', function () {
     var component;
     var fixture;
@@ -27,7 +28,11 @@ describe('ProfilePictureModalComponent', function () {
         MockHttpService.prototype.put = function () {
             return {
                 toPromise: function () {
-                    return Promise.resolve({ json: function () { return mockProfile; } });
+                    return Promise.resolve({
+                        json: function () {
+                            return mockProfile;
+                        }
+                    });
                 }
             };
         };

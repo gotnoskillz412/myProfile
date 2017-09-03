@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {Goal} from "../../models/goal";
 import {ActivatedRoute, Router} from "@angular/router";
-import {GoalsListPageService} from "./goals-list-page.service";
-import {ConfirmModalComponent} from "../confirm-modal/confirm-modal.component";
+import {Component, OnInit} from '@angular/core';
+
 import {DialogService} from "ng2-bootstrap-modal";
 import {NotificationsService} from "angular2-notifications/dist";
+
+import {ConfirmModalComponent} from "../confirm-modal/confirm-modal.component";
+import {Goal} from "../../models/goal";
+import {GoalsListPageService} from "./goals-list-page.service";
 
 @Component({
     selector: 'sfh-goals-list-page',
@@ -15,6 +17,7 @@ import {NotificationsService} from "angular2-notifications/dist";
 export class GoalsListPageComponent implements OnInit {
 
     goals: Goal[];
+
     constructor(private activatedRoute: ActivatedRoute,
                 private router: Router,
                 private goalsListService: GoalsListPageService,

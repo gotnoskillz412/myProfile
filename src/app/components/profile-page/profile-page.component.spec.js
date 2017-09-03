@@ -1,16 +1,16 @@
 "use strict";
 /* tslint:disable:no-unused-variable */
+var router_1 = require("@angular/router");
 var testing_1 = require("@angular/core/testing");
+var forms_1 = require("@angular/forms");
+var ng2_bootstrap_modal_1 = require("ng2-bootstrap-modal");
+var account_1 = require("../../models/account");
+var account_service_1 = require("../../helpers/account.service");
+var dist_1 = require("angular2-notifications/dist");
+var profile_1 = require("../../models/profile");
 var profile_page_component_1 = require("./profile-page.component");
 var profile_page_service_1 = require("./profile-page.service");
-var profile_1 = require("../../models/profile");
-var router_1 = require("@angular/router");
-var ng2_bootstrap_modal_1 = require("ng2-bootstrap-modal");
-var dist_1 = require("angular2-notifications/dist");
-var account_service_1 = require("../../helpers/account.service");
-var forms_1 = require("@angular/forms");
 var tags_component_1 = require("../tags/tags.component");
-var account_1 = require("../../models/account");
 describe('ProfilePageComponent', function () {
     var component;
     var fixture;

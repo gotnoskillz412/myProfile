@@ -1,11 +1,11 @@
 "use strict";
 /* tslint:disable:no-unused-variable */
 var testing_1 = require("@angular/core/testing");
+var router_1 = require("@angular/router");
+var account_service_1 = require("../../helpers/account.service");
+var forms_1 = require("@angular/forms");
 var login_page_component_1 = require("./login-page.component");
 var login_page_service_1 = require("./login-page.service");
-var router_1 = require("@angular/router");
-var forms_1 = require("@angular/forms");
-var account_service_1 = require("../../helpers/account.service");
 describe('LoginPageComponent', function () {
     var component;
     var fixture;

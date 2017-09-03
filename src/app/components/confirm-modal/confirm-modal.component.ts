@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+
 import {DialogComponent, DialogService} from "ng2-bootstrap-modal";
 
 export interface ConfirmModel {

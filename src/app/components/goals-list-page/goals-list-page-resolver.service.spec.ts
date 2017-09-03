@@ -1,10 +1,11 @@
+/* tslint:disable:no-unused-variable */
 import {TestBed, inject} from '@angular/core/testing';
 
-import {GoalsListPageResolverService} from './goals-list-page-resolver.service';
 import {Goal} from "../../models/goal";
-import {Subgoal} from "../../models/subgoal";
-import {Option22Service} from "../../helpers/option22.service";
+import {GoalsListPageResolverService} from './goals-list-page-resolver.service';
 import {HelpersService} from "../../helpers/helpers.service";
+import {Option22Service} from "../../helpers/option22.service";
+import {Subgoal} from "../../models/subgoal";
 
 describe('GoalsListPageResolverService', () => {
     let authUri;

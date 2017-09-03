@@ -1,9 +1,9 @@
-'use strict';
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
-import {RegisterPageService} from './register-page.service';
 import {NotificationsService} from "angular2-notifications/dist";
+
+import {RegisterPageService} from './register-page.service';
 
 @Component({
     selector: 'sfh-register-page',

@@ -1,17 +1,17 @@
 /* tslint:disable:no-unused-variable */
+import {ActivatedRoute, RouterModule} from "@angular/router";
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {FormsModule} from "@angular/forms";
 
+import {DialogService} from "ng2-bootstrap-modal";
+
+import {Account} from "../../models/account";
+import {AccountService} from "../../helpers/account.service";
+import {NotificationsService} from "angular2-notifications/dist";
+import {Profile} from "../../models/profile";
 import {ProfilePageComponent} from './profile-page.component';
 import {ProfilePageService} from "./profile-page.service";
-import {Profile} from "../../models/profile";
-import {ActivatedRoute, ActivatedRouteSnapshot, RouterModule} from "@angular/router";
-import {DialogService} from "ng2-bootstrap-modal";
-import {NotificationsService} from "angular2-notifications/dist";
-import {AccountService} from "../../helpers/account.service";
-import {FormsModule} from "@angular/forms";
 import {TagsComponent} from "../tags/tags.component";
-import {Observable} from "rxjs/Observable";
-import {Account} from "../../models/account";
 
 describe('ProfilePageComponent', () => {
     let component: ProfilePageComponent;
@@ -151,11 +151,11 @@ describe('ProfilePageComponent', () => {
     });
 
     it('should test loadAboutMeInfo', () => {
-       component.infoSection = null;
-       component.profile = null;
-       component.loadAboutMeInfo();
-       expect(component.profile.firstName).toBe(mockProfile.firstName);
-       expect(component.infoSection).toBe(component.sections.aboutMe);
+        component.infoSection = null;
+        component.profile = null;
+        component.loadAboutMeInfo();
+        expect(component.profile.firstName).toBe(mockProfile.firstName);
+        expect(component.infoSection).toBe(component.sections.aboutMe);
     });
 
     it('should test loadSecurityInfo', () => {

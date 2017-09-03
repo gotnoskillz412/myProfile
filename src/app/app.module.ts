@@ -23,7 +23,6 @@ import {RegisterPageComponent} from './components/register-page/register-page.co
 
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
-// import {FileSelectDirective, FileUploadModule} from 'ng2-file-upload';
 import {FocusModule} from "angular2-focus";
 import {ImageCropperModule} from 'ng2-img-cropper';
 import {SimpleNotificationsModule} from 'angular2-notifications';

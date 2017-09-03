@@ -6,9 +6,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var common_1 = require("@angular/common");
 var http_1 = require("@angular/http");
-require("rxjs/add/operator/toPromise");
+var common_1 = require("@angular/common");
 var environment_1 = require("../../../environments/environment");
 var ContactPageService = (function () {
     function ContactPageService(http) {

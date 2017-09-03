@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Location} from '@angular/common'
-import {Option22Service} from "../../helpers/option22.service";
-import {HelpersService} from "../../helpers/helpers.service";
+
 import {Goal} from "../../models/goal";
+import {HelpersService} from "../../helpers/helpers.service";
+import {Option22Service} from "../../helpers/option22.service";
 
 @Injectable()
 export class GoalsFormPageService {
@@ -14,7 +15,7 @@ export class GoalsFormPageService {
         return new Promise((resolve) => {
             this.helpersService.getAuthUri()
                 .then((authUri) => {
-                    if (!goal._id){
+                    if (!goal._id) {
                         let collectionUrl = Location.joinWithSlash(authUri, 'goals');
                         return this.http.post(collectionUrl, goal).toPromise();
                     }

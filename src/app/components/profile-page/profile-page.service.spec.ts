@@ -1,13 +1,13 @@
 /* tslint:disable:no-unused-variable */
+import {TestBed, inject} from '@angular/core/testing';
 
-import {TestBed, async, inject} from '@angular/core/testing';
-import {ProfilePageService} from './profile-page.service';
-import {Option22Service} from "../../helpers/option22.service";
-import {Profile} from "../../models/profile";
 import {Account} from "../../models/account";
-import {HelpersService} from "../../helpers/helpers.service";
 import {AccountService} from "../../helpers/account.service";
 import {AuthService} from "../../helpers/auth.service";
+import {HelpersService} from "../../helpers/helpers.service";
+import {Option22Service} from "../../helpers/option22.service";
+import {Profile} from "../../models/profile";
+import {ProfilePageService} from './profile-page.service';
 
 describe('ProfilePageService', () => {
     let updatePicture;

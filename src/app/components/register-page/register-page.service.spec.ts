@@ -1,9 +1,9 @@
 /* tslint:disable:no-unused-variable */
+import {TestBed, inject, fakeAsync, tick} from '@angular/core/testing';
 
-import {TestBed, async, inject, fakeAsync, tick} from '@angular/core/testing';
-import {RegisterPageService} from './register-page.service';
-import {Option22Service} from "../../helpers/option22.service";
 import {AuthService} from "../../helpers/auth.service";
+import {Option22Service} from "../../helpers/option22.service";
+import {RegisterPageService} from './register-page.service';
 
 describe('RegisterPageService', () => {
     let loggedIn;

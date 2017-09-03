@@ -1,6 +1,8 @@
+/* tslint:disable:no-unused-variable */
 import {inject, TestBed} from "@angular/core/testing";
-import {ProfilePageResolverService} from "./profile-page-resolver.service";
+
 import {AccountService} from "../../helpers/account.service";
+import {ProfilePageResolverService} from "./profile-page-resolver.service";
 
 describe('ProfilePageResolverService', () => {
 

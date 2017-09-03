@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
-
 import {TestBed, inject} from '@angular/core/testing';
+
 import {ContactPageService} from './contact-page.service';
 import {Option22Service} from "../../helpers/option22.service";
 

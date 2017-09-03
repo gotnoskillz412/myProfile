@@ -6,8 +6,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var goals_list_page_service_1 = require("./goals-list-page.service");
 var confirm_modal_component_1 = require("../confirm-modal/confirm-modal.component");
+var goals_list_page_service_1 = require("./goals-list-page.service");
 var GoalsListPageComponent = (function () {
     function GoalsListPageComponent(activatedRoute, router, goalsListService, dialogService, notifications) {
         this.activatedRoute = activatedRoute;

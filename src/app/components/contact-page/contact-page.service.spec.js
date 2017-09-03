@@ -1,5 +1,5 @@
-/* tslint:disable:no-unused-variable */
 "use strict";
+/* tslint:disable:no-unused-variable */
 var testing_1 = require("@angular/core/testing");
 var contact_page_service_1 = require("./contact-page.service");
 var option22_service_1 = require("../../helpers/option22.service");

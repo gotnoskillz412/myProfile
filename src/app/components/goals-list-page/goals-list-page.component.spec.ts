@@ -1,13 +1,15 @@
+/* tslint:disable:no-unused-variable */
 import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
+import {FormsModule} from "@angular/forms";
 
-import {GoalsListPageComponent} from './goals-list-page.component';
-import {Goal} from "../../models/goal";
-import {Subgoal} from "../../models/subgoal";
-import {GoalsListPageService} from "./goals-list-page.service";
-import {ActivatedRoute, Router, RouterModule} from "@angular/router";
 import {DialogService} from "ng2-bootstrap-modal";
 import {NotificationsService} from "angular2-notifications/dist";
-import {FormsModule} from "@angular/forms";
+
+import {ActivatedRoute, Router, RouterModule} from "@angular/router";
+import {Goal} from "../../models/goal";
+import {GoalsListPageComponent} from './goals-list-page.component';
+import {GoalsListPageService} from "./goals-list-page.service";
+import {Subgoal} from "../../models/subgoal";
 
 describe('GoalsListPageComponent', () => {
     let component: GoalsListPageComponent;
@@ -30,6 +32,7 @@ describe('GoalsListPageComponent', () => {
         deleteGoal() {
             return Promise.resolve();
         }
+
         getGoals() {
             return Promise.resolve([]);
         }

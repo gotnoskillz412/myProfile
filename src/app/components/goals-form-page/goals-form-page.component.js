@@ -6,11 +6,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var goal_1 = require("../../models/goal");
-var subgoal_1 = require("../../models/subgoal");
-var goals_form_page_service_1 = require("./goals-form-page.service");
 var confirm_modal_component_1 = require("../confirm-modal/confirm-modal.component");
+var goal_1 = require("../../models/goal");
+var goals_form_page_service_1 = require("./goals-form-page.service");
 var goals_list_page_service_1 = require("../goals-list-page/goals-list-page.service");
+var subgoal_1 = require("../../models/subgoal");
 var GoalsFormPageComponent = (function () {
     function GoalsFormPageComponent(activatedRoute, router, goalsFormService, dialogService, goalsListService, notifications, accountService) {
         this.activatedRoute = activatedRoute;

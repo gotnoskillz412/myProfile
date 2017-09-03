@@ -1,10 +1,11 @@
+/* tslint:disable:no-unused-variable */
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
-import {NavbarComponent} from './navbar.component';
-import {Option22Service} from "../../helpers/option22.service";
 import {Router} from "@angular/router";
+
 import {AccountService} from "../../helpers/account.service";
 import {AuthService} from "../../helpers/auth.service";
+import {NavbarComponent} from './navbar.component';
+import {Option22Service} from "../../helpers/option22.service";
 
 describe('NavbarComponent', () => {
     let component: NavbarComponent;
@@ -25,6 +26,7 @@ describe('NavbarComponent', () => {
         loggedIn() {
             return loggedIn;
         }
+
         removeToken() {
             tokenRemoved = true;
         }
@@ -34,9 +36,11 @@ describe('NavbarComponent', () => {
         updateProfilePicture() {
             pictureUpdated = true;
         }
+
         subscribeToProfilePictureUpdate(cb) {
             cb('test_picture');
         }
+
         getProfile() {
             return {
                 then: (cb) => {
@@ -46,6 +50,7 @@ describe('NavbarComponent', () => {
                 }
             }
         }
+
         logout() {
             loggedOut = true;
         }

@@ -1,10 +1,11 @@
 "use strict";
+/* tslint:disable:no-unused-variable */
 var testing_1 = require("@angular/core/testing");
-var password_update_modal_component_1 = require("./password-update-modal.component");
-var account_1 = require("../../../models/account");
-var ng2_bootstrap_modal_1 = require("ng2-bootstrap-modal");
-var profile_page_service_1 = require("../profile-page.service");
 var forms_1 = require("@angular/forms");
+var ng2_bootstrap_modal_1 = require("ng2-bootstrap-modal");
+var account_1 = require("../../../models/account");
+var password_update_modal_component_1 = require("./password-update-modal.component");
+var profile_page_service_1 = require("../profile-page.service");
 describe('PasswordUpdateModalComponent', function () {
     var component;
     var fixture;

@@ -1,13 +1,13 @@
-/* tslint:disable:no-unused-variable */
 "use strict";
+/* tslint:disable:no-unused-variable */
 var testing_1 = require("@angular/core/testing");
-var profile_page_service_1 = require("./profile-page.service");
-var option22_service_1 = require("../../helpers/option22.service");
-var profile_1 = require("../../models/profile");
 var account_1 = require("../../models/account");
-var helpers_service_1 = require("../../helpers/helpers.service");
 var account_service_1 = require("../../helpers/account.service");
 var auth_service_1 = require("../../helpers/auth.service");
+var helpers_service_1 = require("../../helpers/helpers.service");
+var option22_service_1 = require("../../helpers/option22.service");
+var profile_1 = require("../../models/profile");
+var profile_page_service_1 = require("./profile-page.service");
 describe('ProfilePageService', function () {
     var updatePicture;
     var tokenSet;

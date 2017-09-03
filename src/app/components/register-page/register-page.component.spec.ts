@@ -1,13 +1,12 @@
 /* tslint:disable:no-unused-variable */
 import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {DebugElement} from '@angular/core';
+import {FormsModule} from "@angular/forms";
+import {Router} from "@angular/router";
+
+import {NotificationsService} from "angular2-notifications/dist";
 
 import {RegisterPageComponent} from './register-page.component';
 import {RegisterPageService} from "./register-page.service";
-import {FormsModule} from "@angular/forms";
-import {Router, RouterModule} from "@angular/router";
-import {NotificationsService} from "angular2-notifications/dist";
 
 describe('RegisterPageComponent', () => {
     let component: RegisterPageComponent;

@@ -1,16 +1,13 @@
 /* tslint:disable:no-unused-variable */
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {DebugElement} from '@angular/core';
+import {FormsModule} from "@angular/forms";
 import {RouterTestingModule} from '@angular/router/testing';
 
-import {ContactPageComponent} from './contact-page.component';
-import {ContactPageService} from './contact-page.service'
-import {FormsModule} from "@angular/forms";
-import {Profile} from "../../models/profile";
 import {Account} from "../../models/account";
 import {AccountService} from "../../helpers/account.service";
-import {Option22Service} from "../../helpers/option22.service";
+import {ContactPageComponent} from './contact-page.component';
+import {ContactPageService} from './contact-page.service'
+import {Profile} from "../../models/profile";
 
 describe('ContactPageComponent', () => {
     let component: ContactPageComponent;
@@ -40,6 +37,7 @@ describe('ContactPageComponent', () => {
                 }
             }
         }
+
         getAccount() {
             return {
                 then: (cb) => {

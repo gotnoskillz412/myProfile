@@ -1,14 +1,16 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Goal} from "../../models/goal";
-import {Subgoal} from "../../models/subgoal";
-import {GoalsFormPageService} from "./goals-form-page.service";
-import {Profile} from "../../models/profile";
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+
+import {DialogService} from "ng2-bootstrap-modal";
+
 import {AccountService} from "../../helpers/account.service";
 import {ConfirmModalComponent} from "../confirm-modal/confirm-modal.component";
-import {DialogService} from "ng2-bootstrap-modal";
+import {Goal} from "../../models/goal";
+import {GoalsFormPageService} from "./goals-form-page.service";
 import {GoalsListPageService} from "../goals-list-page/goals-list-page.service";
 import {NotificationsService} from "angular2-notifications/dist";
+import {Profile} from "../../models/profile";
+import {Subgoal} from "../../models/subgoal";
 
 
 @Component({

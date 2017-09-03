@@ -1,17 +1,18 @@
 "use strict";
+/* tslint:disable:no-unused-variable */
+var router_1 = require("@angular/router");
 var testing_1 = require("@angular/core/testing");
-var goals_form_page_component_1 = require("./goals-form-page.component");
-var forms_1 = require("@angular/forms");
 var platform_browser_1 = require("@angular/platform-browser");
+var forms_1 = require("@angular/forms");
+var ng2_bootstrap_modal_1 = require("ng2-bootstrap-modal");
+var account_service_1 = require("../../helpers/account.service");
 var goal_1 = require("../../models/goal");
-var subgoal_1 = require("../../models/subgoal");
+var goals_form_page_component_1 = require("./goals-form-page.component");
 var goals_form_page_service_1 = require("./goals-form-page.service");
 var goals_list_page_service_1 = require("../goals-list-page/goals-list-page.service");
-var router_1 = require("@angular/router");
-var ng2_bootstrap_modal_1 = require("ng2-bootstrap-modal");
 var dist_1 = require("angular2-notifications/dist");
-var account_service_1 = require("../../helpers/account.service");
 var profile_1 = require("../../models/profile");
+var subgoal_1 = require("../../models/subgoal");
 describe('GoalsFormPageComponent', function () {
     var component;
     var fixture;

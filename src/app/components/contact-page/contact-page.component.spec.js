@@ -1,13 +1,13 @@
 "use strict";
 /* tslint:disable:no-unused-variable */
 var testing_1 = require("@angular/core/testing");
-var testing_2 = require("@angular/router/testing");
-var contact_page_component_1 = require("./contact-page.component");
-var contact_page_service_1 = require("./contact-page.service");
 var forms_1 = require("@angular/forms");
-var profile_1 = require("../../models/profile");
+var testing_2 = require("@angular/router/testing");
 var account_1 = require("../../models/account");
 var account_service_1 = require("../../helpers/account.service");
+var contact_page_component_1 = require("./contact-page.component");
+var contact_page_service_1 = require("./contact-page.service");
+var profile_1 = require("../../models/profile");
 describe('ContactPageComponent', function () {
     var component;
     var fixture;

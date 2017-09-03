@@ -7,7 +7,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var contact_page_service_1 = require("./contact-page.service");
-require("rxjs/add/operator/toPromise");
 var ContactPageComponent = (function () {
     function ContactPageComponent(service, accountService) {
         this.service = service;

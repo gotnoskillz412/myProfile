@@ -1,10 +1,11 @@
 "use strict";
-var testing_1 = require("@angular/core/testing");
-var option22_service_1 = require("./option22.service");
-var auth_service_1 = require("./auth.service");
+/* tslint:disable:no-unused-variable */
 var http_1 = require("@angular/http");
-var dist_1 = require("angular2-notifications/dist");
+var testing_1 = require("@angular/core/testing");
 var router_1 = require("@angular/router");
+var dist_1 = require("angular2-notifications/dist");
+var auth_service_1 = require("./auth.service");
+var option22_service_1 = require("./option22.service");
 describe('Option22Service', function () {
     var tokenRemoved;
     var notificationError;

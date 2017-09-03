@@ -1,3 +1,4 @@
+/* tslint:disable:no-unused-variable */
 import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 
 import {ConfirmModalComponent} from './confirm-modal.component';

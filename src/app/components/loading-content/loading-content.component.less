@@ -2,35 +2,36 @@
     background-color: rgba(0, 0, 0, 0.5);
     bottom: 0;
     left: 0;
+    position: fixed;
     right: 0;
     top: 0;
-    position: fixed;
     z-index: 10;
     .sk-circle {
+        height: 80px;
         left: 50%;
         margin: 40px auto;
-        width: 80px;
-        height: 80px;
         position: fixed;
         top: 40%;
+        width: 80px;
     }
 
     .sk-circle .sk-child {
-        width: 100%;
         height: 100%;
-        position: absolute;
         left: 0;
+        position: absolute;
         top: 0;
+        width: 100%;
     }
 
     .sk-circle .sk-child:before {
         content: '';
-        display: block;
-        margin: 0 auto;
-        width: 15%;
-        height: 15%;
         background-color: #333;
         border-radius: 100%;
+        display: block;
+        height: 15%;
+        margin: 0 auto;
+        width: 15%;
+
         -webkit-animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
         animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
     }

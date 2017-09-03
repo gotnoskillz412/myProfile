@@ -1,13 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+
 import {DialogService} from 'ng2-bootstrap-modal';
-import {ProfilePictureModalComponent} from './profile-picture-modal/profile-picture-modal.component';
-import {AccountService} from '../../helpers/account.service';
-import {ProfilePageService} from './profile-page.service';
-import {Profile} from '../../models/profile';
-import {Account} from '../../models/account';
-import {PasswordUpdateModalComponent} from "./password-update-modal/password-update-modal.component";
 import {NotificationsService} from "angular2-notifications/dist";
+
+import {Account} from '../../models/account';
+import {AccountService} from '../../helpers/account.service';
+import {Profile} from '../../models/profile';
+import {PasswordUpdateModalComponent} from "./password-update-modal/password-update-modal.component";
+import {ProfilePageService} from './profile-page.service';
+import {ProfilePictureModalComponent} from './profile-picture-modal/profile-picture-modal.component';
 
 @Component({
     selector: 'sfh-profile-page',
@@ -96,7 +98,7 @@ export class ProfilePageComponent implements OnInit {
     }
 
     loadSecurityInfo() {
-        if (this.infoSection !== this.sections.security){
+        if (this.infoSection !== this.sections.security) {
             this.accountService.getAccount().then((response) => {
                 this.account = response;
                 this.infoSection = this.sections.security;
@@ -115,7 +117,7 @@ export class ProfilePageComponent implements OnInit {
 
     removeLike() {
         return (index: number) => {
-            if (this.profile && Array.isArray(this.profile.likes) && this.profile.likes[index] != null){
+            if (this.profile && Array.isArray(this.profile.likes) && this.profile.likes[index] != null) {
                 this.profile.likes.splice(index, 1);
             }
         }

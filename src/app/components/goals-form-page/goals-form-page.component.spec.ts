@@ -1,17 +1,19 @@
+/* tslint:disable:no-unused-variable */
+import {ActivatedRoute, Router} from "@angular/router";
 import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
-
-import {GoalsFormPageComponent} from './goals-form-page.component';
-import {FormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
+import {FormsModule} from "@angular/forms";
+
+import {DialogService} from "ng2-bootstrap-modal";
+
+import {AccountService} from "../../helpers/account.service";
 import {Goal} from "../../models/goal";
-import {Subgoal} from "../../models/subgoal";
+import {GoalsFormPageComponent} from './goals-form-page.component';
 import {GoalsFormPageService} from "./goals-form-page.service";
 import {GoalsListPageService} from "../goals-list-page/goals-list-page.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {DialogService} from "ng2-bootstrap-modal";
 import {NotificationsService} from "angular2-notifications/dist";
-import {AccountService} from "../../helpers/account.service";
 import {Profile} from "../../models/profile";
+import {Subgoal} from "../../models/subgoal";
 
 describe('GoalsFormPageComponent', () => {
     let component: GoalsFormPageComponent;
@@ -68,7 +70,7 @@ describe('GoalsFormPageComponent', () => {
     }
 
     class MockGoalsListService {
-        deleteGoal(goal){
+        deleteGoal(goal) {
             return Promise.resolve();
         }
     }

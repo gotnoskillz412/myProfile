@@ -1,10 +1,12 @@
+/* tslint:disable:no-unused-variable */
 import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
-
-import {PasswordUpdateModalComponent} from './password-update-modal.component';
-import {Account} from "../../../models/account";
-import {DialogService} from "ng2-bootstrap-modal";
-import {ProfilePageService} from "../profile-page.service";
 import {FormsModule} from "@angular/forms";
+
+import {DialogService} from "ng2-bootstrap-modal";
+
+import {Account} from "../../../models/account";
+import {PasswordUpdateModalComponent} from './password-update-modal.component';
+import {ProfilePageService} from "../profile-page.service";
 
 describe('PasswordUpdateModalComponent', () => {
     let component: PasswordUpdateModalComponent;

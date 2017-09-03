@@ -1,9 +1,11 @@
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
 import {Injectable} from '@angular/core';
 import {Location} from '@angular/common';
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
+
+import {Observable} from "rxjs/Observable";
+
 import {HelpersService} from "../../helpers/helpers.service";
 import {Option22Service} from "../../helpers/option22.service";
-import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class GoalsFormPageResolverService implements Resolve<any> {

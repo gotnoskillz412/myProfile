@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Option22Service} from '../../helpers/option22.service';
+
 import {Subscription} from 'rxjs/Subscription'
+
+import {Option22Service} from '../../helpers/option22.service';
 import {RequestEvent} from "../../models/requestEvent";
 
 
@@ -38,7 +40,7 @@ export class LoadingContentComponent implements OnInit {
                     return;
                 }
                 let endIndex: number = this.loadingArr.indexOf(event.url);
-                if (endIndex === -1){
+                if (endIndex === -1) {
                     this.dontLoad.push(event.url);
                 } else {
                     this.loadingArr.splice(endIndex, 1);

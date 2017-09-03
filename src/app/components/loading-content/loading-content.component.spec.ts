@@ -1,11 +1,8 @@
 /* tslint:disable:no-unused-variable */
 import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {DebugElement} from '@angular/core';
 
 import {LoadingContentComponent} from './loading-content.component';
 import {Option22Service} from "../../helpers/option22.service";
-import {Subscription} from "rxjs";
 import {RequestEvent} from "../../models/requestEvent";
 
 describe('LoadingContentComponent', () => {

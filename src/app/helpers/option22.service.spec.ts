@@ -1,9 +1,12 @@
-import {inject, TestBed} from "@angular/core/testing";
-import {Option22Service} from "./option22.service";
-import {AuthService} from "./auth.service";
+/* tslint:disable:no-unused-variable */
 import {HttpModule, XHRBackend} from "@angular/http";
-import {NotificationsService} from "angular2-notifications/dist";
+import {inject, TestBed} from "@angular/core/testing";
 import {Router} from "@angular/router";
+
+import {NotificationsService} from "angular2-notifications/dist";
+
+import {AuthService} from "./auth.service";
+import {Option22Service} from "./option22.service";
 
 describe('Option22Service', () => {
     let tokenRemoved;
@@ -13,6 +16,7 @@ describe('Option22Service', () => {
         getToken() {
             return 'test_token';
         }
+
         removeToken() {
             tokenRemoved = true;
         }

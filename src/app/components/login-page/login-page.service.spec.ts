@@ -1,9 +1,9 @@
 /* tslint:disable:no-unused-variable */
+import {TestBed, inject} from '@angular/core/testing';
 
-import {TestBed, async, inject, fakeAsync, tick} from '@angular/core/testing';
+import {AuthService} from "../../helpers/auth.service";
 import {LoginPageService} from './login-page.service';
 import {Option22Service} from "../../helpers/option22.service";
-import {AuthService} from "../../helpers/auth.service";
 
 describe('LoginPageService', () => {
     let loggedIn;

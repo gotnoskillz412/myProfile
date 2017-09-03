@@ -1,10 +1,10 @@
 /* tslint:disable:no-unused-variable */
-
-import {TestBed, async} from '@angular/core/testing';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {RouterTestingModule} from "@angular/router/testing";
+import {TestBed, async} from '@angular/core/testing';
+
 import {AppComponent} from './app.component';
 import {LoadingContentComponent} from "./components/loading-content/loading-content.component";
-import {RouterTestingModule} from "@angular/router/testing";
 import {Option22Service} from "./helpers/option22.service";
 
 describe('AppComponent', () => {

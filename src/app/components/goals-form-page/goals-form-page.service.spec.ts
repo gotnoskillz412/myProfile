@@ -1,10 +1,11 @@
+/* tslint:disable:no-unused-variable */
 import {TestBed, inject} from '@angular/core/testing';
 
 import {GoalsFormPageService} from './goals-form-page.service';
 import {Goal} from "../../models/goal";
-import {Subgoal} from "../../models/subgoal";
-import {Option22Service} from "../../helpers/option22.service";
 import {HelpersService} from "../../helpers/helpers.service";
+import {Option22Service} from "../../helpers/option22.service";
+import {Subgoal} from "../../models/subgoal";
 
 describe('GoalsFormPageService', () => {
     let mockSubgoal = new Subgoal();
@@ -28,6 +29,7 @@ describe('GoalsFormPageService', () => {
                 }
             }
         }
+
         put() {
             return {
                 toPromise: () => {

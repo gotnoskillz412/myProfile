@@ -1,13 +1,11 @@
 /* tslint:disable:no-unused-variable */
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {DebugElement} from '@angular/core';
+import {Router} from "@angular/router";
 
+import {AccountService} from "../../helpers/account.service";
+import {FormsModule} from "@angular/forms";
 import {LoginPageComponent} from './login-page.component';
 import {LoginPageService} from "./login-page.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {FormsModule} from "@angular/forms";
-import {AccountService} from "../../helpers/account.service";
 
 describe('LoginPageComponent', () => {
     let component: LoginPageComponent;
@@ -46,7 +44,6 @@ describe('LoginPageComponent', () => {
             resultRedirectUrl = url[0];
         }
     }
-
 
 
     beforeEach(async(() => {

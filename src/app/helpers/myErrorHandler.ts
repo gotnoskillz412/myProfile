@@ -1,4 +1,3 @@
-'use strict';
 import {ErrorHandler} from "@angular/core";
 
 export class MyErrorHandler implements ErrorHandler {

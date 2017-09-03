@@ -1,11 +1,12 @@
+/* tslint:disable:no-unused-variable */
+import {ActivatedRouteSnapshot} from "@angular/router";
 import {TestBed, inject} from '@angular/core/testing';
 
-import {GoalsFormPageResolverService} from './goals-form-page-resolver.service';
-import {Subgoal} from "../../models/subgoal";
 import {Goal} from "../../models/goal";
-import {Option22Service} from "../../helpers/option22.service";
+import {GoalsFormPageResolverService} from './goals-form-page-resolver.service';
 import {HelpersService} from "../../helpers/helpers.service";
-import {ActivatedRouteSnapshot} from "@angular/router";
+import {Option22Service} from "../../helpers/option22.service";
+import {Subgoal} from "../../models/subgoal";
 
 describe('GoalsFormPageResolverService', () => {
     let authUri;

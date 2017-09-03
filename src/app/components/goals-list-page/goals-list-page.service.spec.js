@@ -1,10 +1,11 @@
 "use strict";
+/* tslint:disable:no-unused-variable */
 var testing_1 = require("@angular/core/testing");
-var goals_list_page_service_1 = require("./goals-list-page.service");
-var subgoal_1 = require("../../models/subgoal");
 var goal_1 = require("../../models/goal");
+var goals_list_page_service_1 = require("./goals-list-page.service");
 var helpers_service_1 = require("../../helpers/helpers.service");
 var option22_service_1 = require("../../helpers/option22.service");
+var subgoal_1 = require("../../models/subgoal");
 describe('GoalsListPageService', function () {
     var mockSubgoal = new subgoal_1.Subgoal();
     mockSubgoal._id = 'test_subgoal_id';

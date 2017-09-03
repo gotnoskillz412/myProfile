@@ -1,11 +1,11 @@
 "use strict";
 /* tslint:disable:no-unused-variable */
 var testing_1 = require("@angular/core/testing");
-var register_page_component_1 = require("./register-page.component");
-var register_page_service_1 = require("./register-page.service");
 var forms_1 = require("@angular/forms");
 var router_1 = require("@angular/router");
 var dist_1 = require("angular2-notifications/dist");
+var register_page_component_1 = require("./register-page.component");
+var register_page_service_1 = require("./register-page.service");
 describe('RegisterPageComponent', function () {
     var component;
     var fixture;

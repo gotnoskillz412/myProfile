@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Location} from '@angular/common';
+
 import {Goal} from "../../models/goal";
-import {Option22Service} from "../../helpers/option22.service";
 import {HelpersService} from "../../helpers/helpers.service";
+import {Option22Service} from "../../helpers/option22.service";
 
 @Injectable()
 export class GoalsListPageService {

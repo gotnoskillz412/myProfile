@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ContactPageService} from './contact-page.service';
-import 'rxjs/add/operator/toPromise';
-import {AccountService} from "../../helpers/account.service";
-import {Profile} from "../../models/profile";
+
 import {Account} from "../../models/account";
+import {AccountService} from "../../helpers/account.service";
+import {ContactPageService} from './contact-page.service';
+import {Profile} from "../../models/profile";
 
 @Component({
     selector: 'sfh-contact-page',

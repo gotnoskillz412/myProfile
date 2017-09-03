@@ -1,10 +1,11 @@
+/* tslint:disable:no-unused-variable */
 import {TestBed, inject} from '@angular/core/testing';
 
-import {GoalsListPageService} from './goals-list-page.service';
-import {Subgoal} from "../../models/subgoal";
 import {Goal} from "../../models/goal";
+import {GoalsListPageService} from './goals-list-page.service';
 import {HelpersService} from "../../helpers/helpers.service";
 import {Option22Service} from "../../helpers/option22.service";
+import {Subgoal} from "../../models/subgoal";
 
 describe('GoalsListPageService', () => {
     let mockSubgoal = new Subgoal();
@@ -24,6 +25,7 @@ describe('GoalsListPageService', () => {
                 }
             };
         }
+
         get() {
             return {
                 toPromise: () => {
@@ -39,7 +41,7 @@ describe('GoalsListPageService', () => {
     }
 
     class MockHelpersService {
-        getAuthUri(){
+        getAuthUri() {
             return Promise.resolve('authuri');
         }
     }

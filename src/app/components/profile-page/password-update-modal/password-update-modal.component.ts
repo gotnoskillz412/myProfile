@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
+
 import {DialogComponent, DialogService} from "ng2-bootstrap-modal";
-import {ProfilePageService} from "../profile-page.service";
+
 import {Account} from "../../../models/account";
+import {ProfilePageService} from "../profile-page.service";
 
 export interface PasswordUpdateModel {
     title: string;

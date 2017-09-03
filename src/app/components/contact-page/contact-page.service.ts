@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Location} from '@angular/common';
 import {Headers, RequestOptions, Response} from '@angular/http';
-import {Option22Service} from '../../helpers/option22.service';
-import 'rxjs/add/operator/toPromise';
+import {Location} from '@angular/common';
+
 import {environment} from "../../../environments/environment";
+import {Option22Service} from '../../helpers/option22.service';
 
 @Injectable()
 export class ContactPageService {

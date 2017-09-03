@@ -1,12 +1,14 @@
+/* tslint:disable:no-unused-variable */
 import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 
-import {ProfilePictureModalComponent} from './profile-picture-modal.component';
-import {ImageCropperModule} from "ng2-img-cropper";
 import {DialogService} from "ng2-bootstrap-modal";
+import {ImageCropperModule} from "ng2-img-cropper";
+
 import {AccountService} from "../../../helpers/account.service";
-import {Option22Service} from "../../../helpers/option22.service";
 import {HelpersService} from "../../../helpers/helpers.service";
+import {Option22Service} from "../../../helpers/option22.service";
 import {Profile} from "../../../models/profile";
+import {ProfilePictureModalComponent} from './profile-picture-modal.component';
 
 describe('ProfilePictureModalComponent', () => {
     let component: ProfilePictureModalComponent;
@@ -25,7 +27,11 @@ describe('ProfilePictureModalComponent', () => {
         put() {
             return {
                 toPromise: () => {
-                    return Promise.resolve({json: () => {return mockProfile;}});
+                    return Promise.resolve({
+                        json: () => {
+                            return mockProfile;
+                        }
+                    });
                 }
             }
         }

@@ -1,10 +1,11 @@
 "use strict";
+/* tslint:disable:no-unused-variable */
 var testing_1 = require("@angular/core/testing");
-var navbar_component_1 = require("./navbar.component");
-var option22_service_1 = require("../../helpers/option22.service");
 var router_1 = require("@angular/router");
 var account_service_1 = require("../../helpers/account.service");
 var auth_service_1 = require("../../helpers/auth.service");
+var navbar_component_1 = require("./navbar.component");
+var option22_service_1 = require("../../helpers/option22.service");
 describe('NavbarComponent', function () {
     var component;
     var fixture;

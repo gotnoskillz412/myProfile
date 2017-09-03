@@ -6,9 +6,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var profile_picture_modal_component_1 = require("./profile-picture-modal/profile-picture-modal.component");
-var profile_page_service_1 = require("./profile-page.service");
 var password_update_modal_component_1 = require("./password-update-modal/password-update-modal.component");
+var profile_page_service_1 = require("./profile-page.service");
+var profile_picture_modal_component_1 = require("./profile-picture-modal/profile-picture-modal.component");
 var ProfilePageComponent = (function () {
     function ProfilePageComponent(route, dialogService, accountService, notifications, profileService) {
         this.route = route;

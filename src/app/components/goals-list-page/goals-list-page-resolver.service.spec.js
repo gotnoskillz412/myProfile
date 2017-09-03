@@ -1,10 +1,11 @@
 "use strict";
+/* tslint:disable:no-unused-variable */
 var testing_1 = require("@angular/core/testing");
-var goals_list_page_resolver_service_1 = require("./goals-list-page-resolver.service");
 var goal_1 = require("../../models/goal");
-var subgoal_1 = require("../../models/subgoal");
-var option22_service_1 = require("../../helpers/option22.service");
+var goals_list_page_resolver_service_1 = require("./goals-list-page-resolver.service");
 var helpers_service_1 = require("../../helpers/helpers.service");
+var option22_service_1 = require("../../helpers/option22.service");
+var subgoal_1 = require("../../models/subgoal");
 describe('GoalsListPageResolverService', function () {
     var authUri;
     var mockSubgoal = new subgoal_1.Subgoal();

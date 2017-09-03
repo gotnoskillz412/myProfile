@@ -1,4 +1,5 @@
 "use strict";
+/* tslint:disable:no-unused-variable */
 var testing_1 = require("@angular/core/testing");
 var confirm_modal_component_1 = require("./confirm-modal.component");
 var ng2_bootstrap_modal_1 = require("ng2-bootstrap-modal");

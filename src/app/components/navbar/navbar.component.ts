@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Option22Service} from "../../helpers/option22.service";
-import {Router} from "@angular/router";
-import {environment} from "../../../environments/environment";
 import {Location} from '@angular/common';
+import {Router} from "@angular/router";
+
 import {AccountService} from "../../helpers/account.service";
 import {AuthService} from "../../helpers/auth.service";
+import {environment} from "../../../environments/environment";
+import {Option22Service} from "../../helpers/option22.service";
 
 @Component({
     selector: 'sfh-navbar',

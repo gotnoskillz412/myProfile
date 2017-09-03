@@ -1,7 +1,8 @@
 "use strict";
+/* tslint:disable:no-unused-variable */
 var testing_1 = require("@angular/core/testing");
-var profile_page_resolver_service_1 = require("./profile-page-resolver.service");
 var account_service_1 = require("../../helpers/account.service");
+var profile_page_resolver_service_1 = require("./profile-page-resolver.service");
 describe('ProfilePageResolverService', function () {
     var MockAccountService = (function () {
         function MockAccountService() {

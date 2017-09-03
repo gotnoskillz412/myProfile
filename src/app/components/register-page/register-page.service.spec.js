@@ -1,9 +1,9 @@
-/* tslint:disable:no-unused-variable */
 "use strict";
+/* tslint:disable:no-unused-variable */
 var testing_1 = require("@angular/core/testing");
-var register_page_service_1 = require("./register-page.service");
-var option22_service_1 = require("../../helpers/option22.service");
 var auth_service_1 = require("../../helpers/auth.service");
+var option22_service_1 = require("../../helpers/option22.service");
+var register_page_service_1 = require("./register-page.service");
 describe('RegisterPageService', function () {
     var loggedIn;
     var token;
