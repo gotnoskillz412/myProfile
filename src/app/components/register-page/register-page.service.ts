@@ -22,6 +22,8 @@ export class RegisterPageService {
         return this.http.post(this.registerUrl, body, options).toPromise().then((response) => {
             this.authService.setToken(response.json().token);
             return response;
+        }).catch((err) => {
+            return Promise.reject(err);
         });
     }
 

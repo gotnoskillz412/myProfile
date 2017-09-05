@@ -89,7 +89,7 @@
                                [(ngModel)]="model.password"
                                name="password"
                                maxlength="30"
-                               pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                               pattern="(?=^.{8,}$)(((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z])).*$"
                                #password="ngModel"
                                required>
                         <div class="text-danger" *ngIf="password.errors && (password.dirty || password.touched)">

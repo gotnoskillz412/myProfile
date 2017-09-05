@@ -66,8 +66,11 @@ export class Option22Service extends Http {
                 this.authService.removeToken();
                 return this.router.navigate(['/login'], navExtras);
             }
-            if (res.status !== 404) {
+            if (res.status >= 500) {
                 this.notifications.error('Internal Server Error', 'Problem communicating with backend services. Please try again later.')
+            } else if (res.status === 400) {
+                console.log('here', res.json());
+                this.notifications.error('Error', res.json().message);
             }
             Observable.throw(res);
             return;
