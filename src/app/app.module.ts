@@ -36,6 +36,8 @@ import {GoalsListPageResolverService} from "./components/goals-list-page/goals-l
 import {GoalsFormPageResolverService} from "./components/goals-form-page/goals-form-page-resolver.service";
 import {ConfirmModalComponent} from './components/confirm-modal/confirm-modal.component';
 import {FileUploadModule} from "ng2-file-upload";
+import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 @NgModule({
     declarations: [
@@ -53,7 +55,9 @@ import {FileUploadModule} from "ng2-file-upload";
         PasswordUpdateModalComponent,
         GoalsListPageComponent,
         GoalsFormPageComponent,
-        ConfirmModalComponent
+        ConfirmModalComponent,
+        ResetPasswordComponent,
+        ForgotPasswordComponent
     ],
     imports: [
         BsDropdownModule.forRoot(),
@@ -103,6 +107,14 @@ import {FileUploadModule} from "ng2-file-upload";
                 resolve: {
                     profile: ProfilePageResolverService
                 }
+            },
+            {
+                path: 'passwordreset/:id',
+                component: ResetPasswordComponent
+            },
+            {
+                path: 'forgotPassword',
+                component: ForgotPasswordComponent
             },
             {
                 path: '',
