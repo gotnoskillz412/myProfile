@@ -86,7 +86,11 @@
                                             <div class="col-xs-9 col-sm-10">
                                                 <div class="form-group">
                                                     <label for="profile-likes">What do you like?</label>
-                                                    <input id="profile-likes" #newLike maxlength="20"
+                                                    <input id="profile-likes"
+                                                           class="form-control"
+                                                           name="profile-likes"
+                                                           #newLike
+                                                           maxlength="20"
                                                            (keyup.enter)="addLike(newLike.value); newLike.value = null"
                                                            (keydown.enter)="$event.preventDefault();">
                                                 </div>

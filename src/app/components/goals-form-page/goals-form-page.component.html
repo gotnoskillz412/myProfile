@@ -63,14 +63,14 @@
                                        (keydown.enter)="$event.preventDefault(); addSubgoal();">
                             </div>
                         </div>
-                        <div class="col-xs-3 col-sm-2 col-md-1">
+                        <div class="col-xs-2 col-sm-2 col-md-1">
                             <input type="checkbox" class="subgoal-complete"
                                    [disabled]="subgoal.description == null || subgoal.description.trim().length === 0"
                                    (click)="completeSubgoal(i)"
                                    (keydown.enter)="$event.preventDefault(); completeSubgoal(i);"
                                    [checked]="subgoal.description != null && subgoal.description.trim().length > 0 && goal.subgoals[i].completed"/>
                         </div>
-                        <div class="col-xs-1">
+                        <div class="col-xs-2 col-sm-1">
                             <i tabindex="0" class="fa fa-trash" (keydown.enter)="removeSubgoal(i)" (click)="removeSubgoal(i)"></i>
                         </div>
                     </div>
